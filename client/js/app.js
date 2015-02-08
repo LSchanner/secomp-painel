@@ -72,3 +72,10 @@ Template.painel.helpers({
         return Meteor.user().username;
     }
 });
+
+Template.painel.events({
+    'click .navbar-collapse ul li a': function(){
+        $('.navbar-collapse').collapse('hide');
+    }
+});
+
