@@ -5,7 +5,7 @@ Template.login.events({
 
         Meteor.loginWithPassword(email,password,function(Error){
             if(Error){
-                Session.set('erro',true)
+                Session.set('erroLogin',true)
             }
             else if(Meteor.user().profile.admin){
                 Router.go('/admin');
@@ -20,6 +20,6 @@ Template.login.events({
 });
 Template.login.helpers({
     erro:function(){
-        return Session.get('erro');
+        return Session.get('erroLogin');
     }
 });
