@@ -13,6 +13,12 @@ Router.route('/login', function () {
     this.render('login');
 },{name:'login'});
 
+// Página de Cadastro
+Router.route('/cadastro', function () {
+    this.render('cadastro');
+},{name:'cadastro'});
+
+
 // Dashboard
 Router.route('/', function () {
     this.layout('painel');
@@ -69,7 +75,7 @@ Template.painel.helpers({
         return path === Router.current().route.getName();
     },
     username: function(path){
-        return Meteor.user().username;
+        return Meteor.user().profile.nome;
     }
 });
 

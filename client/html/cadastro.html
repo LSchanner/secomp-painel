@@ -1,0 +1,64 @@
+<template name="cadastro">
+<style>
+body{
+    background-color:#F8F7F6;
+}
+</style>
+
+<div class="container">    
+    <div style="margin-top:50px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">                    
+        <div class="panel panel-primary" >
+            <div class="panel-heading">
+                <div class="panel-title">Cadastro no Painel</div>
+            </div>     
+
+            <div style="padding-top:30px" class="panel-body" >
+
+                <p > Todos os campos são obrigatórios </p>
+                <form id="formcadastro" class="form-horizontal" role="form">
+
+                    <div style="margin-bottom: 25px" class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                        <input type="text" class="form-control" name="nome" value="" placeholder="Nome Completo">                                        
+                    </div>
+
+                    <div style="margin-bottom: 25px" class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                        <input type="text" class="form-control" name="email" value="" placeholder=" Email">                                        
+                    </div>
+
+                    <div style="margin-bottom: 25px" class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                        <input type="password" class="form-control" name="password" placeholder="Senha">
+                    </div>
+
+                    <div style="margin-top:10px" class="form-group">
+                        <!-- Button -->
+
+                        <div class="col-sm-12 controls">
+                            <button type="submit" class="btn btn-primary"> Fazer Cadastro </button>
+                        </div>
+                    </div>
+
+                </form>     
+                {{#if erro}}
+                <div class="alert-danger alert">
+                    Não foi possível realizar cadastro.
+                </div>
+                {{/if}}
+                <div class="col-md-12 control">
+                    <div style="border-top: 1px solid#888; padding-top:15px; font-size:85%" >
+                        Já é cadastrado?
+                        <a href="/login">
+                            Faça login.
+                        </a>
+                    </div>
+                </div>
+
+
+            </div>                     
+        </div>  
+    </div>
+
+</div>
+</template>
