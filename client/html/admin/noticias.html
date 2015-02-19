@@ -1,0 +1,119 @@
+<template name="adminNoticias">
+
+<!-- Page Heading -->
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">
+            Noticias <small> </small>
+        </h1>
+        <ol class="breadcrumb">
+            <li class="active">
+            Painel
+            </li>
+            <li class="active">
+            <i class="fa fa-star"></i> Noticias
+            </li>
+        </ol>
+    </div>
+</div>
+<!-- /.row -->
+<a href="/admin/noticias/nova">
+    <button class="btn btn-success">Nova Noticia</button>
+</a>
+{{> Noticias }}
+
+</template>
+
+<template name="novaNoticia">
+<!-- Page Heading -->
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">
+            Nova Noticia <small> </small>
+        </h1>
+        <ol class="breadcrumb">
+            <li class="active">
+            Painel
+            </li>
+            <li class="active">
+            <i class="fa fa-newspaper-o"></i> Noticias
+            </li>
+            <li class="active">
+            <i class="fa fa-plus"></i> Nova Noticia
+            </li>
+
+        </ol>
+    </div>
+</div>
+<!-- /.row -->   
+
+<div class="col-md-12">
+    <form id="add-noticia">
+        <div class="input-group">
+            <label for="title"> Título</label>
+            <input type="text" class="form-control" name="title" placeholder="Titulo" >
+        </div>
+
+        <div class="input-group">
+            <label for="body"> Conteúdo </label>
+            <textarea class="edit" rows="20" name="body" ></textarea> 
+        </div>
+        <div class="input-group">
+            <button type="submit" class="btn btn-success">Enviar</button>
+        </div>
+    </form>
+</div>
+
+<script>
+    $('textarea').editable({inlineMode: false , minHeight:250})
+</script>
+
+</template>
+
+<template name="editNoticia">
+ <div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">
+            Editar Noticia <small> </small>
+        </h1>
+        <ol class="breadcrumb">
+            <li class="active">
+            Painel
+            </li>
+            <li class="active">
+            <i class="fa fa-newspaper-o"></i> Noticias
+            </li>
+            <li class="active">
+            <i class="fa fa-newspaper-o"></i> Editar Noticia
+            </li>
+
+        </ol>
+    </div>
+</div>   
+
+{{#with noticia}}
+<div class="col-md-12">
+    <form id="edit-noticia">
+        <div class="input-group">
+            <label for="title"> Título</label>
+            <input type="text" class="form-control" name="title" value="{{title}}" placeholder="Titulo" >
+        </div>
+
+        <div class="input-group">
+            <label for="body"> Conteúdo </label>
+            <textarea class="edit" rows="20" name="body">{{body}}</textarea> 
+        </div>
+        <div class="input-group">
+            <button type="submit" class="btn btn-success">Enviar</button>
+        </div>
+    </form>
+</div>
+{{/with}}
+
+<script>
+    $('textarea').editable({inlineMode: false , minHeight:250})
+</script>
+
+
+</template>
+

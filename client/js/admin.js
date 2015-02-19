@@ -16,7 +16,7 @@ Router.route('/admin', function () {
     onBeforeAction: adminHook });
 
 // Notícias
-Router.route('/admin/noticias', function () {
+Router.route('/admin/noticias/', function () {
     this.layout('painelAdmin');
     this.render('adminNoticias');
 },{ name:'admin-noticias',

@@ -1,4 +1,4 @@
-<template name="noticias">
+<template name="pagnoticias">
 
 <!-- Page Heading -->
 <div class="row">
@@ -18,10 +18,69 @@
 </div>
 <!-- /.row -->
 
+{{ > Noticias }}
+</template>
 
-<div class="lead">
-    Nesta página os usuários verão notícias sobre a semana, anúncios, etc..
+<template name='Noticias'>
+<div class='post-list'>
+    {{#each noticias}}
+        {{> Noticia}}
+    {{/each}}
 </div>
 
-
+{{#if temMais}}
+<a href="#" id="tem-mais-anchor"><div class="" id="tem-mais"> Ver mais</div></a>
+{{/if}}
 </template>
+
+
+<template name="Noticia">
+ <article class="noticia">
+     <h2>
+         <a href="{{_id}}">{{title}}</a>
+     </h2>
+     <div class="post-meta">
+         {{format created}}
+     </div>
+     <div class="the-content">
+         {{encurta body}}
+     </div>
+ </article>
+</template>
+
+
+
+
+<template name="shownoticia">
+
+<!-- Page Heading -->
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">
+            Notícia <small> {{title}}</small>
+        </h1>
+        <ol class="breadcrumb">
+            <li class="active">
+            Painel
+            </li>
+            <li class="active">
+            <i class="fa fa-newspaper-o"></i> Notícia
+            </li>
+        </ol>
+    </div>
+</div>
+<!-- /.row -->
+ <article class="noticia">
+     <h2>
+         <a href="{{_id}}">{{title}}</a>
+     </h2>
+     <div class="post-meta">
+         {{format created}}
+     </div>
+     <div class="the-content">
+         {{body}}
+     </div>
+ </article>
+</template>
+
+

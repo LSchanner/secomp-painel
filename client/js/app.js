@@ -29,7 +29,7 @@ Router.route('/', function () {
 // Notícias
 Router.route('/noticias', function () {
     this.layout('painel');
-    this.render('noticias');
+    this.render('pagnoticias');
 },{ name:'noticias',
     onBeforeAction: loginHook });
 
