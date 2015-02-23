@@ -18,7 +18,7 @@ Template.Noticias.events({
 // Template de uma Noticia encurtada
 Template.Noticia.helpers({
     encurta: function(body){
-        return $(body).filter('p:first').text();
+        return $(body).filter('p:first').html();
     },
     format: function(date) {
         return moment(date).format('LLL');
@@ -81,6 +81,22 @@ Template.editNoticia.events({
         return false;
     }
 });
+
+// página de visualizar notícia
+Template.shownoticia.helpers({
+    noticia: function(){
+        return Noticias.findOne(Router.current().params._id);
+    },
+    format: function(date) {
+        return moment(date).format('LLL');
+    }
+});
+
+Router.route('/noticias/:_id', function () {
+  this.layout('painel');
+  this.render('shownoticia');
+},{ name:'showNoticia',
+    onBeforeAction: loginHook });
 
 
 
