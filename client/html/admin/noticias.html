@@ -58,7 +58,7 @@
             <label for="body"> Conteúdo </label>
             <textarea class="edit" rows="20" name="body" ></textarea> 
         </div>
-        <div class="input-group">
+        <div class="edit-buttons">
             <button type="submit" class="btn btn-success">Enviar</button>
         </div>
     </form>
@@ -94,6 +94,7 @@
 {{#with noticia}}
 <div class="col-md-12">
     <form id="edit-noticia">
+
         <div class="input-group">
             <label for="title"> Título</label>
             <input type="text" class="form-control" name="title" value="{{title}}" placeholder="Titulo" >
@@ -103,13 +104,15 @@
             <label for="body"> Conteúdo </label>
             <textarea class="edit" rows="20" name="body">{{body}}</textarea> 
         </div>
-        <div class="input-group">
+
+        <div class="edit-buttons" >
             <button type="submit" class="btn btn-success">Enviar</button>
+
+            <button id="delete-button" class="btn btn-danger pull-right">Deletar</button>
         </div>
     </form>
 </div>
 {{/with}}
-
 <script>
     $('textarea').editable({inlineMode: false , minHeight:250})
 </script>

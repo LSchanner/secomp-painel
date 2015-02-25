@@ -1,5 +1,5 @@
 // função que valida submissão
-auth = function(userId, instance){
+authAdmin = function(userId, instance){
     return Meteor.users.findOne(userId).profile.admin;
 }
 
@@ -8,7 +8,23 @@ Meteor.publish('Noticias', function() {
 });
 
 Noticias.allow({
-    insert: auth,
-    update: auth,
-    remove: auth
+    insert: authAdmin,
+    update: authAdmin,
+    remove: authAdmin
 });
+
+Meteor.publish('Atividades', function() {
+      if(Meteor.user().profile.admin){
+          return Atividades.find();
+      }else{
+          return Atividades.find({},{fields:{title:1,description:1}})
+      }
+});
+
+Atividades.allow({
+    insert: authAdmin,
+    update: authAdmin,
+    remove: authAdmin
+});
+
+

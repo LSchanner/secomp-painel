@@ -79,7 +79,12 @@ Template.editNoticia.events({
             alert('Por favor preencha todos os campos');
         }
         return false;
+    },
+    'click #delete-button': function(event) {
+        Noticias.remove(Router.current().params._id);
+        Router.go('/admin/noticias/');
     }
+
 });
 
 // página de visualizar notícia
