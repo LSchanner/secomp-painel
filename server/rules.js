@@ -1,6 +1,6 @@
 // função que valida submissão
 authAdmin = function(userId, instance){
-    return Meteor.users.findOne(userId).profile.admin;
+    return Meteor.users.findOne(userId).admin;
 }
 
 Meteor.publish('Noticias', function() {
@@ -14,7 +14,7 @@ Noticias.allow({
 });
 
 Meteor.publish('Atividades', function() {
-      if(Meteor.user().profile.admin){
+      if(Meteor.user().admin){
           return Atividades.find();
       }else{
           return Atividades.find({},{fields:{title:1,description:1}})
@@ -28,7 +28,7 @@ Atividades.allow({
 });
 
 Meteor.publish("allUserData", function () {
-    if(Meteor.users.findOne(this.userId).profile.admin){
+    if(Meteor.users.findOne(this.userId).admin){
         return Meteor.users.find({});
     }
 });

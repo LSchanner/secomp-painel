@@ -4,18 +4,18 @@ if ( Meteor.users.find().count() === 0 ) {
         email: 'secomper@gmail.com',
         password: 'secomp2015',
         profile:{
-            points: 1200,
-            admin:false
+            nome: 'Secomper'
         }
 
     });
 
-    Accounts.createUser({
+    var id = Accounts.createUser({
         username: 'admin',
         email: 'admin@secomp.com',
         password: 'admin',
         profile:{
-            admin:true
+            nome: 'admin'
         }
     });
+    Meteor.users.update({_id:id},{$set:{admin:true}});
 }
