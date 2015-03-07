@@ -19,6 +19,7 @@ Template.cadastro.events({
             profile:{
                 documento: documento,
                 nome: nome,
+                email: email
             }
         }
 

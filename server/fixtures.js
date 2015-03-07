@@ -4,7 +4,9 @@ if ( Meteor.users.find().count() === 0 ) {
         email: 'secomper@gmail.com',
         password: 'secomp2015',
         profile:{
-            nome: 'Secomper'
+            nome: 'Secomper',
+            email: 'secomper@gmail.com',
+            documento: 'ra 156412'
         }
 
     });
@@ -14,7 +16,9 @@ if ( Meteor.users.find().count() === 0 ) {
         email: 'admin@secomp.com',
         password: 'admin',
         profile:{
-            nome: 'admin'
+            nome: 'admin',
+            email: 'admin@secomp.com',
+            documento: '02065464131'
         }
     });
     Meteor.users.update({_id:id},{$set:{admin:true}});

@@ -18,22 +18,66 @@
 </div>
 <!-- /.row -->
 <h3> Usuários cadastrados </h3>
-<table class="table">
-{{#each users}}
-{{#with profile}}
-<tr>
-    <td>
-        {{nome}}
-    </td>
-    <td>
-        {{email}}
-    </td>
-    <td>
-        {{documento}}
-    </td>
-</tr>
-{{/with}}
-{{/each}}
+<table class="table table-striped">
+    <thead>
+        <th> Nome </th>
+        <th> Email </th>
+        <th> Documento </th>
+    </thead>
+    <tbody>
+    {{#each users}}
+    {{> userListItem }}
+    {{/each}}
+    </tbody>
+</table>
+
+</template>
+
+<template name="userListItem">
+    <tr class="userListItem">
+        <td>
+            {{profile.nome}}
+        </td>
+        <td>
+            {{profile.email}}
+        </td>
+        <td>
+            {{profile.documento}}
+        </td>
+    </tr>
+</template> 
+
+<template name="credenciaUser">
+
+<!-- Page Heading -->
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">
+            Atividades <small></small>
+        </h1>
+        <ol class="breadcrumb">
+            <li class="active">
+            Painel
+            </li>
+            <li class="active">
+            <i class="fa fa-user-plus"></i> Credenciamento
+            </li>
+        </ol>
+    </div>
+</div>
+<!-- /.row -->
+<h3> Usuários cadastrados </h3>
+<table class="table table-striped">
+    <thead>
+        <th> Nome </th>
+        <th> Email </th>
+        <th> Documento </th>
+    </thead>
+    <tbody>
+    {{#each users}}
+    {{> userListItem }}
+    {{/each}}
+    </tbody>
 </table>
 
 </template>

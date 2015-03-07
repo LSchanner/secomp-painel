@@ -3,7 +3,7 @@
 //hook de obrigar o login de admin
 adminHook = function() {
     if(!Meteor.user().admin){
-        this.redirect('/login');
+        Router.go('/login');
     }
     this.next();
 }
