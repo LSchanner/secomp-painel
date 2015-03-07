@@ -1,0 +1,41 @@
+<template name="adminCredenciamento">
+
+<!-- Page Heading -->
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">
+            Atividades <small></small>
+        </h1>
+        <ol class="breadcrumb">
+            <li class="active">
+            Painel
+            </li>
+            <li class="active">
+            <i class="fa fa-user-plus"></i> Credenciamento
+            </li>
+        </ol>
+    </div>
+</div>
+<!-- /.row -->
+<h3> Usuários cadastrados </h3>
+<table class="table">
+{{#each users}}
+{{#with profile}}
+<tr>
+    <td>
+        {{nome}}
+    </td>
+    <td>
+        {{email}}
+    </td>
+    <td>
+        {{documento}}
+    </td>
+</tr>
+{{/with}}
+{{/each}}
+</table>
+
+</template>
+
+

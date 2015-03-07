@@ -6,19 +6,26 @@ Template.cadastro.events({
         var nome = event.target.nome.value;
         var password = event.target.password.value;
 
+        if(event.target.ra){
+            var documento = "ra " + event.target.ra.value;
+        }
+        else{
+            var documento = "cpf " + event.target.cpf.value;
+        }
+
         var user = {
             email: email,
             password: password,
             profile:{
-                pontos: 0,
-                nome: nome
+                documento: documento,
+                nome: nome,
             }
         }
 
         Accounts.createUser(user,function(Error){
             if(Error){
-                console.log(Error)
-                Session.set('erroCadastro',true)
+                console.log(Error);
+                Session.set('erroCadastro',true);
             }
             else {
                 Meteor.loginWithPassword(email,password);
@@ -27,10 +34,17 @@ Template.cadastro.events({
         }); 
 
         return false;
+    },
+    "click #unicamper": function(event){
+        Session.set('unicamper', !Session.get('unicamper'));
     }
 });
+
 Template.cadastro.helpers({
     erro:function(){
         return Session.get('erroCadastro');
+    },
+    unicamper:function(){
+        return Session.get('unicamper');
     }
 });

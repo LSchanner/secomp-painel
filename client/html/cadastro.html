@@ -23,24 +23,42 @@ body{
                     </div>
 
                     <div style="margin-bottom: 25px" class="input-group">
-                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                        <input type="text" class="form-control" name="email" value="" placeholder=" Email">                                        
-                    </div>
-
-                    <div style="margin-bottom: 25px" class="input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
                         <input type="password" class="form-control" name="password" placeholder="Senha">
                     </div>
 
-                    <div style="margin-top:10px" class="form-group">
-                        <!-- Button -->
+                    <div class="input-group" style="margin-bottom:25px;" >
+                        <input id="unicamper" type="checkbox" value="unicamper"> Aluno Computação Unicamp
+                    </div>
 
+                    {{#if unicamper}}
+                    <div style="margin-bottom:25px;" class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+                        <input type="email" class="form-control" name="email" placeholder="Email (Utilize email institucional do IC)">                                        
+                    </div>
+                    <div  class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                        <input type="text" class="form-control" name="ra" placeholder="RA">                                        
+                    </div>
+                    {{else}}
+                    <div  style="margin-bottom:25px;" class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+                        <input type="email" class="form-control" name="email"  placeholder="Email">                                        
+                    </div>
+                    <div  class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                        <input type="text" class="form-control" name="cpf"  placeholder="CPF">
+                    </div>
+                    {{/if}}
+
+                    <div style="margin-top:10px" class="form-group">
                         <div class="col-sm-12 controls">
                             <button type="submit" class="btn btn-primary"> Fazer Cadastro </button>
                         </div>
                     </div>
 
                 </form>     
+
                 {{#if erro}}
                 <div class="alert-danger alert">
                     Este email já está cadastrado. Talvez você queira <a href="/login/recuperarsenha"> recuperar sua senha </a>

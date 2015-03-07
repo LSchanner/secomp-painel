@@ -27,4 +27,9 @@ Atividades.allow({
     remove: authAdmin
 });
 
+Meteor.publish("allUserData", function () {
+    if(Meteor.users.findOne(this.userId).profile.admin){
+        return Meteor.users.find({});
+    }
+});
 
