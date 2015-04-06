@@ -21,5 +21,5 @@ if ( Meteor.users.find().count() === 0 ) {
             documento: '02065464131'
         }
     });
-    Meteor.users.update({_id:id},{$set:{admin:true}});
+    Roles.addUsersToRoles(id, ['moderador'])
 }

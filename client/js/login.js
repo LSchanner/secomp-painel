@@ -7,7 +7,7 @@ Template.login.events({
             if(Error){
                 Session.set('erroLogin',true)
             }
-            else if(Meteor.user().admin){
+            else if(Roles.userIsInRole(Meteor.userId(),"moderador")){
                 Router.go('/admin');
             }
             else {

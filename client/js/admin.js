@@ -2,7 +2,8 @@
 
 //hook de obrigar o login de admin
 adminHook = function() {
-    if(!Meteor.user().admin){
+    if(!Roles.userIsInRole(Meteor.userId(),"moderador")){
+        console.log(Meteor.user())
         Router.go('/login');
     }
     this.next();
