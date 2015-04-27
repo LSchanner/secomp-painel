@@ -12,46 +12,90 @@ body{
                 <div class="panel-title">Cadastro no Painel</div>
             </div>     
 
-            <div style="padding-top:30px" class="panel-body" >
+            <div style="" class="panel-body" >
 
-                <p > Todos os campos são obrigatórios </p>
                 <form id="formcadastro" class="form-horizontal" role="form">
 
-                    <div style="margin-bottom: 25px" class="input-group">
+                    <h3 class="section-heading"> Informações Gerais </h3>
+
+                    <div  class="input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
                         <input type="text" class="form-control" name="nome" value="" placeholder="Nome Completo">                                        
                     </div>
 
-                    <div style="margin-bottom: 25px" class="input-group">
+                    <div   class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+                        <input type="email" class="form-control" name="email"  placeholder="Email">                                        
+                    </div>
+
+                    <div  class="input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
                         <input type="password" class="form-control" name="password" placeholder="Senha">
                     </div>
 
-                    <div class="input-group" style="margin-bottom:25px;" >
-                        <input id="unicamper" type="checkbox" value="unicamper"> Aluno Computação Unicamp
-                    </div>
 
-                    {{#if unicamper}}
-                    <div style="margin-bottom:25px;" class="input-group">
-                        <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-                        <input type="email" class="form-control" name="email" placeholder="Email (Utilize email institucional do IC)">                                        
-                    </div>
-                    <div  class="input-group">
-                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                        <input type="text" class="form-control" name="ra" placeholder="RA">                                        
-                    </div>
-                    {{else}}
-                    <div  style="margin-bottom:25px;" class="input-group">
-                        <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-                        <input type="email" class="form-control" name="email"  placeholder="Email">                                        
-                    </div>
                     <div  class="input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
                         <input type="text" class="form-control" name="cpf"  placeholder="CPF">
                     </div>
+
+                    <div  class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                        <input type="text" class="form-control" name="rg"  placeholder="RG">
+                    </div>
+
+                    <div  class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-phone"></i></span>
+                        <input type="text" class="form-control" name="telefone"  placeholder="Número de Telefone">
+                    </div>
+
+                    <h3 class="section-heading"> Dados Acadêmicos </h3>
+                    <div  class="input-elem">
+                        <select  class="form-control select-uni" name="instituicao">
+                            <option disabled selected> Universidade </option>
+                            <option value="UNICAMP">Unicamp</option>
+                            <option value="USP">USP</option>
+                            <option value="UNESP">UNESP</option>
+                            <option value="UFSCar">UFSCar</option>
+                            <option value="UNIFESP">UNIFESP</option>
+                            <option value="Pública">Outra Pública</option>
+                            <option value="Mackenzie">Mackenzie</option>
+                            <option value="PUC-Campinas">PUC-Campinas</option>
+                            <option value="PUC-São Paulo">PUC-São Paulo</option>
+                            <option value="Particular">Outra Particular</option>
+                        </select>
+                    </div>
+
+                    <div  class="input-elem">
+                        <select class="form-control " name="curso" >
+                            <option disabled selected> Curso </option>
+                            <option value="EC">Engenharia de Computação</option>
+                            <option value="CC">Ciência da Computação</option>
+                            <option value="EE">Engenharia Elétrica</option>
+                            <option value="AS">Análise de Sistemas</option>
+                            <option value="SI">Sistemas de Informação</option>
+                            <option value="ECA">Engenharia de Controle e Automação</option>
+                            <option value="MEC">Engenharia Mecânica</option>
+                            <option value="TELECOM">Engenharia de Telecomunicações</option>
+                            <option value="Civil">Engenharia Civíl</option>
+                            <option value="EQ">Engenharia Química</option>
+                            <option value="Mat">Matemática</option>
+                            <option value="Estat">Estatística</option>
+                            <option value="Física">Física</option>
+                            <option value="Outros">Outros</option>
+                        </select>
+                    </div>
+
+
+                    {{#if unicamper}}
+
+                    <div  class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                        <input type="text" class="form-control" name="ra" placeholder="RA">                                        
+                    </div>
                     {{/if}}
 
-                    <div style="margin-top:10px" class="form-group">
+                    <div style="margin-top:30px" class="form-group">
                         <div class="col-sm-12 controls">
                             <button type="submit" class="btn btn-primary"> Fazer Cadastro </button>
                         </div>

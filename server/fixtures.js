@@ -1,25 +1,31 @@
 if ( Meteor.users.find().count() === 0 ) {
-    Accounts.createUser({
-        username: 'Secomper',
-        email: 'secomper@gmail.com',
-        password: 'secomp2015',
-        profile:{
-            nome: 'Secomper',
-            email: 'secomper@gmail.com',
-            documento: 'ra 156412'
-        }
-
-    });
 
     var id = Accounts.createUser({
-        username: 'admin',
-        email: 'admin@secomp.com',
-        password: 'admin',
+        email: "admin@secomp.com",
+        password:"admin",
         profile:{
-            nome: 'admin',
-            email: 'admin@secomp.com',
-            documento: '02065464131'
+            nome: "Admin Secomp",
+            cpf: "02065465131",
+            rg: "MG19693772",
+            tel: "19999902853",
+            uni: "UNICAMP",
+            curso: "EC",
+            ra: "156412"
         }
     });
+    Accounts.createUser({
+        email: "secomper@secomp.com",
+        password:"secomper",
+        profile:{
+            nome: "Secomper Silva",
+            cpf: "02065465131",
+            rg: "MG19693772",
+            tel: "19999902853",
+            uni: "UNICAMP",
+            curso: "EC",
+            ra: "156412"
+        }
+    });
+
     Roles.addUsersToRoles(id, ['moderador'])
 }

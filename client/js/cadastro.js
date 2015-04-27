@@ -1,25 +1,33 @@
 
-
 Template.cadastro.events({
     "submit #formcadastro": function(event){
         var email = event.target.email.value;
-        var nome = event.target.nome.value;
         var password = event.target.password.value;
+        var nome = event.target.nome.value;
+        var cpf = event.target.cpf.value;
+        var rg = event.target.rg.value;
+        var tel = event.target.telefone.value;
+        var uni = event.target.instituicao.value;
+        var curso = event.target.curso.value;
 
         if(event.target.ra){
-            var documento = "ra " + event.target.ra.value;
+            var ra = event.target.ra.value;
         }
         else{
-            var documento = "cpf " + event.target.cpf.value;
+            var ra = null;
         }
 
         var user = {
             email: email,
             password: password,
             profile:{
-                documento: documento,
                 nome: nome,
-                email: email
+                cpf: cpf,
+                rg: rg,
+                tel: tel,
+                uni: uni,
+                curso: curso,
+                ra: ra
             }
         }
 
@@ -36,8 +44,8 @@ Template.cadastro.events({
 
         return false;
     },
-    "click #unicamper": function(event){
-        Session.set('unicamper', !Session.get('unicamper'));
+    "change .select-uni": function(event){
+        Session.set('unicamper', event.target.value == "UNICAMP");
     }
 });
 
