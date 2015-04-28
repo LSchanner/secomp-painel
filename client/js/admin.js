@@ -10,42 +10,42 @@ adminHook = function() {
 }
 
 // Dashboard
-Router.route('/admin', function () {
+Router.route('/moderador', function () {
     this.layout('painelAdmin');
     this.render('adminDashboard');
 },{ name:'admin-dashboard',
     onBeforeAction: adminHook });
 
 // Notícias
-Router.route('/admin/noticias/', function () {
+Router.route('/moderador/noticias/', function () {
     this.layout('painelAdmin');
     this.render('adminNoticias');
 },{ name:'admin-noticias',
     onBeforeAction: adminHook });
 
 // Atividades
-Router.route('/admin/atividades', function () {
+Router.route('/moderador/atividades', function () {
     this.layout('painelAdmin');
     this.render('adminAtividades');
 },{ name:'admin-atividades',
     onBeforeAction: adminHook });
 
 // credenciamento
-Router.route('/admin/credenciamento', function () {
+Router.route('/moderador/credenciamento', function () {
     this.layout('painelAdmin');
     this.render('adminCredenciamento');
 },{ name:'admin-credenciamento',
     onBeforeAction: adminHook });
 
 // achievements
-Router.route('/admin/achievements', function () {
+Router.route('/moderador/achievements', function () {
     this.layout('painelAdmin');
     this.render('adminAchievements');
 },{ name:'admin-achievements',
     onBeforeAction: adminHook });
 
 // loja
-Router.route('/admin/loja', function () {
+Router.route('/moderador/loja', function () {
     this.layout('painelAdmin');
     this.render('adminLoja');
 },{ name:'admin-loja',

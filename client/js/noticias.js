@@ -27,7 +27,7 @@ Template.Noticia.helpers({
 
 
 // Página de adicionar notícia
-Router.route('/admin/noticias/nova/', function () {
+Router.route('/moderador/noticias/nova/', function () {
     this.layout('painelAdmin');
     this.render('novaNoticia');
 },{ name:'novaNoticia',
@@ -40,7 +40,7 @@ Template.novaNoticia.events({
 
         if(title && body){
             Noticias.insert({title:title, body:body, created:new Date});
-            Router.go('/admin/noticias/');
+            Router.go('/moderador/noticias/');
         }
         else{
             alert('Por favor preencha todos os campos');
@@ -52,7 +52,7 @@ Template.novaNoticia.events({
 
 
 // Página de editar noticia
-Router.route('/admin/noticias/:_id', function () {
+Router.route('/moderador/noticias/:_id', function () {
   this.layout('painelAdmin');
   this.render('editNoticia');
 },{ name:'editNoticia',
@@ -73,7 +73,7 @@ Template.editNoticia.events({
             Noticias.update(Router.current().params._id,
                 {$set:{title:title, body:body}}
                 );
-            Router.go('/admin/noticias/');
+            Router.go('/moderador/noticias/');
         }
         else{
             alert('Por favor preencha todos os campos');
@@ -82,7 +82,7 @@ Template.editNoticia.events({
     },
     'click #delete-button': function(event) {
         Noticias.remove(Router.current().params._id);
-        Router.go('/admin/noticias/');
+        Router.go('/moderador/noticias/');
     }
 
 });
