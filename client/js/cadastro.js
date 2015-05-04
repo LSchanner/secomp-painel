@@ -1,3 +1,6 @@
+/*Mensagens de erro para o cadastro*/
+var erroEmail = 'Este email já está cadastrado. Talvez você queira <a href="/login/recuperarsenha"> recuperar sua senha </a>'
+var erroVazio = 'Um ou mais campos do cadastro estão vazios'
 
 Template.cadastro.events({
     "submit #formcadastro": function(event){
@@ -17,6 +20,12 @@ Template.cadastro.events({
             var ra = null;
         }
 
+        /* Verificar para não permitir campos nulos */
+        if(!(email && password && nome && cpf && rg && tel && uni && curso)){
+            Session.set('erro',erroVazio);
+            return false;
+        }
+
         var user = {
             email: email,
             password: password,
@@ -31,16 +40,16 @@ Template.cadastro.events({
             }
         }
 
-        Accounts.createUser(user,function(Error){
+        Accounts.createUser(user, function(Error){
             if(Error){
                 console.log(Error);
-                Session.set('erroCadastro',true);
+                Session.set('erro',erroEmail);
             }
             else {
                 Meteor.loginWithPassword(email,password);
                 Router.go('/');
             }
-        }); 
+        });
 
         return false;
     },
@@ -50,8 +59,8 @@ Template.cadastro.events({
 });
 
 Template.cadastro.helpers({
-    erro:function(){
-        return Session.get('erroCadastro');
+    erroDeCadastro:function(){
+        return Session.get('erro');
     },
     unicamper:function(){
         return Session.get('unicamper');

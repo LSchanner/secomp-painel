@@ -5,12 +5,12 @@ body{
 }
 </style>
 
-<div class="container">    
-    <div style="margin-top:50px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">                    
+<div class="container">
+    <div style="margin-top:50px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
         <div class="panel panel-primary" >
             <div class="panel-heading">
                 <div class="panel-title">Cadastro no Painel</div>
-            </div>     
+            </div>
 
             <div style="" class="panel-body" >
 
@@ -20,12 +20,12 @@ body{
 
                     <div  class="input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                        <input type="text" class="form-control" name="nome" value="" placeholder="Nome Completo">                                        
+                        <input type="text" class="form-control" name="nome" value="" placeholder="Nome Completo">
                     </div>
 
                     <div   class="input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-                        <input type="email" class="form-control" name="email"  placeholder="Email">                                        
+                        <input type="email" class="form-control" name="email"  placeholder="Email">
                     </div>
 
                     <div  class="input-group">
@@ -91,7 +91,7 @@ body{
 
                     <div  class="input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                        <input type="text" class="form-control" name="ra" placeholder="RA">                                        
+                        <input type="text" class="form-control" name="ra" placeholder="RA">
                     </div>
                     {{/if}}
 
@@ -101,11 +101,11 @@ body{
                         </div>
                     </div>
 
-                </form>     
+                </form>
 
-                {{#if erro}}
+                {{#if erroDeCadastro}}
                 <div class="alert-danger alert">
-                    Este email já está cadastrado. Talvez você queira <a href="/login/recuperarsenha"> recuperar sua senha </a>
+                    {{{erroDeCadastro}}}
                 </div>
                 {{/if}}
                 <div class="col-md-12 control">
@@ -118,8 +118,8 @@ body{
                 </div>
 
 
-            </div>                     
-        </div>  
+            </div>
+        </div>
     </div>
 
 </div>
