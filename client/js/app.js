@@ -86,6 +86,9 @@ Template.painel.helpers({
 Template.painel.events({
     'click .navbar-collapse ul li a': function(){
         $('.navbar-collapse').collapse('hide');
+    },
+    'click #logout-button':function(){
+        //TODO: fazer logout
     }
 });
 
