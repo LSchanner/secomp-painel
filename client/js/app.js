@@ -80,15 +80,18 @@ Template.painel.helpers({
     isMod: function(){
         return Roles.userIsInRole(Meteor.userId(),"moderador");
     }
-    
+
 });
 
 Template.painel.events({
     'click .navbar-collapse ul li a': function(){
         $('.navbar-collapse').collapse('hide');
     },
+    
     'click #logout-button':function(){
-        //TODO: fazer logout
+        Meteor.logout(function() {
+            Router.go('/');
+            console.log('Bye Meteorite! Come back whenever you want!');
+        });
     }
 });
-
