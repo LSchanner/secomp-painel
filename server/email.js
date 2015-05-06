@@ -2,8 +2,8 @@
 /*Configuração Servidor SMTP */
 Meteor.startup(function () {
     smtp = {
-      username: 'henrique.facioli@gmail.com',   // ex. server@gentlenode.com
-        password: 'owxljmymvtgglvia',   // ex. 3eeP1gtizk5eziohfervU
+      username: 'secomp12345@gmail.com',   // ex. server@gentlenode.com
+        password: 'secomp2015'
         server:   'smtp.gmail.com',  // ex. mail.gandi.net
         port: 465 // ex.25 ou 465
     }
@@ -14,10 +14,12 @@ Meteor.startup(function () {
 /*Configuração envio de Modelos*/
 Meteor.startup(function() {
     //Colocar o nome que deve aparecer no email (ex. Secomper <do-not-reply@secomp.com.br>)
-    Accounts.emailTemplates.from = 'henriquetestes <henrique.facioli@gmail.com>';
-    //
-    Accounts.emailTemplates.siteName = 'Secomp';
-    // A Function that takes a user object and returns a String for the subject line of the email.
+    Accounts.emailTemplates.from = 'Secomp helper <secomp12345@gmail.com>';
+    //O site do envio
+    Accounts.emailTemplates.siteName = 'secomp.com.br';
+
+    /* -- Templates para verifyEmail -- */
+    //Definir o Subject do Email
     Accounts.emailTemplates.verifyEmail.subject = function(user) {
         return 'Confirme seu endereço de email para a SECOMP';
     };
@@ -26,6 +28,16 @@ Meteor.startup(function() {
     Accounts.emailTemplates.verifyEmail.text = function(user, url) {
         return 'Clique no link confirmar o email:\n' + url;
     };
+
+    /* -- Templates para resetPassword -- */
+    //Definir o Subject do Email
+    Accounts.emailTemplates.resetPassword.subject = function(user) {
+        return 'Recuperação de endereço de email da SECOMP';
+    };
+    Accounts.emailTemplates.resetPassword.text = function(user) {
+        return 'Você pediu para resetar sua senha. Clique no link abaixo para redefinir sua senha:\n\n' + url + '\n\n';
+    };
+
 });
 
 /* --------- VERIFICACAO DE EMAIL ---------- */
