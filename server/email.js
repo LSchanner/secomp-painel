@@ -40,6 +40,7 @@ Meteor.startup(function() {
 
 });
 
+
 /* --------- VERIFICACAO DE EMAIL ---------- */
 /* Para enviar a verificação de email */
 Accounts.onCreateUser(function(options, user) {
@@ -58,7 +59,7 @@ Accounts.validateLoginAttempt(function(attempt){
     //Por hora, caso o usuario tente fazer login sem ter verificado, enviamos um novo email a ele
     if (attempt.user && attempt.user.emails && !attempt.user.emails[0].verified ) {
         console.log('Email não verificado');
-        Accounts.sendVerificationEmail(user._id);
+        Accounts.sendVerificationEmail(attempt.user._id);
         console.log('Enviando outro email...');
 
         return true; // Por enquanto que não esta funcional deixar true

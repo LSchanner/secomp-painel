@@ -97,11 +97,3 @@ Template.shownoticia.helpers({
     }
 });
 
-Router.route('/noticias/:_id', function () {
-  this.layout('painel');
-  this.render('shownoticia');
-},{ name:'showNoticia',
-    onBeforeAction: loginHook });
-
-
-

@@ -1,7 +1,7 @@
-if ( Meteor.users.find().count() === 0 ) {
+ if ( Meteor.users.find().count() === 0 ) {
 
     var id = Accounts.createUser({
-        email: "admin@secomp.com",
+        email: "lsschanner@gmail.com",
         password:"admin",
         profile:{
             nome: "Admin Secomp",
@@ -13,19 +13,7 @@ if ( Meteor.users.find().count() === 0 ) {
             ra: "156412"
         }
     });
-    Accounts.createUser({
-        email: "secomper@secomp.com",
-        password:"secomper",
-        profile:{
-            nome: "Secomper Silva",
-            cpf: "02065465131",
-            rg: "MG19693772",
-            tel: "19999902853",
-            uni: "UNICAMP",
-            curso: "EC",
-            ra: "156412"
-        }
-    });
 
     Roles.addUsersToRoles(id, ['moderador'])
 }
+

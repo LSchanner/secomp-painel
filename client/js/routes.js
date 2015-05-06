@@ -32,6 +32,15 @@ Router.route('/noticias', function () {
 },{ name:'noticias',
     onBeforeAction: loginHook });
 
+// Notícia
+Router.route('/noticias/:_id', function () {
+  this.layout('painel');
+  this.render('shownoticia');
+},{ name:'showNoticia',
+    onBeforeAction: loginHook });
+
+
+
 // Atividades
 Router.route('/atividades', function () {
     this.layout('painel');

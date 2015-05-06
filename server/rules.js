@@ -28,12 +28,8 @@ Atividades.allow({
 });
 
 Meteor.publish("allUserData", function () {
-    if(Meteor.users.findOne(this.userId).admin){
+    if(authAdmin(this.userId, null)){
         return Meteor.users.find({});
     }
 });
 
-Meteor.publish("userData", function () {
-        return Meteor.users.find({_id: this.userId},
-            {fields: {'admin': 1}});
-});
