@@ -20,11 +20,8 @@ Template.cadastro.events({
             var ra = null;
         }
 
-        console.log(uni);
-        console.log(curso);
-
         /* Verificar para não permitir campos nulos */
-        if(!(email && password && nome && cpf && rg && tel && uni == "Universidade" && curso == "Curso")){
+        if(!(email && password && nome && cpf && rg && tel && uni != "Universidade" && curso != "Curso")){
             Session.set('erro', erroVazio);
             return false;
         }
