@@ -13,11 +13,12 @@ Template.login.events({
         var password = event.target.password.value;
 
         Meteor.loginWithPassword(email,password,function(Error){
-            console.log(Error)
-            if(Error.message == 'Login forbidden [403]'){
-                Session.set('erroLogin',naoVerificado)
-            }else if(Error){
-                Session.set('erroLogin',naoCadastrado)
+            if(Error){
+                if(Error.message == 'Login forbidden [403]'){
+                    Session.set('erroLogin',naoVerificado)
+                }else{
+                    Session.set('erroLogin',naoCadastrado)
+                }
             }
             else {
                 Router.go('/');
