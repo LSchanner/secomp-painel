@@ -1,8 +1,10 @@
 /*Javascript for login page*/
 
 /*Textos para erros*/
-var sucesso = 'Obrigado por completar seu cadastro!\nAgora voce já pode fazer login.';
-var quebrado = 'Desculpe, link de verificacao expirado';
+var sucesso = 'Obrigado por completar seu cadastro! Agora voce já pode fazer login.';
+var quebrado = 'Link de verificacao expirado.';
+var naoVerificado = 'Usuário ainda não verificado';
+var naoCadastrado = 'Usuário não encontrado.';
 
 /*Eventos*/
 Template.login.events({
@@ -11,8 +13,11 @@ Template.login.events({
         var password = event.target.password.value;
 
         Meteor.loginWithPassword(email,password,function(Error){
-            if(Error){
-                Session.set('erroLogin',true)
+            console.log(Error)
+            if(Error.message == 'Login forbidden [403]'){
+                Session.set('erroLogin',naoVerificado)
+            }else if(Error){
+                Session.set('erroLogin',naoCadastrado)
             }
             else {
                 Router.go('/');
@@ -39,7 +44,7 @@ Template.login.created = function() {
     if (Accounts._verifyEmailToken) {
         Accounts.verifyEmail(Accounts._verifyEmailToken, function(err) {
             if (err != null) {
-                if (err.message = 'Verify email link expired [403]') {
+                if (err.message == 'Verify email link expired [403]') {
                     Session.set('verification', quebrado);
                 }
             } else {
