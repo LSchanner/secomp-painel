@@ -47,15 +47,10 @@ Template.cadastro.events({
 
         /*Ele ta dando erro nessa porra, e mesmo com erro ele cria o usuario :P*/
         Accounts.createUser(user, function(Error){
-            console.log(Error);
             if(Error.message == 'Email already exists. [403]'){
                 Session.set('erro', erroEmail);
-            }else if(Error){
-                Session.set('erro', erroSistema);
-            }
-            else {
+            }else {
                 console.log("Oi")
-                //Meteor.loginWithPassword(email,password);
                 Router.go('/');
             }
         });

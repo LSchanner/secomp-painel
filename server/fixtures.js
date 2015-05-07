@@ -1,4 +1,4 @@
- if ( Meteor.users.find().count() === 0 ) {
+/* if ( Meteor.users.find().count() === 0 ) {
 
     var id = Accounts.createUser({
         email: "lsschanner@gmail.com",
@@ -16,4 +16,4 @@
 
     Roles.addUsersToRoles(id, ['moderador'])
 }
-
+*/
