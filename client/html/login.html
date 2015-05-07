@@ -13,7 +13,12 @@ body{
 
             <div style="padding-top:30px" class="panel-body" >
 
-                <div style="display:none" class="alert alert-danger col-sm-12"></div>
+                {{#if confirmation}}
+                <div class="alert-success alert">
+                    {{confirmation}}
+                </div>
+                {{/if}}
+
 
                 <form id="loginform" class="form-horizontal" role="form">
 
@@ -44,12 +49,6 @@ body{
                 {{#if erro}}
                 <div class="alert-danger alert">
                     {{{erro}}}
-                </div>
-                {{/if}}
-
-                {{#if confirmation}}
-                <div class="alert-danger alert">
-                    {{confirmation}}
                 </div>
                 {{/if}}
 

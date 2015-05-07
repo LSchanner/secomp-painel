@@ -50,8 +50,7 @@ Template.cadastro.events({
             if(Error.message == 'Email already exists. [403]'){
                 Session.set('erro', erroEmail);
             }else {
-                console.log("Oi")
-                Router.go('/');
+                Router.go('/login');
             }
         });
 
