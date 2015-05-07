@@ -34,7 +34,7 @@ Meteor.startup(function() {
     Accounts.emailTemplates.resetPassword.subject = function(user) {
         return 'Recuperação de endereço de email da SECOMP';
     };
-    Accounts.emailTemplates.resetPassword.text = function(user) {
+    Accounts.emailTemplates.resetPassword.text = function(user, url) {
         return 'Você pediu para resetar sua senha. Clique no link abaixo para redefinir sua senha:\n\n' + url + '\n\n';
     };
 
@@ -55,13 +55,10 @@ Accounts.onCreateUser(function(options, user) {
 
 /*Verificacao de usuario checked com o email*/
 Accounts.validateLoginAttempt(function(attempt){
-    //Por hora, caso o usuario tente fazer login sem ter verificado, enviamos um novo email a ele
+    //Verifica se o usuario ja confirmou o email
     if (attempt.user && attempt.user.emails && !attempt.user.emails[0].verified ) {
-        console.log('Email não verificado');
-        Accounts.sendVerificationEmail(user._id);
-        console.log('Enviando outro email...');
-
-        return true; // Por enquanto que não esta funcional deixar true
+        console.log('Email não verificado ao tentar fazer login');
+        return false;
     }
     return true;
 });

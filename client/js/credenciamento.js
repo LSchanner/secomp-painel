@@ -17,5 +17,3 @@ Router.route('/admin/credenciamento/:_id', function () {
   this.render('credenciaUser');
 },{ name:'credenciaUser',
     onBeforeAction: adminHook });
-
-

@@ -1,4 +1,5 @@
 /*Mensagens de erro para o cadastro*/
+var erroSistema = 'Ocorreu um erro no sistema, tente novamente mais tarde'
 var erroEmail = 'Este email já está cadastrado. Talvez você queira <a href="/login/recuperarsenha"><b> recuperar sua senha </a></b>'
 var erroVazio = 'Um ou mais campos do cadastro estão vazios'
 
@@ -13,10 +14,14 @@ Template.cadastro.events({
         var uni = event.target.instituicao.value;
         var curso = event.target.curso.value;
 
-        if(event.target.ra){
-            var ra = event.target.ra.value;
+
+        if( event.target.ra && uni == 'UNICAMP'){
+            Session.set('erro', erroVazio);
         }
-        else{
+        else if(event.target.ra){
+            var ra = event.target.ra.value;
+
+        }else{
             var ra = null;
         }
 
@@ -40,18 +45,24 @@ Template.cadastro.events({
             }
         }
 
+        /*Ele ta dando erro nessa porra, e mesmo com erro ele cria o usuario :P*/
         Accounts.createUser(user, function(Error){
-            if(Error){
+            console.log(Error);
+            if(Error.message == 'Email already exists. [403]'){
                 Session.set('erro', erroEmail);
+            }else if(Error){
+                Session.set('erro', erroSistema);
             }
             else {
-                Meteor.loginWithPassword(email,password);
+                console.log("Oi")
+                //Meteor.loginWithPassword(email,password);
                 Router.go('/');
             }
         });
 
         return false;
     },
+
     "change .select-uni": function(event){
         Session.set('unicamper', event.target.value == "UNICAMP");
     }
