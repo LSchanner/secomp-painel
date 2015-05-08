@@ -42,6 +42,7 @@ Meteor.startup(function() {
 
 /* ------------- VERIFICACAO DE EMAIL -------------- */
 Meteor.methods({
+    /*Método para reenviar o email de verificação*/
     resendVerificationEmail:function(requestEmail){
         var user = Meteor.users.findOne( {'emails.address' : requestEmail} );
 
