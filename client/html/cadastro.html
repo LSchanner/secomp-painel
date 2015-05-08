@@ -12,7 +12,15 @@ body{
                 <div class="panel-title">Cadastro no Painel</div>
             </div>
 
+
             <div style="" class="panel-body" >
+
+                {{#if verificacaoEmail}}
+
+                    <p>Um email foi enviado ao seu endereço de email cadastrado. Você precisa confirmar antes de fazer login</p>
+                    <p>Se o email demorar mais que 1 minuto, <a id="resendEmail" href='#'> Clique Aqui </a></p>
+
+                {{else}}
 
                 <form id="formcadastro" class="form-horizontal" role="form">
 
@@ -116,6 +124,7 @@ body{
                     </div>
                 </div>
 
+                {{/if}}
 
             </div>
         </div>

@@ -17,6 +17,7 @@ Template.cadastro.events({
 
         if(!event.target.ra && session.get("unicamper")){
             Session.set('erro', erroVazio);
+            return false;
         }
         else if(event.target.ra){
             var ra = event.target.ra.value;
@@ -46,10 +47,10 @@ Template.cadastro.events({
 
         /*Ele ta dando erro nessa porra, e mesmo com erro ele cria o usuario :P*/
         Accounts.createUser(user, function(Error){
-            if(Error.message == 'Email already exists. [403]'){
+            if(Error.message === 'Email already exists. [403]'){
                 Session.set('erro', erroEmail);
             }else {
-                Router.go('/login');
+                Session.set('emailconfirmation', '1');
             }
         });
 
@@ -58,6 +59,10 @@ Template.cadastro.events({
 
     "change .select-uni": function(event){
         Session.set('unicamper', event.target.value == "UNICAMP");
+    },
+
+    "submit #resendEmail": function(event){
+        console.log("Pedindo um novo reevio de email")
     }
 });
 
@@ -67,5 +72,8 @@ Template.cadastro.helpers({
     },
     unicamper:function(){
         return Session.get('unicamper');
+    },
+    verificacaoEmail:function(){
+        return Session.get('emailconfirmation')
     }
 });
