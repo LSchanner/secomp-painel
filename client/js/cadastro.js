@@ -15,12 +15,11 @@ Template.cadastro.events({
         var curso = event.target.curso.value;
 
 
-        if( event.target.ra && uni == 'UNICAMP'){
+        if(!event.target.ra && session.get("unicamper")){
             Session.set('erro', erroVazio);
         }
         else if(event.target.ra){
             var ra = event.target.ra.value;
-
         }else{
             var ra = null;
         }

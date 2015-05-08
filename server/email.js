@@ -45,6 +45,8 @@ Meteor.startup(function() {
 /* Para enviar a verificação de email */
 Accounts.onCreateUser(function(options, user) {
 
+    user.profile = options.profile;
+
     // we wait for Meteor to create the user before sending an email
     Meteor.setTimeout(function() {
         console.log("mandando email de verificação");
