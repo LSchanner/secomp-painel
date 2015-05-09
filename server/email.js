@@ -31,10 +31,11 @@ Meteor.startup(function() {
     /* -- Templates para resetPassword -- */
     //Definir o Subject do Email
     Accounts.emailTemplates.resetPassword.subject = function(user) {
-        return 'Recuperação de endereço de email da SECOMP';
+        return 'Recuperação de senha da SECOMP';
     };
     Accounts.emailTemplates.resetPassword.text = function(user, url) {
-        return 'Você pediu para resetar sua senha. Clique no link abaixo para redefinir sua senha:\n\n' + url + '\n\n';
+        url = url.replace('#/', '');
+        return 'Você pediu para resetar sua senha. Clique no link abaixo para redefinir sua senha:\n\n ' + url + '\n\n';
     };
 
 });
@@ -54,6 +55,18 @@ Meteor.methods({
         }
         return false;
 
+    },
+    /*Método para enviar o token de resetar email*/
+    sendResetPassword:function(requestEmail){
+        var user = Meteor.users.findOne( {'emails.address' : requestEmail} );
+
+        if(user){
+            if(user.emails[0].verified){
+                Accounts.sendResetPasswordEmail(user._id);
+                return true;
+            }
+        }
+        return false;
     }
 });
 

@@ -17,6 +17,16 @@ Router.route('/login', function () {
 Router.route('/cadastro', function () {
     this.render('cadastro');
 },{name:'cadastro'});
+// Recuperar Senha
+Router.route('/recover-password',function(){
+    this.render('forgotPassword');
+},{name:'recover-password'});
+// Resetar a senha
+Router.route('/reset-password/:token', function(token){
+    this.render('ResetPassword');
+    Session.set('resetPassword', true);
+    
+},{name:'reset-password'});
 
 // Dashboard
 Router.route('/', function () {
@@ -38,8 +48,6 @@ Router.route('/noticias/:_id', function () {
   this.render('shownoticia');
 },{ name:'showNoticia',
     onBeforeAction: loginHook });
-
-
 
 // Atividades
 Router.route('/atividades', function () {

@@ -1,6 +1,6 @@
 /*Mensagens de erro para o cadastro*/
 var erroSistema = 'Ocorreu um erro no sistema, tente novamente mais tarde'
-var erroEmail = 'Este email já está cadastrado. Talvez você queira reenviar seu <b><a id="verificar" href="#">email de confirmação</a></b> ou <a href="/login/recuperarsenha"><b> recuperar sua senha </a></b>'
+var erroEmail = 'Este email já está cadastrado. Talvez você queira reenviar seu <b><a id="verificar" href="#">email de confirmação</a></b> ou <a href="/recover-password"><b> recuperar sua senha </a></b>'
 var erroVazio = 'Um ou mais campos do cadastro estão vazios'
 
 Template.cadastro.events({
