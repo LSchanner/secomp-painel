@@ -1,6 +1,6 @@
 /*Mensagens de erro para o cadastro*/
 var erroSistema = 'Ocorreu um erro no sistema, tente novamente mais tarde'
-var erroEmail = 'Este email já está cadastrado. Talvez você queira <a href="/login/recuperarsenha"><b> recuperar sua senha </a></b>'
+var erroEmail = 'Este email já está cadastrado. Talvez você queira reenviar seu <b><a id="verificar" href="#">email de confirmação</a></b> ou <a href="/recover-password"><b> recuperar sua senha </a></b>'
 var erroVazio = 'Um ou mais campos do cadastro estão vazios'
 
 Template.cadastro.events({
@@ -14,15 +14,15 @@ Template.cadastro.events({
         var uni = event.target.instituicao.value;
         var curso = event.target.curso.value;
 
-
-        if(!event.target.ra && session.get("unicamper")){
-            Session.set('erro', erroVazio);
-            return false;
-        }
-        else if(event.target.ra){
+        if(event.target.ra){
             var ra = event.target.ra.value;
         }else{
             var ra = null;
+        }
+
+        if(!ra && uni == 'UNICAMP'){
+            Session.set('erro', erroVazio);
+            return false;
         }
 
         /* Verificar para não permitir campos nulos */
@@ -56,13 +56,24 @@ Template.cadastro.events({
 
         return false;
     },
-
+    /*Abrir o campo de RA*/
     "change .select-uni": function(event){
         Session.set('unicamper', event.target.value == "UNICAMP");
     },
-
+    /*Para caso o usuario tenha digitado o mesmo email no cadastro*/
+    "click #verificar": function(event){
+        Session.set('emailconfirmation', '1');
+    },
+    /*Para reenvio do código para o email do usuario*/
     "submit #resendEmail": function(event){
-        console.log("Pedindo um novo reevio de email")
+        if(event.target.emailresendverification){
+            var email = event.target.emailresendverification.value;
+            if(Meteor.call('resendVerificationEmail', email)){
+                console.log("Pedindo um novo reevio de email");
+            }
+        }
+        Session.set('emailconfirmation', '1');
+        return false;
     }
 });
 

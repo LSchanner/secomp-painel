@@ -28,29 +28,56 @@ Meteor.startup(function() {
     Accounts.emailTemplates.verifyEmail.text = function(user, url) {
         return 'Clique no link confirmar o email:\n' + url;
     };
-
     /* -- Templates para resetPassword -- */
     //Definir o Subject do Email
     Accounts.emailTemplates.resetPassword.subject = function(user) {
-        return 'Recuperação de endereço de email da SECOMP';
+        return 'Recuperação de senha da SECOMP';
     };
     Accounts.emailTemplates.resetPassword.text = function(user, url) {
-        return 'Você pediu para resetar sua senha. Clique no link abaixo para redefinir sua senha:\n\n' + url + '\n\n';
+        url = url.replace('#/', '');
+        return 'Você pediu para resetar sua senha. Clique no link abaixo para redefinir sua senha:\n\n ' + url + '\n\n';
     };
 
 });
 
 
-/* --------- VERIFICACAO DE EMAIL ---------- */
+/* ------------- VERIFICACAO DE EMAIL -------------- */
+Meteor.methods({
+    /*Método para reenviar o email de verificação*/
+    resendVerificationEmail:function(requestEmail){
+        var user = Meteor.users.findOne( {'emails.address' : requestEmail} );
+
+        if(user){
+            if(!user.emails[0].verified){
+                Accounts.sendVerificationEmail(user._id);
+                return true;
+            }
+        }
+        return false;
+
+    },
+    /*Método para enviar o token de resetar email*/
+    sendResetPassword:function(requestEmail){
+        var user = Meteor.users.findOne( {'emails.address' : requestEmail} );
+
+        if(user){
+            if(user.emails[0].verified){
+                Accounts.sendResetPasswordEmail(user._id);
+                return true;
+            }
+        }
+        return false;
+    }
+});
+
 /* Para enviar a verificação de email */
 Accounts.onCreateUser(function(options, user) {
-
     user.profile = options.profile;
 
     // we wait for Meteor to create the user before sending an email
     Meteor.setTimeout(function() {
-        console.log("mandando email de verificação");
         Accounts.sendVerificationEmail(user._id);
+        console.log("Mandando email de verificação ao usuario");
     }, 2 * 1000);
 
     return user;
@@ -60,10 +87,8 @@ Accounts.onCreateUser(function(options, user) {
 Accounts.validateLoginAttempt(function(attempt){
     //Verifica se o usuario ja confirmou o email
     if (attempt.user && attempt.user.emails && !attempt.user.emails[0].verified ) {
-        console.log('Email não verificado ao tentar fazer login');
+        console.log('Email não verificado tentando fazer login');
         return false;
     }
     return true;
 });
-
-/* -------- RESET PASSWORD -----------*/

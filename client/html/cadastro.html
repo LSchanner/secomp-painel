@@ -18,7 +18,19 @@ body{
                 {{#if verificacaoEmail}}
 
                     <p>Um email foi enviado ao seu endereço de email cadastrado. Você precisa confirmar antes de fazer login</p>
-                    <p>Se o email demorar mais que 1 minuto, <a id="resendEmail" href='#'> Clique Aqui </a></p>
+                    <p>Se o email demorar mais que 1 minuto, digite seu email abaixo que enviaremos outro</p>
+                    <form id='resendEmail' class='form-horizontal' role='form'>
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+                            <input type="email" class="form-control" name="emailresendverification"  placeholder="Email">
+                        </div>
+
+                        <div style="margin-top:30px" class="form-group">
+                            <div class="col-sm-12 controls">
+                                <button type="submit" class="btn btn-primary"> Reenviar email </button>
+                            </div>
+                        </div>
+                    </form>
 
                 {{else}}
 
@@ -40,7 +52,6 @@ body{
                         <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
                         <input type="password" class="form-control" name="password" placeholder="Senha">
                     </div>
-
 
                     <div  class="input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
