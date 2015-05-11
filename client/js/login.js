@@ -36,6 +36,9 @@ Template.login.helpers({
     },
     confirmation:function(){
         return Session.get('verification');
+    },
+    resetPasswordToken: function() {
+        return Session.get('resetPasswordToken');
     }
 });
 

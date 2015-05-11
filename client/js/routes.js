@@ -22,10 +22,9 @@ Router.route('/recover-password',function(){
     this.render('forgotPassword');
 },{name:'recover-password'});
 // Resetar a senha
-Router.route('/reset-password/:token', function(token){
+Router.route('/reset-password', function(){
     this.render('ResetPassword');
-    Session.set('resetPassword', true);
-    
+    //Session.set('alert', 'Pagina não disponivel');
 },{name:'reset-password'});
 
 // Dashboard

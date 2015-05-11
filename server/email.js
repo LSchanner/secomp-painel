@@ -34,7 +34,6 @@ Meteor.startup(function() {
         return 'Recuperação de senha da SECOMP';
     };
     Accounts.emailTemplates.resetPassword.text = function(user, url) {
-        url = url.replace('#/', '');
         return 'Você pediu para resetar sua senha. Clique no link abaixo para redefinir sua senha:\n\n ' + url + '\n\n';
     };
 
