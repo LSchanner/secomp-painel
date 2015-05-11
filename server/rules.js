@@ -31,15 +31,12 @@ Meteor.publish('Credenciamentos', function() {
       if(authAdmin(this.userId,null)){
           return Credenciamentos.find();
       }
-      return Credenciamentos.find();
 });
 
 Credenciamentos.allow({
-    insert: authAdmin,
     update: authAdmin,
     remove: authAdmin
 });
-
 
 Meteor.publish("allUserData", function () {
     if(authAdmin(this.userId, null)){

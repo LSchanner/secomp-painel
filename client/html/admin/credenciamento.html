@@ -74,6 +74,12 @@
 {{/with}}
 
 
+{{#if credId user._id}}
+
+<p class="profileItem"> <strong> Id de Credenciamento:</strong> {{credId user._id}} </p> 
+
+{{else}}
+
 <form id='FormCredencia' class='form-inline' role='form'>
     <div class="input-group">
         <span class="input-group-addon"><i class="fa fa-user-plus"></i></span>
@@ -86,6 +92,7 @@
         </div>
     </div>
 </form>
+{{/if}}
 
 </template>
 

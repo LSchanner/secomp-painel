@@ -25,7 +25,7 @@ Template.credenciaUser.helpers({
         return Meteor.users.findOne(Router.current().params._id);
     },
     credId: function(user_id){
-        var cred = Credenciamentos.findOnde({user_id:user_id});
+        var cred = Credenciamentos.findOne({user_id:user_id});
         if(cred){
             return cred._id;
         }
@@ -39,17 +39,8 @@ Template.credenciaUser.helpers({
 Template.credenciaUser.events({
     "submit #FormCredencia":function(event){
         var cred_id = event.target.idCredenciamento.value;
-        console.log(cred_id);
         if(cred_id){
-            var credenciamento = {
-                user_id: Router.current().params._id ,
-                _id: cred_id,
-                pontos: 0,
-                atividades:[],
-                achievements:[],
-                compras:[],
-            }
-            Credenciamentos.insert(credenciamento); 
+            Meteor.call("credenciaUser",Router.current().params._id,cred_id);
         }
         return false;
     }
