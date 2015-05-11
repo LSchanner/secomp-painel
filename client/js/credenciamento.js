@@ -1,7 +1,18 @@
 // página que lista os usuários não credenciados
 Template.adminCredenciamento.helpers({
     users: function(){
-        return Meteor.users.find();
+        search = Session.get('searchString') ;
+        return Meteor.users.find({
+            $or:[{'profile.nome':{$regex:search}},
+               {'emails.address':{$regex:search}},
+               {'profile.cpf':{$regex:search}},
+            ]
+        });
+    }
+});
+Template.adminCredenciamento.events({
+    'keyup #search': function(event,t){
+        Session.set("searchString",event.target.value);
     }
 });
 
