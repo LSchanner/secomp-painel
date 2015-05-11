@@ -13,12 +13,17 @@ body{
 
             <div style="padding-top:30px" class="panel-body" >
 
-                {{#if confirmation}}
+                {{#if confirmationSucess}}
                 <div class="alert-success alert">
-                    {{confirmation}}
+                    {{confirmationSucess}}
                 </div>
                 {{/if}}
 
+                {{#if confirmationFail}}
+                <div class="alert-danger alert">
+                    {{confirmationFail}}
+                </div>
+                {{/if}}
 
                 <form id="loginform" class="form-horizontal" role="form">
 

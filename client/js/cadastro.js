@@ -2,17 +2,24 @@
 var erroSistema = 'Ocorreu um erro no sistema, tente novamente mais tarde'
 var erroEmail = 'Este email já está cadastrado. Talvez você queira reenviar seu <b><a id="verificar" href="#">email de confirmação</a></b> ou <a href="/recover-password"><b> recuperar sua senha </a></b>'
 var erroVazio = 'Um ou mais campos do cadastro estão vazios'
+var erroSenha = 'Senhas não batem'
 
 Template.cadastro.events({
     "submit #formcadastro": function(event){
         var email = event.target.email.value;
         var password = event.target.password.value;
+        var confirm_password = event.target.password2.value;
         var nome = event.target.nome.value;
         var cpf = event.target.cpf.value;
         var rg = event.target.rg.value;
         var tel = event.target.telefone.value;
         var uni = event.target.instituicao.value;
         var curso = event.target.curso.value;
+
+        if(password != confirm_password){
+            Session.set('erro', erroSenha);
+            return false;
+        }
 
         if(event.target.ra){
             var ra = event.target.ra.value;
