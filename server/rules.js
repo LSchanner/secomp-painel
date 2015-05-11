@@ -14,7 +14,7 @@ Noticias.allow({
 });
 
 Meteor.publish('Atividades', function() {
-      if("moderador" in Meteor.user().roles ){
+      if(authAdmin(this.userId)){
           return Atividades.find();
       }else{
           return Atividades.find({},{fields:{title:1,description:1}})
@@ -26,6 +26,20 @@ Atividades.allow({
     update: authAdmin,
     remove: authAdmin
 });
+
+Meteor.publish('Credenciamentos', function() {
+      if(authAdmin(this.userId,null)){
+          return Credenciamentos.find();
+      }
+      return Credenciamentos.find();
+});
+
+Credenciamentos.allow({
+    insert: authAdmin,
+    update: authAdmin,
+    remove: authAdmin
+});
+
 
 Meteor.publish("allUserData", function () {
     if(authAdmin(this.userId, null)){

@@ -26,22 +26,25 @@ Noticias.attachSchema(Schemas.Noticias);
 
 Schemas.Credenciamentos = new SimpleSchema({
     user_id:{
-        type: Number
+        type: String
     },
-    Id_Credenciamento:{
-        type: Number
+    _id:{
+        type: String
     },
     pontos:{
         type: Number
     },
     atividades:{
-        type: [Number]
+        type: [String],
+        optional:true 
     },
     achievements:{
-        type: [Number]
+        type: [String],
+        optional:true
     },
     compras:{
-        type: [Number]
+        type: [String],
+        optional:true, 
     }
 });
 Credenciamentos.attachSchema(Schemas.Credenciamentos);
