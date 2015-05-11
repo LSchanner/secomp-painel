@@ -34,8 +34,11 @@ Template.login.helpers({
     erro:function(){
         return Session.get('erroLogin');
     },
-    confirmation:function(){
-        return Session.get('verification');
+    confirmationSucess:function(){
+        return Session.get('sucess');
+    },
+    confirmationFail:function(){
+        return Session.get('fails');
     },
     resetPasswordToken: function() {
         return Session.get('resetPasswordToken');
@@ -49,10 +52,10 @@ Template.login.created = function() {
         Accounts.verifyEmail(Accounts._verifyEmailToken, function(err) {
             if (err != null) {
                 if (err.message == 'Verify email link expired [403]') {
-                    Session.set('verification', quebrado);
+                    Session.set('fails', quebrado);
                 }
             } else {
-                Session.set('verification', sucesso);
+                Session.set('sucess', sucesso);
             }
         });
     }
