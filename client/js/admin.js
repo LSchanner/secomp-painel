@@ -33,6 +33,7 @@ Router.route('/moderador/atividades', function () {
 
 // credenciamento
 Router.route('/moderador/credenciamento', function () {
+    Session.set("searchString","");
     this.layout('painelAdmin');
     this.render('adminCredenciamento');
 },{ name:'admin-credenciamento',
