@@ -29,8 +29,7 @@ Router.route('/reset-password', function(){
 
 // Dashboard
 Router.route('/', function () {
-    this.layout('painel');
-    this.render('dashboard');
+    Router.go('/noticias/');
 },{ name:'dashboard',
     onBeforeAction: loginHook });
 
