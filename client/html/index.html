@@ -28,28 +28,14 @@
 
             <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell"></i> <b class="caret"></b></a>
-                    <ul class="dropdown-menu alert-dropdown">
-                   
-                    </ul>
-                </li>
+                
                 <li>
-                <a href="#" style="font-size:18px;font-color:"><strong>1300</strong> <i class="fa fa-star"></i> </a>
+                <a href="#" style="font-size:18px;font-color:"><strong>{{pontuação}}</strong> <i class="fa fa-star"></i> </a>
                 </li>
 
                 <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> {{username}} <b class="caret"></b></a>
                     <ul class="dropdown-menu">
-                        <li>
-                            <a href="#"><i class="fa fa-fw fa-user"></i> Profile</a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-fw fa-envelope"></i> Inbox</a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-fw fa-gear"></i> Settings</a>
-                        </li>
                         {{#if isMod}}
                         <li>
                             <a href="/moderador"><i class="fa fa-fw fa-gear"></i> Página de Moderação</a>
@@ -65,29 +51,12 @@
             <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav">
-                    <li class="{{#if atRoute 'dashboard'}}active{{/if}}">
-                        <a href="/"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
-                    </li>
                     <li class="{{#if atRoute 'noticias'}}active{{/if}}">
                         <a href="/noticias/"><i class="fa fa-fw fa-newspaper-o"></i> Notícias</a>
                     </li>
                     <li class="{{#if atRoute 'atividades'}}active{{/if}}">
                         <a href="/atividades/"><i class="fa fa-fw fa-table"></i> Atividades</a>
                     </li>
-                    <li class="{{#if atRoute 'calendario'}}active{{/if}}">
-                        <a href="/calendario/"><i class="fa fa-fw fa-calendar"></i> Calendário</a>
-                    </li>
-                    <li class="{{#if atRoute 'achievements'}}active{{/if}}">
-                        <a href="/Achievements/"><i class="fa fa-fw fa-star"></i> Achievements</a>
-                    </li>
-                    <li class="{{#if atRoute 'loja'}}active{{/if}}">
-                        <a href="/loja/"><i class="fa fa-fw fa-tag"></i> Loja</a>
-                    </li>
-                    <li class="{{#if atRoute 'mapa'}}active{{/if}}">
-                        <a href="/mapa/"><i class="fa fa-fw fa-map-marker"></i> Mapa</a>
-                    </li>
-                  
-
 
                 </ul>
             </div>
