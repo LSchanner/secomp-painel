@@ -26,13 +26,6 @@ Template.Noticia.helpers({
 });
 
 
-// Página de adicionar notícia
-Router.route('/moderador/noticias/nova/', function () {
-    this.layout('painelAdmin');
-    this.render('novaNoticia');
-},{ name:'novaNoticia',
-    onBeforeAction: adminHook });
-
 Template.novaNoticia.events({
     'submit #add-noticia': function(event) {
         var title = event.target.title.value;
@@ -50,13 +43,6 @@ Template.novaNoticia.events({
     }
 });
 
-
-// Página de editar noticia
-Router.route('/moderador/noticias/:_id', function () {
-  this.layout('painelAdmin');
-  this.render('editNoticia');
-},{ name:'editNoticia',
-    onBeforeAction: adminHook });
 
 Template.editNoticia.helpers({
     noticia: function(){

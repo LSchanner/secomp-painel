@@ -18,10 +18,71 @@
 </div>
 <!-- /.row -->
 
+{{ > ListaAtividades }}
+</template>
 
-<div class="lead">
-    Nesta página os usuários poderão ver uma listagem das atividades da semana, fazer cadastro em atividades que exigem e preencher o formulário de feedback em atividades que ele compareceu.
+<template name='ListaAtividades'>
+<div class='post-list'>
+    {{#each atividades}}
+        {{> Atividade}}
+    {{/each}}
 </div>
 
-
+{{#if temMais}}
+<a href="#" id="tem-mais-anchor"><div class="" id="tem-mais"> Ver mais</div></a>
+{{/if}}
 </template>
+
+<template name="Atividade">
+<a href="{{_id}}">
+<article class="atividade col-md-5">
+    <h2>
+        {{title}}
+    </h2>
+    <div class="post-meta">
+        {{format begin}}
+    </div>
+    <div class="the-content">
+        {{{encurta description}}}
+    </div>
+</article>
+</a>
+</template>
+
+<template name="showatividade">
+
+{{#with atividade}}
+<!-- Page Heading -->
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">
+            Atividade
+        </h1>
+        <ol class="breadcrumb">
+            <li class="active">
+            Painel
+            </li>
+            <li class="active">
+            <i class="fa fa-newspaper-o"></i> Atividade
+            </li>
+        </ol>
+    </div>
+</div>
+<!-- /.row -->
+<article class="atividade col-md-9">
+    <h2>
+        {{title}}
+    </h2>
+    <div class="post-meta">
+        {{palestrante}}
+        <br>
+        {{format begin}} - {{format end}}
+    </div>
+    <div class="the-content">
+        {{{decription}}}
+    </div>
+</article>
+{{/with}}
+</template>
+
+

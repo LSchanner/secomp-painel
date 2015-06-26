@@ -48,12 +48,47 @@ Router.route('/noticias/:_id', function () {
 },{ name:'showNoticia',
     onBeforeAction: loginHook });
 
+// Página de adicionar notícia
+Router.route('/moderador/noticias/nova/', function () {
+    this.layout('painelAdmin');
+    this.render('novaNoticia');
+},{ name:'novaNoticia',
+    onBeforeAction: adminHook });
+
+// Página de editar noticia
+Router.route('/moderador/noticias/:_id', function () {
+  this.layout('painelAdmin');
+  this.render('editNoticia');
+},{ name:'editNoticia',
+    onBeforeAction: adminHook });
+
 // Atividades
 Router.route('/atividades', function () {
     this.layout('painel');
     this.render('atividades');
 },{ name:'atividades',
     onBeforeAction: loginHook });
+
+// Atividade
+Router.route('/atividades/:_id', function () {
+    this.layout('painel');
+    this.render('showatividade');
+},{ name:'atividade',
+    onBeforeAction: loginHook });
+
+// Página de adicionar atividade
+Router.route('/moderador/atividades/nova/', function () {
+    this.layout('painelAdmin');
+    this.render('novaAtividade');
+},{ name:'novaAtividade',
+    onBeforeAction: adminHook });
+
+// Página de editar noticia
+Router.route('/moderador/atividades/:_id', function () {
+  this.layout('painelAdmin');
+  this.render('editAtividade');
+},{ name:'editAtividade',
+    onBeforeAction: adminHook });
 
 // calendario
 Router.route('/calendario', function () {

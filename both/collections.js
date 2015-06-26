@@ -24,6 +24,27 @@ Schemas.Noticias = new SimpleSchema({
 });
 Noticias.attachSchema(Schemas.Noticias);
 
+Schemas.Atividades = new SimpleSchema({
+    title:{
+        type: String
+    },
+    description:{
+        type: String
+    },
+    palestrante:{
+        type: String,
+        optional: true
+    },
+    begin:{
+        type: Date,
+    },
+    end:{
+        type: Date,
+    }
+});
+Atividades.attachSchema(Schemas.Atividades);
+
+
 Schemas.Credenciamentos = new SimpleSchema({
     user_id:{
         type: String
@@ -49,6 +70,8 @@ Schemas.Credenciamentos = new SimpleSchema({
 });
 Credenciamentos.attachSchema(Schemas.Credenciamentos);
 
+
+
 // Admin
 AdminConfig = {
     name: 'Secomp',
@@ -60,8 +83,8 @@ AdminConfig = {
                 {label: 'Data de Publicação', name: 'created'},
             ]
         },
-        Credenciamentos:{}
-
+        Credenciamentos:{},
+        Atividades:{},
     
     },
     autoForm:{
