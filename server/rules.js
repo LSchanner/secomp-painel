@@ -31,6 +31,9 @@ Meteor.publish('Credenciamentos', function() {
       if(authAdmin(this.userId,null)){
           return Credenciamentos.find();
       }
+      else{
+          return Credenciamentos.find({user_id:this.userId});
+      }
 });
 
 Credenciamentos.allow({
