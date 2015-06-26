@@ -33,8 +33,30 @@ Template.editAtividade.helpers({
 
 Template.editAtividade.events({
     'submit #edit-atividade':function(event){
-        console.log("foi");
+        var title = event.target.title.value;
+        var palestrante = event.target.palestrante.value;
+        var description = event.target.description.value;
+
+        if(title && description){
+            Atividades.update(Router.current().params._id,{
+                $set:{
+                    title:title,
+                    description:description,
+                    palestrante:palestrante,
+                }
+            });
+            Router.go('/moderador/atividades/');
+        }
+
+        else{
+            alert('Por favor preencha todos os campos');
+        }
+
         return false;
+    },
+    'click #delete-button': function(event){
+        Atividades.remove(Router.current().params._id);
+        Router.go('/moderador/noticias/');
     }
 });
 
