@@ -70,6 +70,29 @@ Template.ListaAtividades.helpers({
     }
 });
 
+Template.ListaAtividades.events({
+    'click #tem-mais':function(event){
+        Session.set('pag',Session.get('pag') + 1);
+    }
+});
+
+Template.ListaAtividades.onRendered(function(){
+   Session.set('pag',1); 
+});
+
+Template.showatividade.helpers({
+    atividade: function(){
+        return Atividades.findOne(Router.current().params._id);
+    },
+    format: function(date) {
+        return moment(date).format('LLL');
+    },
+    duracao: function(begin,end){
+        var delta = moment(begin).diff(moment(end));
+        return moment.duration(delta).humanize();
+    }
+});
+
 Template.Atividade.helpers({
     format: function(date) {
         return moment(date).format('LLL');
