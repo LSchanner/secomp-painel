@@ -1,5 +1,4 @@
 .atividade {
-    height:250px;
     background-color:#eee;
     padding:15px;
     margin:20px;
@@ -14,4 +13,11 @@
 }
 .atividade .the-content {
     color:#222;
+}
+.atividade-widget {
+    height:300px;
+    overflow:hidden;
+}
+.post-list{
+    margin-left:auto;
 }
