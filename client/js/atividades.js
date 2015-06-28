@@ -5,14 +5,16 @@ Template.novaAtividade.events({
         var description = event.target.description.value;
         var begin = event.target.begin.value;
         var end = event.target.end.value;
+        var pontuacao = event.target.pontuacao.value;
 
-        if(title && description && begin && end){
+        if(title && description && begin && end && pontuacao){
             Atividades.insert({
                 title:title,
                 description:description,
                 palestrante:palestrante,
                 begin:new Date(begin),
-                end:new Date(end)
+                end:new Date(end),
+                pontuacao:pontuacao
             });
             Router.go('/moderador/atividades/');
         }
@@ -27,7 +29,7 @@ Template.novaAtividade.events({
 
 Template.editAtividade.helpers({
     atividade: function(){
-        return Atividades.findOne(Router.current().params._id); 
+        return Atividades.findOne(Router.current().params._id);
     }
 });
 
@@ -77,7 +79,7 @@ Template.ListaAtividades.events({
 });
 
 Template.ListaAtividades.onRendered(function(){
-   Session.set('pag',1); 
+   Session.set('pag',1);
 });
 
 Template.showatividade.helpers({
@@ -101,5 +103,3 @@ Template.Atividade.helpers({
         return $(body).text().substring(0,200) + ' ...';
     }
 });
-
-

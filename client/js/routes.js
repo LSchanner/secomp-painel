@@ -6,7 +6,7 @@ loginHook = function() {
         this.redirect('login');
     }
     this.next();
-}
+};
 
 // Página de login
 Router.route('/login', function () {
@@ -82,7 +82,7 @@ Router.route('/moderador/atividades/nova/', function () {
 },{ name:'novaAtividade',
     onBeforeAction: adminHook });
 
-// Página de editar noticia
+// Página de editar atividades :)
 Router.route('/moderador/atividades/:_id', function () {
   this.layout('painelAdmin');
   this.render('editAtividade');
@@ -102,6 +102,26 @@ Router.route('/achievements', function () {
     this.render('achievements');
 },{ name:'achievements',
     onBeforeAction: loginHook });
+
+Router.route('/achievements/:_id', function () {
+    this.layout('painel');
+    this.render('showAchievement');
+},{ name:'showAchievement',
+    onBeforeAction: loginHook });
+
+// Página de adicionar achievements
+Router.route('/moderador/achievements/novo/', function () {
+    this.layout('painelAdmin');
+    this.render('novoAchievement');
+},{ name:'novoAchievement',
+    onBeforeAction: adminHook });
+
+// Página de editar achievements
+Router.route('/moderador/achievements/:_id', function () {
+  this.layout('painelAdmin');
+  this.render('editAchievement');
+},{ name:'editAchievement',
+    onBeforeAction: adminHook });
 
 // loja
 Router.route('/loja', function () {

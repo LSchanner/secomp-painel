@@ -17,8 +17,11 @@
     </div>
 </div>
 <!-- /.row -->
+    <hr>
+    <input id="search" type="text" class="form-control" name="searchString"  placeholder="Procurar uma Atividade">
+    <hr>
 
-{{ > ListaAtividades }}
+    {{ > ListaAtividades }}
 </template>
 
 <template name='ListaAtividades'>
@@ -43,8 +46,9 @@
         {{title}}
     </h2>
     <div class="post-meta">
-        {{format begin}} <br> 
-        <strong> {{palestrante}}</strong>
+        {{format begin}} <br>
+        Palestrante:<strong> {{palestrante}}</strong><br>
+        Pontos: <strong>{{pontuacao}}</strong>
     </div>
     <div class="the-content">
         {{{encurta description}}}
@@ -88,5 +92,3 @@
 </article>
 {{/with}}
 </template>
-
-
