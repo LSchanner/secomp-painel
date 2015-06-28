@@ -53,7 +53,7 @@ Template.editAchievement.events({
 });
 
 Template.editAchievement.helpers({
-    achivement: function(){
+    achievement: function(){
         return Achievements.findOne(Router.current().params._id);
     }
 });

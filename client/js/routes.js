@@ -6,7 +6,7 @@ loginHook = function() {
         this.redirect('login');
     }
     this.next();
-}
+};
 
 // Página de login
 Router.route('/login', function () {
@@ -101,6 +101,12 @@ Router.route('/achievements', function () {
     this.layout('painel');
     this.render('achievements');
 },{ name:'achievements',
+    onBeforeAction: loginHook });
+
+Router.route('/achievements/:_id', function () {
+    this.layout('painel');
+    this.render('showAchievement');
+},{ name:'showAchievement',
     onBeforeAction: loginHook });
 
 // Página de adicionar achievements
