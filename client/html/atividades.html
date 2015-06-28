@@ -22,31 +22,28 @@
 </template>
 
 <template name='ListaAtividades'>
-<<<<<<< HEAD
-<div class='post-list'>
-    <div class="row">
-=======
-<div class='row post-list'>
->>>>>>> cff78b1b60f94e3ce85eda8a27c486a63fa85dd6
-    {{#each atividades}}
-        {{> Atividade}}
-    {{/each}}
-    </div>
-</div>
-<div class="row">
-    {{#if temMais}}
-    <a href="#" id="tem-mais-anchor"><div class="" id="tem-mais"> Ver mais</div></a>
-    {{/if}}
-</div>
-<<<<<<< HEAD
-=======
+    <div class='post-list'>
+        <div class="row">
 
-<div class="row">
-    {{#if temMais}}
-    <a href="#" id="tem-mais-anchor"><div class="" id="tem-mais"> Ver mais</div></a>
-    {{/if}}
-</div>
->>>>>>> cff78b1b60f94e3ce85eda8a27c486a63fa85dd6
+            <div class='row post-list'>
+                {{#each atividades}}
+                {{> Atividade}}
+                {{/each}}
+            </div>
+        </div>
+
+        <div class="row">
+            {{#if temMais}}
+            <a href="#" id="tem-mais-anchor"><div class="" id="tem-mais"> Ver mais</div></a>
+            {{/if}}
+        </div>
+
+        <div class="row">
+            {{#if temMais}}
+            <a href="#" id="tem-mais-anchor"><div class="" id="tem-mais"> Ver mais</div></a>
+            {{/if}}
+        </div>
+    </div>
 </template>
 
 <template name="Atividade">
@@ -56,8 +53,9 @@
         {{title}}
     </h2>
     <div class="post-meta">
-        {{format begin}} <br> 
-        <strong> {{palestrante}}</strong>
+        {{format begin}} <br>
+        Palestrante:<strong> {{palestrante}}</strong><br>
+        Pontos: <strong>{{pontuacao}}</strong>
     </div>
     <div class="the-content">
         {{{encurta description}}}
@@ -101,5 +99,3 @@
 </article>
 {{/with}}
 </template>
-
-

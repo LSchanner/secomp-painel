@@ -1,10 +1,12 @@
 // collections
 Noticias = new Mongo.Collection("Noticias");
 Atividades = new Mongo.Collection("Atividades");
+Achievements = new Mongo.Collection("Achievements");
+//Produtos = new Mongo.Collection("Produtos");
 Credenciamentos = new Mongo.Collection("Credenciamentos");
-  
+
 // Schemas
-Schemas = {}
+Schemas = {};
 Schemas.Noticias = new SimpleSchema({
     title:{
         type: String
@@ -16,7 +18,7 @@ Schemas.Noticias = new SimpleSchema({
         type: Date,
         autoValue: function(){
             if(this.isInsert){
-                return new Date;
+                return new Date();
             }
         }
 
@@ -40,10 +42,25 @@ Schemas.Atividades = new SimpleSchema({
     },
     end:{
         type: Date,
+    },
+    pontuacao:{
+        type: Number
     }
 });
 Atividades.attachSchema(Schemas.Atividades);
 
+Schemas.Achievements = new SimpleSchema({
+    title:{
+        type: String
+    },
+    pontuacao:{
+        type: Number
+    },
+    description:{
+        type: String
+    }
+});
+Achievements.attachSchema(Schemas.Achievements);
 
 Schemas.Credenciamentos = new SimpleSchema({
     user_id:{
@@ -57,7 +74,7 @@ Schemas.Credenciamentos = new SimpleSchema({
     },
     atividades:{
         type: [String],
-        optional:true 
+        optional:true
     },
     achievements:{
         type: [String],
@@ -65,10 +82,26 @@ Schemas.Credenciamentos = new SimpleSchema({
     },
     compras:{
         type: [String],
-        optional:true, 
+        optional:true,
     }
 });
 Credenciamentos.attachSchema(Schemas.Credenciamentos);
+
+/*Schemas.Produtos = new SimpleSchema({
+    title:{
+        type: String
+    },
+    price:{
+        type: Number,
+    },
+    description:{
+        type: String,
+    },
+    image_descryption:{
+        type: FS.File,
+    }
+});
+Produtos.attachSchema(Schemas.Produtos);*/
 
 
 
@@ -85,11 +118,9 @@ AdminConfig = {
         },
         Credenciamentos:{},
         Atividades:{},
-    
+
     },
     autoForm:{
         omitFields:['created']
     }
 };
-
-

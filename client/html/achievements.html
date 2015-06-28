@@ -18,10 +18,78 @@
 </div>
 <!-- /.row -->
 
+    {{> ListaAchievements }}
 
-<div class="lead">
-   Nesta página podemos colocar uma listagem de todos os achievements, instruções detalhadas de como submeter, etc... 
+</template>
+
+<template name='ListaAchievements'>
+    <div class='post-list'>
+        <div class="row">
+
+            <div class='row post-list'>
+                {{#each achievements}}
+                    {{> Achievement}}
+                {{/each}}
+            </div>
+        </div>
+
+        <div class="row">
+            {{#if temMais}}
+            <a href="#" id="tem-mais-anchor"><div class="" id="tem-mais"> Ver mais</div></a>
+            {{/if}}
+        </div>
+
+        <div class="row">
+            {{#if temMais}}
+            <a href="#" id="tem-mais-anchor"><div class="" id="tem-mais"> Ver mais</div></a>
+            {{/if}}
+        </div>
+    </div>
+</template>
+
+<template name="Achievement">
+<a href="{{_id}}">
+<article class="achievement achievement-widget col-md-5">
+    <h2>
+        {{title}}
+    </h2>
+    <div class="post-meta">
+        Pontos: <strong>{{pontuacao}}</strong>
+    </div>
+    <div class="the-content">
+        {{{encurta description}}}
+    </div>
+</article>
+</a>
+</template>
+
+<template name="showAchievement">
+
+{{#with achievement}}
+<!-- Page Heading -->
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">
+            Achievement
+        </h1>
+        <ol class="breadcrumb">
+            <li class="active">
+            Painel
+            </li>
+            <li class="active">
+            <i class="fa fa-newspaper-o"></i> Achievement
+            </li>
+        </ol>
+    </div>
 </div>
-
-
+<!-- /.row -->
+<article class="achievement achievement-widget col-md-9">
+    <h2>
+        {{title}}
+    </h2>
+    <div class="the-content">
+        {{{description}}}
+    </div>
+</article>
+{{/with}}
 </template>
