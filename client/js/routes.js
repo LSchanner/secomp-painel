@@ -63,6 +63,7 @@ Router.route('/moderador/noticias/:_id', function () {
 
 // Atividades
 Router.route('/atividades', function () {
+    Session.set("searchString","");
     this.layout('painel');
     this.render('atividades');
 },{ name:'atividades',
@@ -98,6 +99,7 @@ Router.route('/calendario', function () {
 
 // achievements
 Router.route('/achievements', function () {
+    Session.set("searchString","");
     this.layout('painel');
     this.render('achievements');
 },{ name:'achievements',

@@ -26,6 +26,7 @@ Router.route('/moderador/noticias/', function () {
 
 // Atividades
 Router.route('/moderador/atividades', function () {
+    Session.set("searchString","");
     this.layout('painelAdmin');
     this.render('adminAtividades');
 },{ name:'admin-atividades',
@@ -41,6 +42,7 @@ Router.route('/moderador/credenciamento', function () {
 
 // achievements
 Router.route('/moderador/achievements', function () {
+    Session.set("searchString","");
     this.layout('painelAdmin');
     this.render('adminAchievements');
 },{ name:'admin-achievements',
@@ -65,4 +67,3 @@ Template.painelAdmin.events({
         $('.navbar-collapse').collapse('hide');
     }
 });
-

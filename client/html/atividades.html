@@ -17,19 +17,37 @@
     </div>
 </div>
 <!-- /.row -->
-    <hr>
-    <input id="search" type="text" class="form-control" name="searchString"  placeholder="Procurar uma Atividade">
-    <hr>
 
     {{ > ListaAtividades }}
 </template>
 
 <template name='ListaAtividades'>
-<div class='post-list'>
-    <div class="row">
-    {{#each atividades}}
-        {{> Atividade}}
-    {{/each}}
+    <div>
+        <hr>
+        <input id="search" type="text" class="form-control" name="searchString"  placeholder="Procurar uma Atividade">
+        <hr>
+    </div>
+    <div class='post-list'>
+        <div class="row">
+
+            <div class='row post-list'>
+                {{#if searched_atividades}}
+                    {{#each searched_atividades}}
+                        {{> Atividade}}
+                    {{/each}}
+                {{else}}
+                    {{#each atividades}}
+                        {{> Atividade}}
+                    {{/each}}
+                {{/if}}
+            </div>
+        </div>
+
+        <div class="row">
+            {{#if temMais}}
+            <a href="#" id="tem-mais-anchor"><div class="" id="tem-mais"> Ver mais</div></a>
+            {{/if}}
+        </div>
     </div>
 </div>
 <div class="row">

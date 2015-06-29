@@ -79,12 +79,23 @@ Template.ListaAchievements.helpers({
     },
     temMais: function() {
         return Achievements.find().count() > Session.get('pag') * 10;
+    },
+    searched_achievements: function(){
+        search = Session.get('searchString') ;
+        return Achievements.find({
+            $or:[{'title':{$regex:search}},
+               {'description':{$regex:search}},
+            ]
+        });
     }
 });
 
 Template.ListaAchievements.events({
     'click #tem-mais':function(event){
         Session.set('pag',Session.get('pag') + 1);
+    },
+    'keyup #search': function(event,t){
+        Session.set("searchString",event.target.value);
     }
 });
 

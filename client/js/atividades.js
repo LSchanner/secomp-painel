@@ -80,12 +80,25 @@ Template.ListaAtividades.helpers({
     },
     temMais: function() {
         return Atividades.find().count() > Session.get('pag') * 10;
+    },
+    searched_atividades: function(){
+        search = Session.get('searchString') ;
+        return Atividades.find({
+            $or:[{'title':{$regex:search}},
+               {'description':{$regex:search}},
+               {'palestrante':{$regex:search}},
+               {'begin':{$regex:search}},
+            ]
+        });
     }
 });
 
 Template.ListaAtividades.events({
     'click #tem-mais':function(event){
         Session.set('pag',Session.get('pag') + 1);
+    },
+    'keyup #search': function(event,t){
+        Session.set("searchString",event.target.value);
     }
 });
 
