@@ -20,7 +20,14 @@ Meteor.publish('Atividades', function() {
       if(authAdmin(this.userId)){
           return Atividades.find();
       }else{
-          return Atividades.find({},{fields:{title:1,description:1}})
+          return Atividades.find({},{fields:{
+              title:1,
+              description:1,
+              requires_inscricao:1,
+              num_max_inscritos:1,
+              inscritos:1
+          }
+          })
       }
 });
 
