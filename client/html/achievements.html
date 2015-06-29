@@ -17,22 +17,30 @@
     </div>
 </div>
 <!-- /.row -->
-    <hr>
-    <input id="search" type="text" class="form-control" name="searchString"  placeholder="Procurar um Achievement">
-    <hr>
 
     {{> ListaAchievements }}
 
 </template>
 
 <template name='ListaAchievements'>
+    <div>
+        <hr>
+        <input id="search" type="text" class="form-control" name="searchString"  placeholder="Procurar um Achievement">
+        <hr>
+    </div>
     <div class='post-list'>
         <div class="row">
 
             <div class='row post-list'>
-                {{#each achievements}}
-                    {{> Achievement}}
-                {{/each}}
+                {{#if searched_achievements}}
+                    {{#each searched_achievements}}
+                        {{> Achievement}}
+                    {{/each}}
+                {{else}}
+                    {{#each achievements}}
+                        {{> Achievement}}
+                    {{/each}}
+                {{/if}}
             </div>
         </div>
 

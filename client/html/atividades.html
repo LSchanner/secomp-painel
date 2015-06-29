@@ -17,21 +17,29 @@
     </div>
 </div>
 <!-- /.row -->
-    <hr>
-    <input id="search" type="text" class="form-control" name="searchString"  placeholder="Procurar uma Atividade">
-    <hr>
 
     {{ > ListaAtividades }}
 </template>
 
 <template name='ListaAtividades'>
+    <div>
+        <hr>
+        <input id="search" type="text" class="form-control" name="searchString"  placeholder="Procurar uma Atividade">
+        <hr>
+    </div>
     <div class='post-list'>
         <div class="row">
 
             <div class='row post-list'>
-                {{#each atividades}}
-                {{> Atividade}}
-                {{/each}}
+                {{#if searched_atividades}}
+                    {{#each searched_atividades}}
+                        {{> Atividade}}
+                    {{/each}}
+                {{else}}
+                    {{#each atividades}}
+                        {{> Atividade}}
+                    {{/each}}
+                {{/if}}
             </div>
         </div>
 
