@@ -89,6 +89,23 @@
     <div class="the-content">
         {{{description}}}
     </div>
+    {{#if requires_inscricao}}
+        {{#if inscricao_aberta atividade}}
+            <hr>
+            <p>
+                Essa atividade requer inscrição. Você gostaria de se inscrever agora? <br>
+                Cada congressista tem direito a {{num_max_inscricoes}} inscrições.
+            </p>
+            <button id="inscrever" type="button" class="btn btn-primary">
+                Realizar Inscrição
+            </button>
+        {{else}} 
+            <hr>
+            <p>
+                Essa atividade requer inscrição, mas todas as vagas já foram preenchidas ou você já realizou o número máximo de inscrições.
+            </p>
+        {{/if}}
+    {{/if}}
 </article>
 {{/with}}
 </template>

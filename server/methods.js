@@ -14,5 +14,19 @@ Meteor.methods({
                 }
             Credenciamentos.insert(credenciamento);
         }
+    },
+    inscricaoAtividade: function(atividadeId){
+        var atividade = Atividades.findOne(atividadeId);
+        var cred = Credenciamentos.findOne({user_id:this.userId});
+        if(atividade.requires_inscricao &&
+            atividade.inscritos.length < atividade.num_max_inscritos
+            && Atividades.find({inscritos:cred._id}).count() < num_max_inscricoes){
+                
+                Atividades.update(atividadeId,
+                        {$addToSet:{inscritos:cred._id}});
+                return true;
+            }
+        return false;
     }
+    
 });

@@ -6,15 +6,26 @@ Template.novaAtividade.events({
         var begin = event.target.begin.value;
         var end = event.target.end.value;
         var pontuacao = event.target.pontuacao.value;
+        var num_max_inscritos = event.target.nummaxinscritos.value;
+
+        if(num_max_inscritos == 0){
+            var requires_inscricao = false;
+        }else{
+            var requires_inscricao = true;
+        }
 
         if(title && description && begin && end && pontuacao){
             Atividades.insert({
-                title:title,
-                description:description,
-                palestrante:palestrante,
-                begin:new Date(begin),
-                end:new Date(end),
-                pontuacao:pontuacao
+                title: title,
+                description: description,
+                palestrante: palestrante,
+                begin: new Date(begin),
+                end: new Date(end),
+                pontuacao: pontuacao,
+                num_max_inscritos: num_max_inscritos,
+                requires_inscricao: requires_inscricao,
+                inscritos: [],
+                presentes: []
             });
             Router.go('/moderador/atividades/');
         }
@@ -92,6 +103,23 @@ Template.showatividade.helpers({
     duracao: function(begin,end){
         var delta = moment(begin).diff(moment(end));
         return moment.duration(delta).humanize();
+    },
+    inscricao_aberta: function(atividade){
+        var cred = Credenciamentos.findOne({user_id:Meteor.userId()});
+        return (
+            atividade.inscritos.length <= atividade.num_max_inscritos  && 
+            Atividades.find({inscritos:cred._id}).count() < num_max_inscricoes &&
+            atividade.inscritos.indexOf(cred._id) == -1 
+            )
+    },
+    num_max_inscricoes: function(){
+        return num_max_inscricoes;
+    }
+});
+
+Template.showatividade.events({
+    "click #inscrever": function(event){
+        Meteor.call("inscricaoAtividade",Router.current().params._id);
     }
 });
 
