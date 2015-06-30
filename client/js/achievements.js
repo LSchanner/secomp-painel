@@ -65,12 +65,6 @@ Template.showAchievement.helpers({
     }
 });
 
-/* ---- Achievement (for showing each achievement) ---- */
-Template.Achievement.helpers({
-    encurta: function(body){
-        return $(body).text().substring(0,100) + ' ...';
-    }
-});
 
 /* ---- ListaAchievements ---- */
 Template.ListaAchievements.helpers({
