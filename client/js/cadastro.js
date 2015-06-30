@@ -41,6 +41,7 @@ Template.cadastro.events({
             return false;
         }
 
+        console.log(terms_accepted);
         if(!terms_accepted){
             Session.set('erro', erroChecked);
             return false;

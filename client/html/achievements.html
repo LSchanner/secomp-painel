@@ -18,53 +18,47 @@
 </div>
 <!-- /.row -->
 
-    {{> ListaAchievements }}
+{{> ListaAchievements }}
 
 </template>
 
 <template name='ListaAchievements'>
-    <div>
-        <hr>
-        <input id="search" type="text" class="form-control" name="searchString"  placeholder="Procurar um Achievement">
-        <hr>
-    </div>
-    <div class='post-list'>
-        <div class="row">
+<div>
+    <hr>
+    <input id="search" type="text" class="form-control" name="searchString"  placeholder="Procurar um Achievement">
+    <hr>
+</div>
 
-            <div class='row post-list'>
-                {{#if searched_achievements}}
-                    {{#each searched_achievements}}
-                        {{> Achievement}}
-                    {{/each}}
-                {{else}}
-                    {{#each achievements}}
-                        {{> Achievement}}
-                    {{/each}}
-                {{/if}}
-            </div>
-        </div>
+<div class='row post-list'>
+    {{#if searched_achievements}}
+        {{#each searched_achievements}}
+            {{> Achievement}}
+        {{/each}}
+    {{else}}
+        {{#each achievements}}
+            {{> Achievement}}
+        {{/each}}
+    {{/if}}
+</div>
 
-        <div class="row">
-            {{#if temMais}}
-            <a href="#" id="tem-mais-anchor"><div class="" id="tem-mais"> Ver mais</div></a>
-            {{/if}}
-        </div>
-    </div>
+<div class="row">
+    {{#if temMais}}
+    <a href="#" id="tem-mais-anchor"><div class="" id="tem-mais"> Ver mais</div></a>
+    {{/if}}
+</div>
 </template>
 
 <template name="Achievement">
 <a href="{{_id}}">
-<article class="achievement achievement-widget col-md-5">
-    <h2>
-        {{title}}
-    </h2>
-    <div class="post-meta">
-        Pontos: <strong>{{pontuacao}}</strong>
-    </div>
-    <div class="the-content">
-        {{{encurta description}}}
-    </div>
-</article>
+    <article class="achievement achievement-widget col-md-5">
+        <h2>
+            {{title}}
+        </h2>
+        <div class="post-meta">
+            Pontos: <strong>{{pontuacao}}</strong>
+        </div>
+
+    </article>
 </a>
 </template>
 
