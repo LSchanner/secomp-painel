@@ -119,6 +119,8 @@ Template.showatividade.helpers({
     },
     inscricao_aberta: function(atividade){
         var cred = Credenciamentos.findOne({user_id:Meteor.userId()});
+        if(!cred) return false;
+
         return (
             atividade.inscritos.length <= atividade.num_max_inscritos  && 
             Atividades.find({inscritos:cred._id}).count() < num_max_inscricoes &&
