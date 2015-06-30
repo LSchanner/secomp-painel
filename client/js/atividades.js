@@ -157,3 +157,38 @@ Template.Atividade.helpers({
         return $(body).text().substring(0,200) + ' ...';
     }
 });
+
+Template.userOnActivities.events({
+    "click .toggle-checked": function (event) {
+        var atividade = Atividades.findOne(Router.current().params._id);
+        console.log("atividade : " + atividade);
+        var listaCompareceram = atividade.presentes;
+        console.log("lista dos que compareceram: " + listaCompareceram);
+        var credId = this;
+        console.log("Esse é o id que deve ser tirado ou colocado: " + credId);
+
+        console.log('Verificando se precisa tirar ou colocar:');
+
+        console.log( listaCompareceram.find(credId) );
+
+        if( (listaCompareceram.find(credId) !== undefined) ){
+            console.log("Não havia...");
+            listaCompareceram.push(credId);
+            return true;
+        }
+
+        console.log("Havia...");
+        listaCompareceram.pop(credId);
+        return false;
+    }
+});
+
+Template.userOnActivities.helpers({
+    checked: function() {
+        var listaCompareceram = (Atividades.findOne(atividadeId)).presentes;
+        if(listaCompareceram.find(this)){
+            return true;
+        }
+        return false;
+    },
+});

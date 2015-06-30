@@ -1,8 +1,9 @@
 /*Mensagens de erro para o cadastro*/
-var erroSistema = 'Ocorreu um erro no sistema, tente novamente mais tarde'
-var erroEmail = 'Este email já está cadastrado. Talvez você queira reenviar seu <b><a id="verificar" href="#">email de confirmação</a></b> ou <a href="/recover-password"><b> recuperar sua senha </a></b>'
-var erroVazio = 'Um ou mais campos do cadastro estão vazios'
-var erroSenha = 'Senhas não batem'
+var erroSistema = 'Ocorreu um erro no sistema, tente novamente mais tarde';
+var erroEmail = 'Este email já está cadastrado. Talvez você queira reenviar seu <b><a id="verificar" href="#">email de confirmação</a></b> ou <a href="/recover-password"><b> recuperar sua senha </a></b>';
+var erroVazio = 'Um ou mais campos do cadastro estão vazios';
+var erroSenha = 'Senhas não batem';
+var erroChecked = 'Você não pode criar uma conta se não concordar com nossos termos de uso';
 
 Template.cadastro.events({
     "submit #formcadastro": function(event){
@@ -15,6 +16,8 @@ Template.cadastro.events({
         var tel = event.target.telefone.value;
         var uni = event.target.instituicao.value;
         var curso = event.target.curso.value;
+        var terms_accepted = event.target.accepted.checked;
+        var ra;
 
         if(password != confirm_password){
             Session.set('erro', erroSenha);
@@ -22,9 +25,9 @@ Template.cadastro.events({
         }
 
         if(event.target.ra){
-            var ra = event.target.ra.value;
+            ra = event.target.ra.value;
         }else{
-            var ra = null;
+            ra = null;
         }
 
         if(!ra && uni == 'UNICAMP'){
@@ -35,6 +38,11 @@ Template.cadastro.events({
         /* Verificar para não permitir campos nulos */
         if(!(email && password && nome && cpf && rg && tel && uni != "Universidade" && curso != "Curso")){
             Session.set('erro', erroVazio);
+            return false;
+        }
+
+        if(!terms_accepted){
+            Session.set('erro', erroChecked);
             return false;
         }
 
@@ -50,7 +58,7 @@ Template.cadastro.events({
                 curso: curso,
                 ra: ra
             }
-        }
+        };
 
         /*Ele ta dando erro nessa porra, e mesmo com erro ele cria o usuario :P*/
         Accounts.createUser(user, function(Error){
@@ -92,6 +100,6 @@ Template.cadastro.helpers({
         return Session.get('unicamper');
     },
     verificacaoEmail:function(){
-        return Session.get('emailconfirmation')
+        return Session.get('emailconfirmation');
     }
 });
