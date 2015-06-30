@@ -53,10 +53,12 @@ Schemas.Atividades = new SimpleSchema({
         type: Number
     },
     inscritos:{
-        type: [String]
+        type: [String],
+        optional:true
     },
     presentes:{
-        type: [String]
+        type: [String],
+        optional:true
     }
 });
 Atividades.attachSchema(Schemas.Atividades);
@@ -83,17 +85,6 @@ Schemas.Credenciamentos = new SimpleSchema({
     },
     pontos:{
         type: Number
-    },
-    atividades:{ type: [String],
-        optional:true
-    },
-    achievements:{
-        type: [String],
-        optional:true
-    },
-    compras:{
-        type: [String],
-        optional:true,
     }
 });
 Credenciamentos.attachSchema(Schemas.Credenciamentos);

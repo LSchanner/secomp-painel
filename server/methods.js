@@ -8,9 +8,6 @@ Meteor.methods({
                     user_id: userId ,
                     _id: credId,
                     pontos: 0,
-                    atividades:[],
-                    achievements:[],
-                    compras:[],
                 }
             Credenciamentos.insert(credenciamento);
         }
