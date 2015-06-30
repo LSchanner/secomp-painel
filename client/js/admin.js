@@ -12,8 +12,7 @@ adminHook = function() {
 
 // Dashboard
 Router.route('/moderador', function () {
-    this.layout('painelAdmin');
-    this.render('adminDashboard');
+    Router.go('/moderador/credenciamento');
 },{ name:'admin-dashboard',
     onBeforeAction: adminHook });
 
