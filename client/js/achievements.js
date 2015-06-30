@@ -81,10 +81,10 @@ Template.ListaAchievements.helpers({
         return Achievements.find().count() > Session.get('pag') * 10;
     },
     searched_achievements: function(){
-        search = Session.get('searchString') ;
+        var search = Session.get('searchString') ;
         return Achievements.find({
-            $or:[{'title':{$regex:search}},
-               {'description':{$regex:search}},
+            $or:[{'title':{$regex:search, $options:'i'}},
+               {'description':{$regex:search, $options:'i'}},
             ]
         });
     }

@@ -82,12 +82,12 @@ Template.ListaAtividades.helpers({
         return Atividades.find().count() > Session.get('pag') * 10;
     },
     searched_atividades: function(){
-        search = Session.get('searchString') ;
+        var search = Session.get('searchString') ;
         return Atividades.find({
-            $or:[{'title':{$regex:search}},
-               {'description':{$regex:search}},
-               {'palestrante':{$regex:search}},
-               {'begin':{$regex:search}},
+            $or:[{'title':{$regex:search, $options:'i'}},
+               {'description':{$regex:search, $options:'i'}},
+               {'palestrante':{$regex:search, $options:'i'}},
+               {'begin':{$regex:search, $options:'i'}},
             ]
         });
     }
