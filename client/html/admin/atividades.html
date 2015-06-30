@@ -103,7 +103,9 @@
 
 
 <template name="editAtividade">
-<!-- Page Heading -->
+{{#with atividade}}
+
+{{#if editar}}
 <div class="row">
     <div class="col-lg-12">
         <h1 class="page-header">
@@ -123,9 +125,7 @@
         </ol>
     </div>
 </div>
-<!-- /.row -->
 
-{{#with atividade}}
 <div class="col-md-12">
     <form id="edit-atividade">
         <div class="input-group">
@@ -146,7 +146,8 @@
         </div>
 
         <div class="edit-buttons">
-            <button type="submit" class="btn btn-success">Enviar</button>
+            <button type="submit" class="btn btn-success">Concluir Edição</button>
+            <button href="moderador/atividades/" class="btn btn-danger">Cancelar Edição</button>
             <button id="delete-button" class="btn btn-danger pull-right">Deletar</button>
         </div>
     </form>
@@ -157,6 +158,58 @@
     $('.date-begin').datetimepicker({
     });
 </script>
-{{/with}}
 
+{{else}}
+
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">
+            Inscritos na Atividade<small> </small>
+        </h1>
+        <ol class="breadcrumb">
+            <li class="active">
+            Painel
+            </li>
+            <li class="active">
+            <i class="fa fa-newspaper-o"></i> Atividades
+            </li>
+            <li class="active">
+            <i class="fa fa-plus"></i> Inscritos na Atividade
+            </li>
+
+        </ol>
+    </div>
+</div>
+
+<div class="edit-buttons">
+    <button id="edit-button" class="btn btn-success">Editar Atividade</button>
+</div>
+
+<div>
+<table class="table table-striped">
+    <thead>
+        <th> Número do Credenciado </th>
+        <th> Compareceu </th>
+    </thead>
+    <tbody>
+    {{#each inscritos}}
+        {{> userOnActivities}}
+    {{/each}}
+    </tbody>
+</table>
+</div>
+
+{{/if}}
+{{/with}}
+</template>
+
+<template name="userOnActivities">
+    <tr class="userOnActivities">
+        <td>
+            {{this}}
+        </td>
+        <td>
+            <input type="checkbox" name='{{this}}'>
+        </td>
+    </tr>
 </template>

@@ -7,11 +7,12 @@ Template.novaAtividade.events({
         var end = event.target.end.value;
         var pontuacao = event.target.pontuacao.value;
         var num_max_inscritos = event.target.nummaxinscritos.value;
+        var requires_inscricao;
 
-        if(num_max_inscritos == 0){
-            var requires_inscricao = false;
+        if(num_max_inscritos === 0){
+            requires_inscricao = false;
         }else{
-            var requires_inscricao = true;
+            requires_inscricao = true;
         }
 
         if(title && description && begin && end && pontuacao){
@@ -41,6 +42,9 @@ Template.novaAtividade.events({
 Template.editAtividade.helpers({
     atividade: function(){
         return Atividades.findOne(Router.current().params._id);
+    },
+    editar: function(){
+        return Session.get('editar');
     }
 });
 
@@ -70,6 +74,9 @@ Template.editAtividade.events({
     'click #delete-button': function(event){
         Atividades.remove(Router.current().params._id);
         Router.go('/moderador/noticias/');
+    },
+    'click #edit-button': function(event){
+        Session.set('editar', true);
     }
 });
 
@@ -125,7 +132,7 @@ Template.showatividade.helpers({
         return atividade.inscritos.indexOf(cred._id) != -1;
     },
     lotado: function(atividade){
-        return atividade.inscritos.length >= atividade.num_max_inscritos;  
+        return atividade.inscritos.length >= atividade.num_max_inscritos;
     },
     semInscrições: function(){
         var cred = Credenciamentos.findOne({user_id:Meteor.userId()});
