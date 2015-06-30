@@ -117,15 +117,19 @@ Template.showatividade.helpers({
         var delta = moment(begin).diff(moment(end));
         return moment.duration(delta).humanize();
     },
-    inscricao_aberta: function(atividade){
+    nao_credenciado: function(){
+        return !(Credenciamentos.findOne({user_id:Meteor.userId()}));
+    },
+    inscrito: function(atividade){
         var cred = Credenciamentos.findOne({user_id:Meteor.userId()});
-        if(!cred) return false;
-
-        return (
-            atividade.inscritos.length <= atividade.num_max_inscritos  && 
-            Atividades.find({inscritos:cred._id}).count() < num_max_inscricoes &&
-            atividade.inscritos.indexOf(cred._id) == -1 
-            )
+        return atividade.inscritos.indexOf(cred._id) != -1;
+    },
+    lotado: function(atividade){
+        return atividade.inscritos.length >= atividade.num_max_inscritos;  
+    },
+    semInscrições: function(){
+        var cred = Credenciamentos.findOne({user_id:Meteor.userId()});
+        return Atividades.find({inscritos:cred._id}).count() >= num_max_inscricoes;
     },
     num_max_inscricoes: function(){
         return num_max_inscricoes;

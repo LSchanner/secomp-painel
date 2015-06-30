@@ -102,21 +102,36 @@
         {{{description}}}
     </div>
     {{#if requires_inscricao}}
-        {{#if inscricao_aberta atividade}}
-            <hr>
-            <p>
-                Essa atividade requer inscrição. Você gostaria de se inscrever agora? <br>
-                Cada congressista tem direito a {{num_max_inscricoes}} inscrições.
-            </p>
+        <hr>
+        {{#if nao_credenciado}}
+        <div class="alert alert-danger" role="alert">
+            Você não está credenciado. Para se inscrever nesta atividade você precisa se credenciar.
+        </div>
+        {{else}} {{#if inscrito atividade}}
+        <div class="alert alert-success" role="alert">
+            Você está inscrito nessa atividade.
+        </div>
+        {{else}} {{#if lotado atividade}}
+        <div class="alert alert-warning" role="alert">
+            Desculpe, as vagas para essa atividade se esgotaram.
+        </div>
+        {{else}} {{#if semInscrições}} 
+        <div class="alert alert-warning" role="alert">
+            Você já se inscreveu no número máximo de atividades.
+        </div>
+        {{else}}
+            <div class="alert alert-info" role="alert">
+                <p>
+                    Essa atividade requer inscrição. Você gostaria de se inscrever agora? <br>
+                    Cada congressista tem direito a {{num_max_inscricoes}} inscrições.
+                </p>
+            </div>
             <button id="inscrever" type="button" class="btn btn-primary">
                 Realizar Inscrição
             </button>
-        {{else}} 
-            <hr>
-            <p>
-                Essa atividade requer inscrição, mas você não pode se inscrever nela. <br>
-                Talvez todas as vagas já foram preenchidas ou você já realizou o número máximo de inscrições.
-            </p>
+        {{/if}}
+        {{/if}}
+        {{/if}}
         {{/if}}
     {{/if}}
 </article>
