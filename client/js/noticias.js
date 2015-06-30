@@ -18,7 +18,11 @@ Template.Noticias.events({
 // Template de uma Noticia encurtada
 Template.Noticia.helpers({
     encurta: function(body){
-        return $(body).filter('p:first').html();
+        var text = $(body).text()
+        if(text.length > 400){
+            text = text.substring(0,400) + '...';
+        }
+        return text;
     },
     format: function(date) {
         return moment(date).format('LLL');
