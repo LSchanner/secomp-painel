@@ -85,8 +85,9 @@ Router.route('/moderador/atividades/nova/', function () {
 
 // Página de editar atividades :)
 Router.route('/moderador/atividades/:_id', function () {
-  this.layout('painelAdmin');
-  this.render('editAtividade');
+    Session.set('editar', false);
+    this.layout('painelAdmin');
+    this.render('editAtividade');
 },{ name:'editAtividade',
     onBeforeAction: adminHook });
 
