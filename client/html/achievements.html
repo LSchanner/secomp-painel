@@ -50,20 +50,42 @@
 
 <template name="Achievement">
 <a href="{{_id}}">
-    <article class="achievement achievement-widget col-md-5">
-        <h2>
-            {{title}}
-        </h2>
-        <div class="post-meta">
-            Pontos: <strong>{{pontuacao}}</strong>
-        </div>
+    {{#if completou this}}
+        <article class="completed-achievement-widget col-md-5">
+            <h2>
+                {{title}}
+            </h2>
+            <div class="post-meta">
+                Pontos: <strong>{{pontuacao}}</strong>
+            </div>
 
-    </article>
+        </article>
+    {{else}} {{#if notificou this}}
+        <article class="asked-achievement-widget col-md-5" >
+            <h2>
+                {{title}}
+            </h2>
+            <div class="post-meta">
+                Pontos: <strong>{{pontuacao}}</strong>
+            </div>
+
+        </article>
+    {{else}}
+        <article class="achievement achievement-widget col-md-5" >
+            <h2>
+                {{title}}
+            </h2>
+            <div class="post-meta">
+                Pontos: <strong>{{pontuacao}}</strong>
+            </div>
+
+        </article>
+    {{/if}}
+    {{/if}}
 </a>
 </template>
 
 <template name="showAchievement">
-
 {{#with achievement}}
 <!-- Page Heading -->
 <div class="row">
@@ -92,13 +114,26 @@
     <div class="the-content">
         {{{description}}}
     </div>
-    {{#if completou}}
+    {{#if completou achievement}}
+        <div class="alert alert-success" role="alert">
+            Você já completou esse achievement!
+        </div>
+    {{else}} {{#if notificou achievement}}
+        <div class="alert alert-warning" role="alert">
+            Seu pedido foi enviado! Assim que verificarmos o achievement ele estará como feito.
+        </div>
     {{else}}
+        <p>
+            Caso você tenha completado esse achievement avise-nos por aqui<br>
+            Em breve um de nossos organizadores verificara e liberara o achievement.
+        </p>
         <button id="inscrever" type="button" class="btn btn-primary">
             Eu completei esse Achievement!
         </button>
     {{/if}}
+    {{/if}}
 
 </article>
+
 {{/with}}
 </template>

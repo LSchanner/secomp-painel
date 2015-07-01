@@ -68,6 +68,16 @@ Template.editAchievement.helpers({
 Template.showAchievement.helpers({
     achievement: function(){
         return Achievements.findOne(Router.current().params._id);
+    },
+    completou: function(achievement){
+        console.log(achievement);
+        var cred = Credenciamentos.findOne( {user_id:Meteor.userId()} );
+        console.log(cred);
+        return achievement.credenciados.indexOf(cred._id) != -1;
+    },
+    notificou: function(achievement){
+        var cred = Credenciamentos.findOne( {user_id:Meteor.userId()} );
+        return achievement.pedidos.indexOf(cred._id) != -1;
     }
 });
 
@@ -77,6 +87,18 @@ Template.showAchievement.events({
     }
 });
 
+
+/* ---- ---- */
+Template.Achievement.helpers({
+    completou: function(achievement){
+        var cred = Credenciamentos.findOne( {user_id:Meteor.userId()} );
+        return achievement.credenciados.indexOf(cred._id) != -1;
+    },
+    notificou: function(achievement){
+        var cred = Credenciamentos.findOne( {user_id:Meteor.userId()} );
+        return achievement.pedidos.indexOf(cred._id) != -1;
+    }
+});
 
 /* ---- ListaAchievements ---- */
 Template.ListaAchievements.helpers({
