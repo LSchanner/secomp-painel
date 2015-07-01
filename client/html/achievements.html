@@ -51,7 +51,7 @@
 <template name="Achievement">
 <a href="{{_id}}">
     {{#if completou this}}
-        <article class="completed-achievement-widget col-md-5">
+        <article class="achievement completed-achievement-widget col-md-5">
             <h2>
                 {{title}}
             </h2>
@@ -61,7 +61,7 @@
 
         </article>
     {{else}} {{#if notificou this}}
-        <article class="asked-achievement-widget col-md-5" >
+        <article class="achievement asked-achievement-widget col-md-5" >
             <h2>
                 {{title}}
             </h2>

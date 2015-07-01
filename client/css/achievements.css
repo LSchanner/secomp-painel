@@ -21,18 +21,12 @@
 
 .asked-achievement-widget {
     background-color:#E8EB96;
-    padding:15px;
-    margin:20px;
-    border-bottom:1px solid #6E0100;
     height:170px;
     overflow:hidden;
 }
 
 .completed-achievement-widget {
     background-color:#B0E7B7;
-    padding:15px;
-    margin:20px;
-    border-bottom:1px solid #6E0100;
     height:170px;
     overflow:hidden;
 }
