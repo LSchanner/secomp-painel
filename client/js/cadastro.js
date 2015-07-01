@@ -43,7 +43,7 @@ Template.cadastro.events({
         var empresas = [];
 
         Patrocinadores.find().forEach(function(obj){
-            if(event.target[obj.nome].value){
+            if(event.target[obj.nome].checked){
                 empresas.push(obj.nome);
             }
         });
