@@ -1,8 +1,9 @@
 /*Mensagens de erro para o cadastro*/
-var erroSistema = 'Ocorreu um erro no sistema, tente novamente mais tarde'
-var erroEmail = 'Este email já está cadastrado. Talvez você queira reenviar seu <b><a id="verificar" href="#">email de confirmação</a></b> ou <a href="/recover-password"><b> recuperar sua senha </a></b>'
-var erroVazio = 'Um ou mais campos do cadastro estão vazios'
-var erroSenha = 'Senhas não batem'
+var erroSistema = 'Ocorreu um erro no sistema, tente novamente mais tarde';
+var erroEmail = 'Este email já está cadastrado. Talvez você queira reenviar seu <b><a id="verificar" href="#">email de confirmação</a></b> ou <a href="/recover-password"><b> recuperar sua senha </a></b>';
+var erroVazio = 'Um ou mais campos do cadastro estão vazios';
+var erroSenha = 'Senhas não batem';
+var erroChecked = 'Você não pode criar uma conta se não concordar com nossos termos de uso';
 
 Template.cadastro.events({
     "submit #formcadastro": function(event){
@@ -15,6 +16,8 @@ Template.cadastro.events({
         var tel = event.target.telefone.value;
         var uni = event.target.instituicao.value;
         var curso = event.target.curso.value;
+        var terms_accepted = event.target.accepted.checked;
+        var ra;
 
         if(password != confirm_password){
             Session.set('erro', erroSenha);
@@ -22,9 +25,9 @@ Template.cadastro.events({
         }
 
         if(event.target.ra){
-            var ra = event.target.ra.value;
+            ra = event.target.ra.value;
         }else{
-            var ra = null;
+            ra = null;
         }
 
         if(!ra && uni == 'UNICAMP'){
@@ -46,6 +49,12 @@ Template.cadastro.events({
         });
 
 
+        console.log(terms_accepted);
+        if(!terms_accepted){
+            Session.set('erro', erroChecked);
+            return false;
+        }
+
         var user = {
             email: email,
             password: password,
@@ -60,7 +69,7 @@ Template.cadastro.events({
                 empresas: empresas
                 
             }
-        }
+        };
 
         Accounts.createUser(user, function(Error){
             if(Error.message === 'Email already exists. [403]'){

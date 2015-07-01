@@ -21,7 +21,6 @@ Schemas.Noticias = new SimpleSchema({
                 return new Date();
             }
         }
-
     }
 });
 Noticias.attachSchema(Schemas.Noticias);
@@ -72,6 +71,10 @@ Schemas.Achievements = new SimpleSchema({
     },
     description:{
         type: String
+    },
+    credenciados:{
+        type: [String],
+        optional:true
     }
 });
 Achievements.attachSchema(Schemas.Achievements);
@@ -85,6 +88,18 @@ Schemas.Credenciamentos = new SimpleSchema({
     },
     pontos:{
         type: Number
+    },
+    atividades:{
+        type: [String],
+        optional:true
+    },
+    achievements:{
+        type: [String],
+        optional:true
+    },
+    compras:{
+        type: [String],
+        optional:true,
     }
 });
 Credenciamentos.attachSchema(Schemas.Credenciamentos);

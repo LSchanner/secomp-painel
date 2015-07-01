@@ -17,20 +17,20 @@ body{
 
                 {{#if verificacaoEmail}}
 
-                    <p>Um email foi enviado ao seu endereço de email cadastrado. Você precisa confirmar antes de fazer login</p>
-                    <p>Se o email demorar mais que 1 minuto, digite seu email abaixo que enviaremos outro</p>
-                    <form id='resendEmail' class='form-horizontal' role='form'>
-                        <div class="input-group">
-                            <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-                            <input type="email" class="form-control" name="emailresendverification"  placeholder="Email">
-                        </div>
+                <p>Um email foi enviado ao seu endereço de email cadastrado. Você precisa confirmar antes de fazer login</p>
+                <p>Se o email demorar mais que 1 minuto, digite seu email abaixo que enviaremos outro</p>
+                <form id='resendEmail' class='form-horizontal' role='form'>
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+                        <input type="email" class="form-control" name="emailresendverification"  placeholder="Email">
+                    </div>
 
-                        <div style="margin-top:30px" class="form-group">
-                            <div class="col-sm-12 controls">
-                                <button type="submit" class="btn btn-primary"> Reenviar email </button>
-                            </div>
+                    <div style="margin-top:30px" class="form-group">
+                        <div class="col-sm-12 controls">
+                            <button type="submit" class="btn btn-primary"> Reenviar email </button>
                         </div>
-                    </form>
+                    </div>
+                </form>
 
                 {{else}}
 
@@ -78,85 +78,92 @@ body{
                         <select  class="form-control select-uni" name="instituicao">
                             <option disabled selected> Universidade </option>
                             <option value="UNICAMP">Unicamp</option>
-                        <option value="USP">USP</option>
-                        <option value="UNESP">UNESP</option>
-                        <option value="UFSCar">UFSCar</option>
-                        <option value="UNIFESP">UNIFESP</option>
-                        <option value="Pública">Outra Pública</option>
-                        <option value="Mackenzie">Mackenzie</option>
-                        <option value="PUC-Campinas">PUC-Campinas</option>
-                        <option value="PUC-São Paulo">PUC-São Paulo</option>
-                        <option value="Particular">Outra Particular</option>
-                    </select>
-                </div>
+                            <option value="USP">USP</option>
+                            <option value="UNESP">UNESP</option>
+                            <option value="UFSCar">UFSCar</option>
+                            <option value="UNIFESP">UNIFESP</option>
+                            <option value="Pública">Outra Pública</option>
+                            <option value="Mackenzie">Mackenzie</option>
+                            <option value="PUC-Campinas">PUC-Campinas</option>
+                            <option value="PUC-São Paulo">PUC-São Paulo</option>
+                            <option value="Particular">Outra Particular</option>
+                        </select>
+                    </div>
 
-                <div  class="input-elem">
-                    <select class="form-control " name="curso" >
-                        <option disabled selected> Curso </option>
-                        <option value="EC">Engenharia de Computação</option>
-                        <option value="CC">Ciência da Computação</option>
-                        <option value="EE">Engenharia Elétrica</option>
-                        <option value="AS">Análise de Sistemas</option>
-                        <option value="SI">Sistemas de Informação</option>
-                        <option value="ECA">Engenharia de Controle e Automação</option>
-                        <option value="MEC">Engenharia Mecânica</option>
-                        <option value="TELECOM">Engenharia de Telecomunicações</option>
-                        <option value="Civil">Engenharia Civíl</option>
-                        <option value="EQ">Engenharia Química</option>
-                        <option value="Mat">Matemática</option>
-                        <option value="Estat">Estatística</option>
-                        <option value="Física">Física</option>
-                        <option value="Outros">Outros</option>
-                    </select>
-                </div>
+                    <div  class="input-elem">
+                        <select class="form-control " name="curso" >
+                            <option disabled selected> Curso </option>
+                            <option value="EC">Engenharia de Computação</option>
+                            <option value="CC">Ciência da Computação</option>
+                            <option value="EE">Engenharia Elétrica</option>
+                            <option value="AS">Análise de Sistemas</option>
+                            <option value="SI">Sistemas de Informação</option>
+                            <option value="ECA">Engenharia de Controle e Automação</option>
+                            <option value="MEC">Engenharia Mecânica</option>
+                            <option value="TELECOM">Engenharia de Telecomunicações</option>
+                            <option value="Civil">Engenharia Civíl</option>
+                            <option value="EQ">Engenharia Química</option>
+                            <option value="Mat">Matemática</option>
+                            <option value="Estat">Estatística</option>
+                            <option value="Física">Física</option>
+                            <option value="Outros">Outros</option>
+                        </select>
+                    </div>
 
 
-                {{#if unicamper}}
-                <div  class="input-group">
-                    <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                    <input type="text" class="form-control" name="ra" placeholder="RA">
-                </div>
-                {{/if}}
+                    {{#if unicamper}}
+                    <div  class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                        <input type="text" class="form-control" name="ra" placeholder="RA">
+                    </div>
+                    {{/if}}
 
-                <h3 class="section-heading"> Pesquisa de interesse </h3>
-                Quais destas empresas lhe interessam?
-                <div class="row lista-patrocinadores">
-                {{#each patrocinadores}}
-                <div id="{{nome}}" class="checkbox col-md-6">
-                       <label>
-                           <input type="checkbox" name="{{nome}}"> {{nome}}
-                       </label>
-                     </div>
-                {{/each}}
-                </div>
+                    <h3 class="section-heading"> Pesquisa de interesse </h3>
+                    Quais destas empresas lhe interessam?
+                    <div class="row lista-patrocinadores">
+                        {{#each patrocinadores}}
+                        <div id="{{nome}}" class="checkbox col-md-6">
+                            <label>
+                                <input type="checkbox" name="{{nome}}"> {{nome}}
+                            </label>
+                        </div>
+                        {{/each}}
+                    </div>
 
-                <div style="margin-top:30px" class="form-group">
-                    <div class="col-sm-12 controls">
-                        <button type="submit" class="btn btn-primary"> Fazer Cadastro </button>
+                    <div  class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-unchecked"></i></span>
+                        <p>Eu concordo com os termos descritos <a href="#"> no contrato</a>, e desejo me increver na SECOMP 2015</p>
+                        <input type="checkbox" name="accepted" unchecked>
+                    </div>
+
+                    <div style="margin-top:30px" class="form-group">
+                        <div class="col-sm-12 controls">
+                            <button type="submit" class="btn btn-primary"> Fazer Cadastro </button>
+                        </div>
                     </div>
                 </div>
 
-                </form>
+            </form>
 
-                {{#if erroDeCadastro}}
-                <div class="alert-danger alert">
-                    {{{erroDeCadastro}}}
-                </div>
-                {{/if}}
-                <div class="col-md-12 control">
-                    <div style="border-top: 1px solid#888; padding-top:15px; font-size:85%" >
-                        Já é cadastrado?
-                        <a href="/login">
-                            Faça login.
-                        </a>
-                    </div>
-                </div>
-
-                {{/if}}
-
+            {{#if erroDeCadastro}}
+            <div class="alert-danger alert">
+                {{{erroDeCadastro}}}
             </div>
+            {{/if}}
+            <div class="col-md-12 control">
+                <div style="border-top: 1px solid#888; padding-top:15px; font-size:85%" >
+                    Já é cadastrado?
+                    <a href="/login">
+                        Faça login.
+                    </a>
+                </div>
+            </div>
+
+            {{/if}}
+
         </div>
     </div>
+</div>
 
 </div>
 </template>
