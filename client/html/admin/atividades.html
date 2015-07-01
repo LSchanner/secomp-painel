@@ -181,24 +181,54 @@
     </div>
 </div>
 
+
 <div class="edit-buttons">
     <button id="edit-button" class="btn btn-success">Editar Atividade</button>
+    <hr>
+</div>
+
+
+{{#if requires_inscricao}}
+<div>
+    <table class="table table-striped">
+        <thead>
+            <th> Número do Credenciado </th>
+            <th> Compareceu </th>
+        </thead>
+        <tbody>
+            {{#each inscritos}}
+                {{> userOnActivities}}
+            {{/each}}
+        </tbody>
+    </table>
+</div>
+{{else}}
+
+<div>
+    <form id="inserir_credenciado">
+        <div class="input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+            <input type="text" class="form-control" name="credenciado" placeholder="Inserir Presente">
+        </div>
+        <button type="submit" class="btn btn-success">Confirmar Presença</button>
+    </form>
+    <hr>
 </div>
 
 <div>
-<table class="table table-striped">
-    <thead>
-        <th> Número do Credenciado </th>
-        <th> Compareceu </th>
-    </thead>
-    <tbody>
-    {{#each inscritos}}
-        {{> userOnActivities}}
-    {{/each}}
-    </tbody>
-</table>
+    <table class="table table-striped">
+        <thead>
+            <th> Número do Credenciado </th>
+            <th> Compareceu </th>
+        </thead>
+        <tbody>
+            {{#each presentes}}
+                {{> userOnActivities}}
+            {{/each}}
+        </tbody>
+    </table>
 </div>
-
+{{/if}}
 {{/if}}
 {{/with}}
 </template>

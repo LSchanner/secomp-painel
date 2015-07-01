@@ -48,8 +48,6 @@ Template.cadastro.events({
             }
         });
 
-
-        console.log(terms_accepted);
         if(!terms_accepted){
             Session.set('erro', erroChecked);
             return false;
@@ -67,7 +65,7 @@ Template.cadastro.events({
                 curso: curso,
                 ra: ra,
                 empresas: empresas
-                
+
             }
         };
 
@@ -115,5 +113,5 @@ Template.cadastro.helpers({
     patrocinadores:function(){
         return Patrocinadores.find();
     }
-    
+
 });

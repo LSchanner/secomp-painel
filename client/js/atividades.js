@@ -9,7 +9,7 @@ Template.novaAtividade.events({
         var num_max_inscritos = event.target.nummaxinscritos.value;
         var requires_inscricao;
 
-        if(num_max_inscritos === 0){
+        if(num_max_inscritos == 0){
             requires_inscricao = false;
         }else{
             requires_inscricao = true;
@@ -45,6 +45,9 @@ Template.editAtividade.helpers({
     },
     editar: function(){
         return Session.get('editar');
+    },
+    credenciado: function(){
+        return Credenciados.find( {} ,{ sort:{_id:1} });
     }
 });
 
@@ -77,6 +80,13 @@ Template.editAtividade.events({
     },
     'click #edit-button': function(event){
         Session.set('editar', true);
+    },
+    "submit #inserir_credenciado": function(event){
+        var numero = event.target.credenciado.value;
+        Atividades.update(Router.current().params._id,{
+            $addToSet:{presentes:numero}
+        });
+        return false;
     }
 });
 
@@ -171,8 +181,8 @@ Template.userOnActivities.events({
             Atividades.update(Router.current().params._id,
                 {$pull:{presentes:credId}});
         }
-            
-        
+
+
     }
 
 });
