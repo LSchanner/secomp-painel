@@ -88,18 +88,6 @@ Schemas.Credenciamentos = new SimpleSchema({
     },
     pontos:{
         type: Number
-    },
-    atividades:{
-        type: [String],
-        optional:true
-    },
-    achievements:{
-        type: [String],
-        optional:true
-    },
-    compras:{
-        type: [String],
-        optional:true,
     }
 });
 Credenciamentos.attachSchema(Schemas.Credenciamentos);

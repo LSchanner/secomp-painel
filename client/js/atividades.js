@@ -161,26 +161,20 @@ Template.Atividade.helpers({
 Template.userOnActivities.events({
     "click .toggle-checked": function (event) {
         var atividade = Atividades.findOne(Router.current().params._id);
-        console.log("atividade : " + atividade);
-        var listaCompareceram = atividade.presentes;
-        console.log("lista dos que compareceram: " + listaCompareceram);
-        var credId = this;
-        console.log("Esse é o id que deve ser tirado ou colocado: " + credId);
+        var credId = String(this);
 
-        console.log('Verificando se precisa tirar ou colocar:');
-
-        for(var i = 0; i < listaCompareceram.length ; i++){
-            if(listaCompareceram[i] === credId){
-                console.log("Havia...");
-                atividade.presentes.pop(credId);
-                return false;
-            }
+        if(event.target.checked){
+            Atividades.update(Router.current().params._id,
+                {$addToSet:{presentes:credId}});
         }
-
-        console.log("Não havia...");
-        atividade.presentes.push(credId);
-        return true;
+        else{
+            Atividades.update(Router.current().params._id,
+                {$pull:{presentes:credId}});
+        }
+            
+        
     }
+
 });
 
 Template.userOnActivities.helpers({
