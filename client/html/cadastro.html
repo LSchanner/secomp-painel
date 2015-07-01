@@ -118,11 +118,23 @@ body{
                 </div>
                 {{/if}}
 
-                    <div style="margin-top:30px" class="form-group">
-                        <div class="col-sm-12 controls">
-                            <button type="submit" class="btn btn-primary"> Fazer Cadastro </button>
-                        </div>
+                <h3 class="section-heading"> Pesquisa de interesse </h3>
+                Quais destas empresas lhe interessam?
+                <div class="row lista-patrocinadores">
+                {{#each patrocinadores}}
+                <div id="{{nome}}" class="checkbox col-md-6">
+                       <label>
+                           <input type="checkbox" name="{{nome}}"> {{nome}}
+                       </label>
+                     </div>
+                {{/each}}
+                </div>
+
+                <div style="margin-top:30px" class="form-group">
+                    <div class="col-sm-12 controls">
+                        <button type="submit" class="btn btn-primary"> Fazer Cadastro </button>
                     </div>
+                </div>
 
                 </form>
 

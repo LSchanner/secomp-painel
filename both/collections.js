@@ -2,8 +2,8 @@
 Noticias = new Mongo.Collection("Noticias");
 Atividades = new Mongo.Collection("Atividades");
 Achievements = new Mongo.Collection("Achievements");
-//Produtos = new Mongo.Collection("Produtos");
 Credenciamentos = new Mongo.Collection("Credenciamentos");
+Patrocinadores = new Mongo.Collection("Patrocinadores");
 
 // Schemas
 Schemas = {};
@@ -89,21 +89,15 @@ Schemas.Credenciamentos = new SimpleSchema({
 });
 Credenciamentos.attachSchema(Schemas.Credenciamentos);
 
-/*Schemas.Produtos = new SimpleSchema({
-    title:{
+Schemas.Patrocinadores = new SimpleSchema({
+    nome:{
         type: String
     },
-    price:{
-        type: Number,
-    },
-    description:{
-        type: String,
-    },
-    image_descryption:{
-        type: FS.File,
+    cota:{
+        type: String
     }
 });
-Produtos.attachSchema(Schemas.Produtos);*/
+Patrocinadores.attachSchema(Schemas.Patrocinadores);
 
 
 
@@ -120,6 +114,7 @@ AdminConfig = {
         },
         Credenciamentos:{},
         Atividades:{},
+        Patrocinadores:{}
 
     },
     autoForm:{

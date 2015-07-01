@@ -37,6 +37,14 @@ Template.cadastro.events({
             Session.set('erro', erroVazio);
             return false;
         }
+        var empresas = [];
+
+        Patrocinadores.find().forEach(function(obj){
+            if(event.target[obj.nome].value){
+                empresas.push(obj.nome);
+            }
+        });
+
 
         var user = {
             email: email,
@@ -48,11 +56,12 @@ Template.cadastro.events({
                 tel: tel,
                 uni: uni,
                 curso: curso,
-                ra: ra
+                ra: ra,
+                empresas: empresas
+                
             }
         }
 
-        /*Ele ta dando erro nessa porra, e mesmo com erro ele cria o usuario :P*/
         Accounts.createUser(user, function(Error){
             if(Error.message === 'Email already exists. [403]'){
                 Session.set('erro', erroEmail);
@@ -93,5 +102,9 @@ Template.cadastro.helpers({
     },
     verificacaoEmail:function(){
         return Session.get('emailconfirmation')
+    },
+    patrocinadores:function(){
+        return Patrocinadores.find();
     }
+    
 });
