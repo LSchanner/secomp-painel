@@ -169,25 +169,29 @@ Template.userOnActivities.events({
 
         console.log('Verificando se precisa tirar ou colocar:');
 
-        console.log( listaCompareceram.find(credId) );
-
-        if( (listaCompareceram.find(credId) !== undefined) ){
-            console.log("Não havia...");
-            listaCompareceram.push(credId);
-            return true;
+        for(var i = 0; i < listaCompareceram.length ; i++){
+            if(listaCompareceram[i] === credId){
+                console.log("Havia...");
+                atividade.presentes.pop(credId);
+                return false;
+            }
         }
 
-        console.log("Havia...");
-        listaCompareceram.pop(credId);
-        return false;
+        console.log("Não havia...");
+        atividade.presentes.push(credId);
+        return true;
     }
 });
 
 Template.userOnActivities.helpers({
     checked: function() {
-        var listaCompareceram = (Atividades.findOne(atividadeId)).presentes;
-        if(listaCompareceram.find(this)){
-            return true;
+        var listaCompareceram = (Atividades.findOne(Router.current().params._id)).presentes;
+        var credId = this;
+        /* Loop for, tentei usar for each mas o meteor nao aceitou...*/
+        for(var i = 0; i < listaCompareceram.length ; i++){
+            if(listaCompareceram[i] == credId){
+                return "checked";
+            }
         }
         return false;
     },
