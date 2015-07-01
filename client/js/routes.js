@@ -13,6 +13,11 @@ Router.route('/login', function () {
     this.render('login');
 },{name:'login'});
 
+// Página do termos de contrato
+Router.route('/condicoes', function () {
+    this.render('condicoes');
+},{name:'condicoes'});
+
 // Página de Cadastro
 Router.route('/cadastro', function () {
     this.render('cadastro');
@@ -121,8 +126,9 @@ Router.route('/moderador/achievements/novo/', function () {
 
 // Página de editar achievements
 Router.route('/moderador/achievements/:_id', function () {
-  this.layout('painelAdmin');
-  this.render('editAchievement');
+    Session.set('editar', false);
+    this.layout('painelAdmin');
+    this.render('editAchievement');
 },{ name:'editAchievement',
     onBeforeAction: adminHook });
 

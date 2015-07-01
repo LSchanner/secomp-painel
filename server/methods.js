@@ -27,6 +27,14 @@ Meteor.methods({
                 return true;
             }
         return false;
+    },
+    pedidoAchievement: function(achievementId){
+        var achievement = Achievements.findOne(achievementId);
+        var credId = (Credenciamentos.findOne({user_id:this.userId}))._id;
+
+        Achievements.update(achievement,{
+            $addToSet:{pedidos:credId}
+        });
     }
 
 });

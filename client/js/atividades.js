@@ -1,3 +1,4 @@
+/* ---- novaAtividade ---- */
 Template.novaAtividade.events({
     'submit #add-atividade': function(event) {
         var title = event.target.title.value;
@@ -39,15 +40,14 @@ Template.novaAtividade.events({
     }
 });
 
+
+/* ---- editAtividade ---- */
 Template.editAtividade.helpers({
     atividade: function(){
         return Atividades.findOne(Router.current().params._id);
     },
     editar: function(){
         return Session.get('editar');
-    },
-    credenciado: function(){
-        return Credenciados.find( {} ,{ sort:{_id:1} });
     }
 });
 
@@ -91,6 +91,7 @@ Template.editAtividade.events({
 });
 
 
+/* ---- ListaAtividades ---- */
 Template.ListaAtividades.helpers({
     atividades: function(){
         return Atividades.find({},{sort:{begin:-1},limit:Session.get('pag') * 10});
@@ -123,6 +124,8 @@ Template.ListaAtividades.onRendered(function(){
    Session.set('pag',1);
 });
 
+
+/* ---- showatividade ---- */
 Template.showatividade.helpers({
     atividade: function(){
         return Atividades.findOne(Router.current().params._id);
@@ -155,10 +158,12 @@ Template.showatividade.helpers({
 
 Template.showatividade.events({
     "click #inscrever": function(event){
-        Meteor.call("inscricaoAtividade",Router.current().params._id);
+        Meteor.call("inscricaoAtividade", Router.current().params._id );
     }
 });
 
+
+/* ---- Atividade ---- */
 Template.Atividade.helpers({
     format: function(date) {
         return moment(date).format('LLL');
@@ -168,23 +173,24 @@ Template.Atividade.helpers({
     }
 });
 
+
+/* ---- userOnActivities ---- */
 Template.userOnActivities.events({
     "click .toggle-checked": function (event) {
         var atividade = Atividades.findOne(Router.current().params._id);
         var credId = String(this);
 
         if(event.target.checked){
-            Atividades.update(Router.current().params._id,
-                {$addToSet:{presentes:credId}});
+            Atividades.update(Router.current().params._id,{
+                $addToSet:{presentes:credId}
+            });
         }
         else{
-            Atividades.update(Router.current().params._id,
-                {$pull:{presentes:credId}});
+            Atividades.update(Router.current().params._id,{
+                    $pull:{presentes:credId}
+            });
         }
-
-
     }
-
 });
 
 Template.userOnActivities.helpers({

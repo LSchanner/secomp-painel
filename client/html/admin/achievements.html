@@ -76,7 +76,9 @@
 
 
 <template name="editAchievement">
+{{#with achievement}}
 
+{{#if editar}}
 <div class="row">
     <div class="col-lg-12">
         <h1 class="page-header">
@@ -97,7 +99,7 @@
     </div>
 </div>
 
-{{#with achievement}}
+
 <div class="col-md-12">
     <form id="edit-achievement">
         <div class="input-group">
@@ -124,6 +126,80 @@
 <script>
     $('textarea').editable({inlineMode: false , minHeight:250});
 </script>
-{{/with}}
 
+{{else}}
+
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">
+            Pedidos de Achievements<small> </small>
+        </h1>
+        <ol class="breadcrumb">
+            <li class="active">
+            Painel
+            </li>
+            <li class="active">
+            <i class="fa fa-newspaper-o"></i> Achievements
+            </li>
+            <li class="active">
+            <i class="fa fa-plus"></i> Pedidos
+            </li>
+
+        </ol>
+    </div>
+</div>
+
+
+<div class="edit-buttons">
+    <button id="edit-button" class="btn btn-info">Editar Achievement</button>
+    <hr>
+</div>
+
+<div>
+    <h2><p>Novos pedidos para completar Achievement</p></h2>
+    <div>
+        <table class="table table-striped">
+            <thead>
+                <th> Número do Credenciado </th>
+                <th> Compareceu </th>
+            </thead>
+            <tbody>
+                {{#each pedidos}}
+                    {{> userOnAchievements}}
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+</div>
+<hr>
+
+<div>
+    <h2><p>Credenciados que já realizaram</p></h2>
+    <div>
+        <table class="table table-striped">
+            <thead>
+                <th> Número do Credenciado </th>
+                <th> Compareceu </th>
+            </thead>
+            <tbody>
+                {{#each credenciados}}
+                    {{> userOnAchievements}}
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+</div>
+{{/if}}
+{{/with}}
+</template>
+
+<template name="userOnAchievements">
+    <tr class="userOnAchievements">
+        <td>
+            {{this}}
+        </td>
+        <td>
+            <input type="checkbox" class="toggle-checked" checked="{{checked}}">
+        </td>
+    </tr>
 </template>

@@ -18,6 +18,13 @@
     height:170px;
     overflow:hidden;
 }
+
+.completed-achievement-widget {
+    background-color:#eee;
+    height:170px;
+    overflow:hidden;
+}
+
 .post-list{
     margin-left:auto;
 }

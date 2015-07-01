@@ -72,6 +72,10 @@ Schemas.Achievements = new SimpleSchema({
     description:{
         type: String
     },
+    pedidos:{
+        type:[String],
+        optional:true
+    },
     credenciados:{
         type: [String],
         optional:true

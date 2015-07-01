@@ -49,19 +49,31 @@ Template.editAchievement.events({
     'click #delete-button': function(event){
         Achievements.remove(Router.current().params._id);
         Router.go('/moderador/noticias/');
+    },
+    'click #edit-button': function(event){
+        Session.set('editar', true);
     }
 });
 
 Template.editAchievement.helpers({
     achievement: function(){
         return Achievements.findOne(Router.current().params._id);
-    }
+    },
+    editar: function(){
+        return Session.get('editar');
+    },
 });
 
 /* ---- showAchievement ---- */
 Template.showAchievement.helpers({
     achievement: function(){
         return Achievements.findOne(Router.current().params._id);
+    }
+});
+
+Template.showAchievement.events({
+    "click #inscrever": function(event){
+        Meteor.call("pedidoAchievement",Router.current().params._id);
     }
 });
 
@@ -95,4 +107,40 @@ Template.ListaAchievements.events({
 
 Template.ListaAchievements.onRendered(function(){
    Session.set('pag',1);
+});
+
+
+/* ---- userOnAchievements ---- */
+Template.userOnAchievements.events({
+    "click .toggle-checked": function (event) {
+        var achievement = Achievements.findOne(Router.current().params._id);
+        var credId = String(this);
+
+        if(event.target.checked){
+            Achievements.update(Router.current().params._id,{
+                $addToSet:{credenciados:credId},
+                $pull:{pedidos:credId}
+            });
+        }
+        else{
+            Achievements.update(Router.current().params._id,{
+                    $pull:{credenciados:credId}
+            });
+        }
+    }
+});
+
+Template.userOnAchievements.helpers({
+    checked: function() {
+        var listaFizeram = (Achievements.findOne(Router.current().params._id)).credenciados;
+        var credId = this;
+        /* Loop for, tentei usar for each mas o meteor nao aceitou...*/
+        var tam = listaFizeram.length;
+        for(var i = 0; i < tam ; i++){
+            if(listaFizeram[i] == credId){
+                return "checked";
+            }
+        }
+        return false;
+    },
 });

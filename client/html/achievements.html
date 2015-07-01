@@ -92,6 +92,13 @@
     <div class="the-content">
         {{{description}}}
     </div>
+    {{#if completou}}
+    {{else}}
+        <button id="inscrever" type="button" class="btn btn-primary">
+            Eu completei esse Achievement!
+        </button>
+    {{/if}}
+
 </article>
 {{/with}}
 </template>
