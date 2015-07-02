@@ -45,6 +45,10 @@ Schemas.Atividades = new SimpleSchema({
     pontuacao:{
         type: Number
     },
+    modelo:{
+        type:String,
+        optional:true
+    },
     requires_inscricao:{
         type: Boolean
     },

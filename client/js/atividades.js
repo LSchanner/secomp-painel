@@ -8,6 +8,7 @@ Template.novaAtividade.events({
         var end = event.target.end.value;
         var pontuacao = event.target.pontuacao.value;
         var num_max_inscritos = event.target.nummaxinscritos.value;
+        var modelo = event.target.modelo.value;
         var requires_inscricao;
 
         if(num_max_inscritos == 0){
@@ -24,6 +25,7 @@ Template.novaAtividade.events({
                 begin: new Date(begin),
                 end: new Date(end),
                 pontuacao: pontuacao,
+                modelo:modelo,
                 num_max_inscritos: num_max_inscritos,
                 requires_inscricao: requires_inscricao,
                 inscritos: [],
@@ -108,6 +110,7 @@ Template.ListaAtividades.helpers({
                {'description':{$regex:search, $options:'i'}},
                {'palestrante':{$regex:search, $options:'i'}},
                {'begin':{$regex:search, $options:'i'}},
+               {'modelo':{$regex:search, $options:'i'}},
             ]
         });
     }
