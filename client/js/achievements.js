@@ -103,10 +103,7 @@ Template.Achievement.helpers({
 /* ---- ListaAchievements ---- */
 Template.ListaAchievements.helpers({
     achievements: function(){
-        return Achievements.find({},{limit:Session.get('pag') * 10});
-    },
-    temMais: function() {
-        return Achievements.find().count() > Session.get('pag') * 10;
+        return Achievements.find();
     },
     searched_achievements: function(){
         var search = Session.get('searchString') ;
@@ -119,17 +116,11 @@ Template.ListaAchievements.helpers({
 });
 
 Template.ListaAchievements.events({
-    'click #tem-mais':function(event){
-        Session.set('pag',Session.get('pag') + 1);
-    },
     'keyup #search': function(event,t){
         Session.set("searchString",event.target.value);
     }
 });
 
-Template.ListaAchievements.onRendered(function(){
-   Session.set('pag',1);
-});
 
 
 /* ---- userOnAchievements ---- */
