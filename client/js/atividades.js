@@ -83,9 +83,11 @@ Template.editAtividade.events({
     },
     "submit #inserir_credenciado": function(event){
         var numero = event.target.credenciado.value;
-        Atividades.update(Router.current().params._id,{
-            $addToSet:{presentes:numero}
-        });
+        if(Credenciamentos.findOne(numero)){
+            Atividades.update(Router.current().params._id,{
+                $addToSet:{presentes:numero}
+            });
+        }
         return false;
     }
 });
@@ -196,12 +198,9 @@ Template.userOnActivities.events({
 Template.userOnActivities.helpers({
     checked: function() {
         var listaCompareceram = (Atividades.findOne(Router.current().params._id)).presentes;
-        var credId = this;
-        /* Loop for, tentei usar for each mas o meteor nao aceitou...*/
-        for(var i = 0; i < listaCompareceram.length ; i++){
-            if(listaCompareceram[i] == credId){
-                return "checked";
-            }
+        var credId = String(this);
+        if(listaCompareceram.indexOf(credId) != -1){
+            return "checked";
         }
         return false;
     },
