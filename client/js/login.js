@@ -4,7 +4,7 @@
 var sucesso = 'Obrigado por completar seu cadastro! Agora voce já pode fazer login.';
 var quebrado = 'Link de verificacao expirado.';
 var naoVerificado = 'Usuário ainda não verificado';
-var naoCadastrado = 'Usuário não encontrado.';
+var naoCadastrado = 'Usuário não encontrado ou senha incorreta';
 
 /*Eventos*/
 Template.login.events({
