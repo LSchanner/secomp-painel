@@ -165,4 +165,9 @@ Template.userOnAchievements.helpers({
         }
         return false;
     },
+    nome: function(credId){
+        var user_id = (Credenciamentos.findOne(credId)).user_id;
+        console.log(user_id)
+        return (Meteor.users.findOne(user_id)).profile.nome;
+    }
 });

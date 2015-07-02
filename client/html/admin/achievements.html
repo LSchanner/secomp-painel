@@ -160,8 +160,9 @@
     <div>
         <table class="table table-striped">
             <thead>
+                <th> Nome </th>
                 <th> Número do Credenciado </th>
-                <th> Compareceu </th>
+                <th> Realizou Achievement </th>
             </thead>
             <tbody>
                 {{#each pedidos}}
@@ -178,8 +179,9 @@
     <div>
         <table class="table table-striped">
             <thead>
+                <th> Nome </th>
                 <th> Número do Credenciado </th>
-                <th> Compareceu </th>
+                <th> Realizou Achievement </th>
             </thead>
             <tbody>
                 {{#each credenciados}}
@@ -195,6 +197,9 @@
 
 <template name="userOnAchievements">
     <tr class="userOnAchievements">
+        <td>
+            {{nome this}}
+        </td>
         <td>
             {{this}}
         </td>
