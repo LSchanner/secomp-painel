@@ -46,32 +46,41 @@
 <template name="Achievement">
 <a href="{{_id}}">
     {{#if completou this}}
-        <article class="achievement completed-achievement-widget col-md-5">
-            <h2>
-                {{title}}
-            </h2>
-            <div class="post-meta">
-                Pontos: <strong>{{pontuacao}}</strong>
+        <article class="achievement completed-achievement-widget col-md-5" >
+            
+            <div class="widget-content">
+                <h2 class="title-achievement">
+                    {{title}}
+                </h2>
+                <div class="post-meta pontuacao-achievement">
+                    <strong>{{pontuacao}} <i class="fa fa-star"></i></strong>
+                </div>
             </div>
 
         </article>
     {{else}} {{#if notificou this}}
         <article class="achievement asked-achievement-widget col-md-5" >
-            <h2>
-                {{title}}
-            </h2>
-            <div class="post-meta">
-                Pontos: <strong>{{pontuacao}}</strong>
+            
+            <div class="widget-content">
+                <h2 class="title-achievement">
+                    {{title}}
+                </h2>
+                <div class="post-meta pontuacao-achievement">
+                    <strong>{{pontuacao}} <i class="fa fa-star"></i></strong>
+                </div>
             </div>
 
         </article>
     {{else}}
         <article class="achievement achievement-widget col-md-5" >
-            <h2>
-                {{title}}
-            </h2>
-            <div class="post-meta">
-                Pontos: <strong>{{pontuacao}}</strong>
+            
+            <div class="widget-content">
+                <h2 class="title-achievement">
+                    {{title}}
+                </h2>
+                <div class="post-meta pontuacao-achievement">
+                    <strong>{{pontuacao}} <i class="fa fa-star"></i></strong>
+                </div>
             </div>
 
         </article>
@@ -104,7 +113,7 @@
         {{title}}
     </h2>
     <div class="post-meta">
-        Pontos: <strong>{{pontuacao}}</strong>
+         <strong>{{pontuacao}} <i class="fa fa-star"></i></strong>
     </div>
     <div class="the-content">
         {{{description}}}
