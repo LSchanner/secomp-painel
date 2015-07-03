@@ -53,13 +53,17 @@
     <h2>
         {{title}}
     </h2>
-    <div class="post-meta">
-        <strong>{{modelo}}</strong><br>
-        {{format begin}} <br>
+    <div  class="post-meta">
+        <div  class="pull-left">
+        {{format begin}}<br> 
         Palestrante:<strong> {{palestrante}}</strong><br>
-        Pontos: <strong>{{pontuacao}}</strong>
+        </div>
+
+        <div  class="pull-right pontuacao">
+            <strong> {{pontuacao}} <i class="fa fa-star"></i></strong>
+        </div>
     </div>
-    <div class="the-content">
+    <div  class="the-content content-widget">
         {{{encurta description}}}
     </div>
 </article>
