@@ -28,11 +28,14 @@ Atividades.allow({
 
 /* To change Achievements */
 Meteor.publish('Achievements', function() {
-      if(authAdmin(this.userId)){
-          return Achievements.find();
-      }else{
-          return Achievements.find({},{fields:{title:1,description:1}})
-      }
+    return Achievements.find();
+
+    //Estava assim, como está em baixo, mas não funciona quando o usuario não é admin
+    if(authAdmin(this.userId)){
+        return Achievements.find();
+    }else{
+        return Achievements.find({},{fields:{title:1,description:1}})
+     }
 });
 
 Achievements.allow({
@@ -66,4 +69,3 @@ Meteor.publish("allUserData", function () {
 Meteor.publish("Patrocinadores",function(){
     return Patrocinadores.find();
 });
-

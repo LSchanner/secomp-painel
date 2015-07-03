@@ -70,15 +70,18 @@ Template.showAchievement.helpers({
         return Achievements.findOne(Router.current().params._id);
     },
     completou: function(achievement){
-        console.log(achievement);
+        var achievement = Achievements.findOne(Router.current().params._id);
         var cred = Credenciamentos.findOne( {user_id:Meteor.userId()} );
-        console.log(cred);
         return achievement.credenciados.indexOf(cred._id) != -1;
     },
     notificou: function(achievement){
+        //var achievement = Achievements.findOne(Router.current().params._id);
         var cred = Credenciamentos.findOne( {user_id:Meteor.userId()} );
         return achievement.pedidos.indexOf(cred._id) != -1;
-    }
+    },
+    nao_credenciado: function(){
+        return !(Credenciamentos.findOne( {user_id:Meteor.userId()} ));
+    },
 });
 
 Template.showAchievement.events({
