@@ -90,7 +90,7 @@ Template.editAtividade.events({
                 $addToSet:{presentes:numero}
             });
         }
-        Meteor.call('updatePontuacao',credId);
+        Meteor.call('updatePontuacao',numero);
         return false;
     }
 });
