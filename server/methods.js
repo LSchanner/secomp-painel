@@ -35,6 +35,17 @@ Meteor.methods({
         Achievements.update(achievement,{
             $addToSet:{pedidos:credId}
         });
+    },
+    updatePontuacao: function(credId){
+        var pontos = 0;
+        Atividades.find({presentes:credId}).forEach(function(obj){
+            pontos += obj.pontuacao;
+        });
+        Achievements.find({credenciados:credId}).forEach(function(obj){
+            pontos += obj.pontuacao;
+        });
+        console.log(pontos);
+        Credenciamentos.update(credId,{$set:{pontos:pontos}});
     }
 
 });

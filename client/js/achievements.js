@@ -140,6 +140,7 @@ Template.userOnAchievements.events({
                     $pull:{credenciados:credId}
             });
         }
+        Meteor.call('updatePontuacao',credId);
     }
 });
 

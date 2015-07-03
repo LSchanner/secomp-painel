@@ -8,7 +8,7 @@ Template.painel.helpers({
     isMod: function(){
         return Roles.userIsInRole(Meteor.userId(),"moderador");
     },
-    pontuação: function(){
+    pontuacao: function(){
         return Credenciamentos.findOne({user_id:Meteor.userId()}).pontos; 
     }
 });
