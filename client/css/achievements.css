@@ -20,13 +20,13 @@
 }
 
 .asked-achievement-widget {
-    background-color:#FCF8E3;
+    background-color:#E0DFBE;
     height:170px;
     overflow:hidden;
 }
 
 .completed-achievement-widget {
-    background-color:#DFF0D8;
+    background-color:#C3E0BE;
     height:170px;
     overflow:hidden;
 }
