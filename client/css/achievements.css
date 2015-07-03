@@ -1,10 +1,8 @@
 .achievement {
     background-color:#eee;
-    display:flex;
     padding:15px;
     margin:20px;
     border-bottom:1px solid #6E0100;
-    vertical-align:middle;
 }
 .achievement h2{
     color:#333;
@@ -18,17 +16,20 @@
 }
 .achievement-widget {
     height:170px;
+    display:flex;
     overflow:hidden;
 }
 
 .asked-achievement-widget {
     background-color:#E0DFBE;
+    display:flex;
     height:170px;
     overflow:hidden;
 }
 
 .completed-achievement-widget {
     background-color:#C3E0BE;
+    display:flex;
     min-height:170px;
     overflow:hidden;
 }
