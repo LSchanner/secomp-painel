@@ -22,22 +22,24 @@
 </template>
 
 <template name='ListaAtividades'>
+
+<hr>
+
 <div>
-    <hr>
     <input id="search" type="text" class="form-control" name="searchString"  placeholder="Procurar uma Atividade">
-    <hr>
 </div>
 
+
+<hr>
+<ul class="nav nav-pills nav-justified">
+  <li id="filtro_proximas" class="{{#if filtro_proximas}} active {{/if}}"><a href="#">Próximas Atividades</a></li>
+  <li id="filtro_inscricao" class="{{#if filtro_inscricao}} active {{/if}}"><a href="#">Atividades que necessitam de inscrição</a></li>
+</ul>
+<hr>
 <div class='row post-list'>
-    {{#if searched_atividades}}
-        {{#each searched_atividades}}
-            {{> Atividade}}
-        {{/each}}
-    {{else}}
-        {{#each atividades}}
-            {{> Atividade}}
-        {{/each}}
-    {{/if}}
+    {{#each searched_atividades}}
+        {{> Atividade}}
+    {{/each}}
 </div>
 
 <div class="row">

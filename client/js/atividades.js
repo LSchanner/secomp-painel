@@ -98,22 +98,32 @@ Template.editAtividade.events({
 
 /* ---- ListaAtividades ---- */
 Template.ListaAtividades.helpers({
-    atividades: function(){
-        return Atividades.find({},{sort:{begin:-1},limit:Session.get('pag') * 10});
-    },
     temMais: function() {
         return Atividades.find().count() > Session.get('pag') * 10;
     },
     searched_atividades: function(){
-        var search = Session.get('searchString') ;
+        var search = Session.get('searchString');
+        var min_date = new Date(0);
+        if(Session.get("filtro_proximas")){
+            min_date = new Date();
+        }
+        var filtro_inscricao = Session.get("filtro_inscricao");
         return Atividades.find({
             $or:[{'title':{$regex:search, $options:'i'}},
                {'description':{$regex:search, $options:'i'}},
                {'palestrante':{$regex:search, $options:'i'}},
                {'begin':{$regex:search, $options:'i'}},
                {'modelo':{$regex:search, $options:'i'}},
-            ]
-        });
+            ],
+            end:{$gt:min_date},
+            requires_inscricao:{$in:[true,filtro_inscricao]}
+        },{sort:{begin:-1},limit:Session.get('pag') * 10});
+    },
+    filtro_proximas:function(){
+        return Session.get("filtro_proximas");
+    },
+    filtro_inscricao:function(){
+        return Session.get("filtro_inscricao");
     }
 });
 
@@ -123,11 +133,19 @@ Template.ListaAtividades.events({
     },
     'keyup #search': function(event,t){
         Session.set("searchString",event.target.value);
+    },
+    'click #filtro_proximas':function(event){
+        Session.set("filtro_proximas",!Session.get("filtro_proximas"));
+    },
+    'click #filtro_inscricao':function(event){
+        Session.set("filtro_inscricao",!Session.get("filtro_inscricao"));
     }
 });
 
 Template.ListaAtividades.onRendered(function(){
    Session.set('pag',1);
+   Session.set('filtro_inscricao',false);
+   Session.set('filtro_proximas',false);
 });
 
 
