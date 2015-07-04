@@ -4,6 +4,7 @@ Atividades = new Mongo.Collection("Atividades");
 Achievements = new Mongo.Collection("Achievements");
 Credenciamentos = new Mongo.Collection("Credenciamentos");
 Patrocinadores = new Mongo.Collection("Patrocinadores");
+Perguntas = new Mongo.Collection("Perguntas");
 
 // Schemas
 Schemas = {};
@@ -24,6 +25,39 @@ Schemas.Noticias = new SimpleSchema({
     }
 });
 Noticias.attachSchema(Schemas.Noticias);
+
+// Nesse esquema, Cada pergunta é associada a um conjunto de modelos 
+Schemas.perguntas = new SimpleSchema({
+    title:{
+        type: String
+    },
+    modelos:{
+        type:[String]
+    }
+});
+Perguntas.attachSchema(Schemas.perguntas);
+
+Schemas.surveyItems = new SimpleSchema({
+    pergunta:{ 
+        type: String // ID da pergunta associada à essa resposta
+    },
+    // Assumo que toda resposta seja um número de 0 a 5
+    resposta:{
+        type: Number,
+        min: 0,
+        max: 5
+    }
+});
+
+Schemas.Questionario = new SimpleSchema({
+    //Id do usuário associado à essa resposta
+    credId:{
+        type: String
+    },
+    items:{
+        type: [Schemas.surveyItems]
+    }
+});
 
 Schemas.Atividades = new SimpleSchema({
     title:{
@@ -61,6 +95,10 @@ Schemas.Atividades = new SimpleSchema({
     },
     presentes:{
         type: [String],
+        optional:true
+    },
+    feedback:{
+        type: [Schemas.Questionario],
         optional:true
     }
 });
@@ -125,7 +163,12 @@ AdminConfig = {
         },
         Credenciamentos:{},
         Atividades:{},
-        Patrocinadores:{}
+        Patrocinadores:{},
+        Perguntas:{
+            tableColumns: [
+                {label: 'Título', name: 'title'},
+            ]
+        }
 
     },
     autoForm:{
