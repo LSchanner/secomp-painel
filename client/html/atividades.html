@@ -44,29 +44,31 @@
 
 <div class="row">
     {{#if temMais}}
-    <a href="#" id="tem-mais-anchor"><div class="" id="tem-mais"> Ver mais</div></a>
+    <a href="#" id="tem-mais-anchor"><div  id="tem-mais"> Ver mais</div></a>
     {{/if}}
 </div>
 </template>
 
 <template name="Atividade">
 <a href="{{_id}}">
-<article class="atividade atividade-widget col-md-5">
-    <h2>
-        {{title}}
-    </h2>
-    <div  class="post-meta">
-        <div  class="pull-left">
-        {{format begin}}<br> 
-        Por <strong> {{palestrante}}</strong><br>
-        </div>
+<article class="atividade atividade-widget col-md-6">
+    <div class="inner-atividade-widget">
+        <h2>
+            {{title}}
+        </h2>
+        <div  class="post-meta">
+            <div  class="pull-left">
+            {{format begin}}<br> 
+            Por <strong> {{palestrante}}</strong><br>
+            </div>
 
-        <div  class="pull-right pontuacao">
-            <strong> {{pontuacao}} <i class="fa fa-star"></i></strong>
+            <div  class="pull-right pontuacao">
+                <strong> {{pontuacao}} <i class="fa fa-star"></i></strong>
+            </div>
         </div>
-    </div>
-    <div  class="the-content content-widget">
-        {{{encurta description}}}
+        <div  class="the-content content-widget">
+            {{{encurta description}}}
+        </div>
     </div>
 </article>
 </a>
