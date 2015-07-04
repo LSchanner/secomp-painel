@@ -105,9 +105,6 @@ Template.Achievement.helpers({
 
 /* ---- ListaAchievements ---- */
 Template.ListaAchievements.helpers({
-    achievements: function(){
-        return Achievements.find();
-    },
     searched_achievements: function(){
         var search = Session.get('searchString') ;
         return Achievements.find({
