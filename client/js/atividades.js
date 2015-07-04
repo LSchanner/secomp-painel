@@ -117,7 +117,7 @@ Template.ListaAtividades.helpers({
             ],
             end:{$gt:min_date},
             requires_inscricao:{$in:[true,filtro_inscricao]}
-        },{sort:{begin:-1},limit:Session.get('pag') * 10});
+        },{sort:{begin:1},limit:Session.get('pag') * 10});
     },
     filtro_proximas:function(){
         return Session.get("filtro_proximas");
