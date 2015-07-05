@@ -80,7 +80,17 @@ Template.showatividade.helpers({
     },
     num_max_inscricoes: function(){
         return num_max_inscricoes;
+    },
+    compareceu: function(){
+        var atividade = Atividades.findOne(Router.current().params._id);
+        var credId = Credenciamentos.findOne({user_id:Meteor.userId()})._id;
+        var feedbacks = atividade.feedback.map(function(obj){
+            return obj.credId;
+        });
+        return((atividade.presentes.indexOf(credId) != -1) &&
+               (feedbacks.indexOf(credId) == -1)); 
     }
+
 });
 
 Template.showatividade.events({
@@ -100,5 +110,22 @@ Template.Atividade.helpers({
     }
 });
 
+Template.feedback.helpers({
+    atividade: function(){
+        return Atividades.findOne(Router.current().params._id);
+    },
+    format: function(date) {
+        return moment(date).format('LLL');
+    },
+    duracao: function(begin,end){
+        var delta = moment(begin).diff(moment(end));
+        return moment.duration(delta).humanize();
+    },
+    perguntas: function(){
+        var modelo = Atividades.findOne(Router.current().params._id).modelo;
+        console.log(modelo);
+        return Perguntas.find({modelos:modelo});
+    }
+});
 
 

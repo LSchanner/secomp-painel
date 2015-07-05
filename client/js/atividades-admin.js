@@ -29,7 +29,8 @@ Template.novaAtividade.events({
                 num_max_inscritos: num_max_inscritos,
                 requires_inscricao: requires_inscricao,
                 inscritos: [],
-                presentes: []
+                presentes: [],
+                feedback: []
             });
             Router.go('/moderador/atividades/');
         }

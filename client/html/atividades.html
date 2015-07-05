@@ -18,7 +18,7 @@
 </div>
 <!-- /.row -->
 
-    {{ > ListaAtividades }}
+{{ > ListaAtividades }}
 </template>
 
 <template name='ListaAtividades'>
@@ -32,13 +32,13 @@
 
 <hr>
 <ul class="nav nav-pills nav-justified">
-  <li id="filtro_proximas" class="{{#if filtro_proximas}} active {{/if}}"><a href="#">Próximas Atividades</a></li>
-  <li id="filtro_inscricao" class="{{#if filtro_inscricao}} active {{/if}}"><a href="#">Atividades que necessitam de inscrição</a></li>
+    <li id="filtro_proximas" class="{{#if filtro_proximas}} active {{/if}}"><a href="#">Próximas Atividades</a></li>
+    <li id="filtro_inscricao" class="{{#if filtro_inscricao}} active {{/if}}"><a href="#">Atividades que necessitam de inscrição</a></li>
 </ul>
 <hr>
 <div class='row post-list'>
     {{#each searched_atividades}}
-        {{> Atividade}}
+    {{> Atividade}}
     {{/each}}
 </div>
 
@@ -50,27 +50,27 @@
 </template>
 
 <template name="Atividade">
-<a href="{{_id}}">
-<article class="atividade atividade-widget col-md-6">
-    <div class="inner-atividade-widget">
-        <h2>
-            {{title}}
-        </h2>
-        <div  class="post-meta">
-            <div  class="pull-left">
-            {{format begin}}<br> 
-            Por <strong> {{palestrante}}</strong><br>
-            </div>
+<a href="{{_id}}/">
+    <article class="atividade atividade-widget col-md-6">
+        <div class="inner-atividade-widget">
+            <h2>
+                {{title}}
+            </h2>
+            <div  class="post-meta">
+                <div  class="pull-left">
+                    {{format begin}}<br> 
+                    Por <strong> {{palestrante}}</strong><br>
+                </div>
 
-            <div  class="pull-right pontuacao">
-                <strong> {{pontuacao}} <i class="fa fa-star"></i></strong>
+                <div  class="pull-right pontuacao">
+                    <strong> {{pontuacao}} <i class="fa fa-star"></i></strong>
+                </div>
+            </div>
+            <div  class="the-content content-widget">
+                {{{encurta description}}}
             </div>
         </div>
-        <div  class="the-content content-widget">
-            {{{encurta description}}}
-        </div>
-    </div>
-</article>
+    </article>
 </a>
 </template>
 
@@ -107,38 +107,121 @@
         {{{description}}}
     </div>
     {{#if requires_inscricao}}
-        <hr>
-        {{#if nao_credenciado}}
-        <div class="alert alert-danger" role="alert">
-            Você não está credenciado. Para se inscrever nesta atividade você precisa se credenciar.
-        </div>
-        {{else}} {{#if inscrito atividade}}
-        <div class="alert alert-success" role="alert">
-            Você está inscrito nessa atividade.
-        </div>
-        {{else}} {{#if lotado atividade}}
-        <div class="alert alert-warning" role="alert">
-            Desculpe, as vagas para essa atividade se esgotaram.
-        </div>
-        {{else}} {{#if semInscrições}}
-        <div class="alert alert-warning" role="alert">
-            Você já se inscreveu no número máximo de atividades.
-        </div>
-        {{else}}
-            <div class="alert alert-info" role="alert">
-                <p>
-                    Essa atividade requer inscrição. Você gostaria de se inscrever agora? <br>
-                    Cada congressista tem direito a {{num_max_inscricoes}} inscrições.
-                </p>
-            </div>
-            <button id="inscrever" type="button" class="btn btn-primary">
-                Realizar Inscrição
-            </button>
-        {{/if}}
-        {{/if}}
-        {{/if}}
-        {{/if}}
+    <hr>
+    {{#if nao_credenciado}}
+    <div class="alert alert-danger" role="alert">
+        Você não está credenciado. Para se inscrever nesta atividade você precisa se credenciar.
+    </div>
+    {{else}} {{#if inscrito atividade}}
+    <div class="alert alert-success" role="alert">
+        Você está inscrito nessa atividade.
+    </div>
+    {{else}} {{#if lotado atividade}}
+    <div class="alert alert-warning" role="alert">
+        Desculpe, as vagas para essa atividade se esgotaram.
+    </div>
+    {{else}} {{#if semInscrições}}
+    <div class="alert alert-warning" role="alert">
+        Você já se inscreveu no número máximo de atividades.
+    </div>
+    {{else}}
+    <div class="alert alert-info" role="alert">
+        <p>
+        Essa atividade requer inscrição. Você gostaria de se inscrever agora? <br>
+        Cada congressista tem direito a {{num_max_inscricoes}} inscrições.
+        </p>
+    </div>
+    <button id="inscrever" type="button" class="btn btn-primary">
+        Realizar Inscrição
+    </button>
+    {{/if}}
+    {{/if}}
+    {{/if}}
+    {{/if}}
+    {{/if}}
+    {{#if compareceu}}
+    <div class="alert alert-info" role="alert">
+        Você compareceu a essa atividade, mas ainda não submeteu seu formulário de feedback.<br> 
+        <a href="feedback"> Preencha seu formulário de feedback agora para receber seus pontos. </a>
+    </div>
     {{/if}}
 </article>
 {{/with}}
 </template>
+
+<template name="feedback">
+
+<!-- Page Heading -->
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">
+            Feedback de Atividade <small></small>
+        </h1>
+        <ol class="breadcrumb">
+            <li class="active">
+            Painel
+            </li>
+            <li class="active">
+            <i class="fa fa-tasks"></i> atividades
+            </li>
+            <li class="active">
+            <i class="fa fa-comment"></i> feedback
+            </li>
+        </ol>
+    </div>
+</div>
+<!-- /.row -->
+
+{{#with atividade}}
+<article class="atividade atividade-full col-md-9">
+    <h2>
+        {{title}}
+    </h2>
+    <div class="post-meta">
+        <strong>{{palestrante}}</strong>
+        <br>
+        {{format begin}} - {{duracao begin end}}
+    </div>
+    <div class="the-content">
+        <h3> Formulário de feedback </h3>
+        <p>
+            Responda cada uma das perguntas com uma nota de 1 a 5, sendo 1 mais negativo e 5 mais positivo.
+        </p>
+        <form> 
+            {{#each perguntas}}
+            <div class="form-group">
+                <p>
+                <strong>
+                {{title}}
+                </strong>
+                </p>
+                <label class="radio-inline">
+                    <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> 1
+                </label>
+                <label class="radio-inline">
+                    <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> 2
+                </label>
+                <label class="radio-inline">
+                    <input type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3"> 3
+                </label>
+                <label class="radio-inline">
+                    <input type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option4"> 4
+                </label>
+                <label class="radio-inline">
+                    <input type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option5"> 5
+                </label>
+            </div>
+            {{/each}}
+            <div  class="form-group">
+                <button type="submit" class="btn btn-primary"> 
+                    Enviar Feedback
+                </button>
+            </div>
+        </form>
+    </div>
+</article>
+
+{{/with}}
+</template>
+
+

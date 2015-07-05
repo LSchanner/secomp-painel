@@ -157,13 +157,23 @@ AdminConfig = {
         Noticias:{
             tableColumns: [
                 {label: 'Título', name: 'title'},
-                {label: 'Corpo', name: 'body'},
-                {label: 'Data de Publicação', name: 'created'},
             ]
         },
-        Credenciamentos:{},
-        Atividades:{},
-        Patrocinadores:{},
+        Credenciamentos:{
+            tableColumns: [
+                {label: 'numero', name: '_id'},
+            ]
+        },
+        Atividades:{
+            tableColumns: [
+                {label: 'title', name: 'title'},
+            ]
+        },
+        Patrocinadores:{
+            tableColumns: [
+                {label: 'Nome', name: 'nome'},
+            ]
+        },
         Perguntas:{
             tableColumns: [
                 {label: 'Título', name: 'title'},

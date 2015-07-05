@@ -1,10 +1,14 @@
 .atividade {
     background-color:#eee;
-    border:20px solid  white;
 }
 .atividade h2{
     color:#333;
 }
+.atividade-full{
+    padding:20px;
+    border-bottom:1px solid #6E0100;
+}
+
 .atividade .post-meta {
     color:#999;
     padding-bottom:12px;
@@ -14,6 +18,7 @@
 }
 .atividade-widget {
     height:320px;
+    border:20px solid  white;
     padding:0px;
     overflow:hidden;
 }

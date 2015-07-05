@@ -62,3 +62,6 @@ Meteor.publish("allUserData", function () {
 Meteor.publish("Patrocinadores",function(){
     return Patrocinadores.find();
 });
+Meteor.publish("Perguntas",function(){
+    return Perguntas.find();
+});

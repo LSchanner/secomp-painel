@@ -5,4 +5,5 @@ Meteor.subscribe('Achievements');
 Meteor.subscribe("allUserData");
 Meteor.subscribe("UserData");
 Meteor.subscribe("Patrocinadores");
+Meteor.subscribe("Perguntas");
 moment.lang('pt');
