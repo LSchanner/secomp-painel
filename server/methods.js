@@ -46,6 +46,25 @@ Meteor.methods({
         });
         console.log(pontos);
         Credenciamentos.update(credId,{$set:{pontos:pontos}});
-    }
+    },
+    submitFeedback: function(atividadeId,surveyItems){
+        var atividade = Atividades.findOne(atividadeId);
+        if(Object.keys(surveyItems).length != Perguntas.find({modelos:atividade.modelo}).count()){
+            return;
+        }
 
+        var surveyItems = Object.keys(surveyItems).map(function(key){
+            return {pergunta:key,resposta: Number(surveyItems[key])}
+        });
+
+        var questionario = { 
+            credId: Credenciamentos.findOne({user_id:this.userId})._id,
+            items: surveyItems
+        }
+
+        if(Atividades.find({'feedback.credId':this.userId}).count() == 0){
+            Atividades.update(atividadeId, 
+                    {$addToSet:{feedback:questionario}});
+        }
+    }
 });

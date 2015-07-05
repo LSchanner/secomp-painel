@@ -87,8 +87,12 @@ Template.showatividade.helpers({
         var feedbacks = atividade.feedback.map(function(obj){
             return obj.credId;
         });
-        return((atividade.presentes.indexOf(credId) != -1) &&
-               (feedbacks.indexOf(credId) == -1)); 
+        var presenca =  (atividade.presentes.indexOf(credId) != -1);
+        var feedback =  (feedbacks.indexOf(credId) != -1);
+
+        console.log(presenca);
+        console.log(credId);
+        return( presenca && !feedback); 
     }
 
 });
@@ -110,10 +114,16 @@ Template.Atividade.helpers({
     }
 });
 
+var get_perguntas = function(){
+        var modelo = get_atividade().modelo;
+        return Perguntas.find({modelos:modelo});
+}
+var get_atividade = function(){
+    return Atividades.findOne(Router.current().params._id);
+}
+
 Template.feedback.helpers({
-    atividade: function(){
-        return Atividades.findOne(Router.current().params._id);
-    },
+    atividade: get_atividade,
     format: function(date) {
         return moment(date).format('LLL');
     },
@@ -121,11 +131,20 @@ Template.feedback.helpers({
         var delta = moment(begin).diff(moment(end));
         return moment.duration(delta).humanize();
     },
-    perguntas: function(){
-        var modelo = Atividades.findOne(Router.current().params._id).modelo;
-        console.log(modelo);
-        return Perguntas.find({modelos:modelo});
+    perguntas: get_perguntas
+});
+Template.feedback.events({
+    'submit #feedback':function(event) {
+        surveyItems = {};
+        get_perguntas().forEach(function(obj){
+            surveyItems[obj._id] = event.target[obj._id].value;
+        });
+
+        Meteor.call('submitFeedback',get_atividade()._id,surveyItems);
+        Router.go('/atividades/')
+        return false;
     }
 });
+
 
 

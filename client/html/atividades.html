@@ -187,7 +187,7 @@
         <p>
             Responda cada uma das perguntas com uma nota de 1 a 5, sendo 1 mais negativo e 5 mais positivo.
         </p>
-        <form> 
+        <form id="feedback"> 
             {{#each perguntas}}
             <div class="form-group">
                 <p>
@@ -196,19 +196,19 @@
                 </strong>
                 </p>
                 <label class="radio-inline">
-                    <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> 1
+                    <input type="radio" name="{{_id}}" id="inlineRadio1" value="1"> 1
                 </label>
                 <label class="radio-inline">
-                    <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> 2
+                    <input type="radio" name="{{_id}}" id="inlineRadio2" value="2"> 2
                 </label>
                 <label class="radio-inline">
-                    <input type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3"> 3
+                    <input type="radio" name="{{_id}}" id="inlineRadio3" value="3"> 3
                 </label>
                 <label class="radio-inline">
-                    <input type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option4"> 4
+                    <input type="radio" name="{{_id}}" id="inlineRadio3" value="4"> 4
                 </label>
                 <label class="radio-inline">
-                    <input type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option5"> 5
+                    <input type="radio" name="{{_id}}" id="inlineRadio3" value="5"> 5
                 </label>
             </div>
             {{/each}}
