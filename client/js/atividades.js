@@ -11,7 +11,8 @@ Template.ListaAtividades.helpers({
             min_date = new Date();
         }
         var filtro_inscricao = Session.get("filtro_inscricao");
-        return Atividades.find({
+        var filtro_feedback = Session.get("filtro_feedback");
+        var query = {
             $or:[{'title':{$regex:search, $options:'i'}},
                {'description':{$regex:search, $options:'i'}},
                {'palestrante':{$regex:search, $options:'i'}},
@@ -19,14 +20,26 @@ Template.ListaAtividades.helpers({
                {'modelo':{$regex:search, $options:'i'}},
             ],
             end:{$gt:min_date},
-            requires_inscricao:{$in:[true,filtro_inscricao]}
-        },{sort:{begin:1},limit:Session.get('pag') * 10});
+        }
+        if(filtro_inscricao){
+            query.requires_inscricao = filtro_inscricao;
+        }
+        if(filtro_feedback){
+            var credId = Credenciamentos.findOne({user_id:Meteor.userId()})._id;
+            query.presentes = credId;
+            query['feedback.credId'] = {$not:credId}; 
+        }
+
+        return Atividades.find(query,{sort:{begin:1},limit:Session.get('pag') * 10});
     },
     filtro_proximas:function(){
         return Session.get("filtro_proximas");
     },
     filtro_inscricao:function(){
         return Session.get("filtro_inscricao");
+    },
+    filtro_feedback:function(){
+        return Session.get("filtro_feedback");
     }
 });
 
@@ -42,6 +55,9 @@ Template.ListaAtividades.events({
     },
     'click #filtro_inscricao':function(event){
         Session.set("filtro_inscricao",!Session.get("filtro_inscricao"));
+    },
+    'click #filtro_feedback':function(event){
+        Session.set("filtro_feedback",!Session.get("filtro_feedback"));
     }
 });
 
@@ -49,6 +65,7 @@ Template.ListaAtividades.onRendered(function(){
    Session.set('pag',1);
    Session.set('filtro_inscricao',false);
    Session.set('filtro_proximas',false);
+   Session.set('filtro_feedback',false);
 });
 
 

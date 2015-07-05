@@ -91,7 +91,6 @@ Template.editAtividade.events({
                 $addToSet:{presentes:numero}
             });
         }
-        Meteor.call('updatePontuacao',numero);
         return false;
     }
 });
@@ -112,7 +111,6 @@ Template.userOnActivities.events({
                     $pull:{presentes:credId}
             });
         }
-        Meteor.call('updatePontuacao',credId);
     }
 });
 
