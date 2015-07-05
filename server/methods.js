@@ -38,7 +38,7 @@ Meteor.methods({
     },
     updatePontuacao: function(credId){
         var pontos = 0;
-        Atividades.find({feedbacks.credId:credId}).forEach(function(obj){
+        Atividades.find({'feedbacks.credId':credId}).forEach(function(obj){
             pontos += obj.pontuacao;
         });
         Achievements.find({credenciados:credId}).forEach(function(obj){
@@ -60,6 +60,10 @@ Meteor.methods({
         var questionario = { 
             credId: Credenciamentos.findOne({user_id:this.userId})._id,
             items: surveyItems
+        }
+
+        if(atividade.presentes.indexOf(questionario.credId) == -1){
+            return;
         }
 
         if(Atividades.find({'feedback.credId':this.userId}).count() == 0){
