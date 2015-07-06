@@ -59,13 +59,45 @@ Template.editAtividade.events({
         var title = event.target.title.value;
         var palestrante = event.target.palestrante.value;
         var description = event.target.description.value;
+        var begin = event.target.begin.value;
+        var end = event.target.end.value;
+        var pontuacao = event.target.pontuacao.value;
+        var modelo = event.target.modelo.value;
+        var num_max_inscritos;
+
+        var atividade = Atividades.findOne(Router.current().params._id);
+        //Verifica se houve alguma alteração na data, e se não, aplica a data
+        //anterior
+        if(begin == ""){
+            begin = atividade.begin;
+        }
+        if(end == ""){
+            end = atividade.end;
+        }
+
+        //Verifica se o numero de incritos foi modificado e se o numero inserido
+        // é valido
+        if(event.target.nummaxinscritos){
+            if(event.target.nummaxinscritos.value < atividade.num_max_inscritos){
+                alert("Você não pode diminuir o número de vagas de uma atividade");
+                return false;
+            }
+            num_max_inscritos = event.target.nummaxinscritos.value;
+        }else{
+            num_max_inscritos = 0;
+        }
 
         if(title && description){
             Atividades.update(Router.current().params._id,{
                 $set:{
-                    title:title,
-                    description:description,
-                    palestrante:palestrante,
+                    title: title,
+                    description: description,
+                    palestrante: palestrante,
+                    begin: new Date(begin),
+                    end: new Date(end),
+                    pontuacao: pontuacao,
+                    modelo:modelo,
+                    num_max_inscritos: num_max_inscritos,
                 }
             });
             Router.go('/moderador/atividades/');
