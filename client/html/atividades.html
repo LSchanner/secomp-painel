@@ -59,7 +59,8 @@
             </h2>
             <div  class="post-meta">
                 <div  class="pull-left">
-                    {{format begin}}<br> 
+                    {{format begin}}<br>
+                    <strong>{{modelo}}</strong><br>
                     Por <strong> {{palestrante}}</strong><br>
                 </div>
 
@@ -142,7 +143,7 @@
     {{/if}}
     {{#if compareceu}}
     <div class="alert alert-info" role="alert">
-        Você compareceu a essa atividade, mas ainda não submeteu seu formulário de feedback.<br> 
+        Você compareceu a essa atividade, mas ainda não submeteu seu formulário de feedback.<br>
         <a href="feedback"> Preencha seu formulário de feedback agora para receber seus pontos. </a>
     </div>
     {{/if}}
@@ -188,7 +189,7 @@
         <p>
             Responda cada uma das perguntas com uma nota de 1 a 5, sendo 1 mais negativo e 5 mais positivo.
         </p>
-        <form id="feedback"> 
+        <form id="feedback">
             {{#each perguntas}}
             <div class="form-group">
                 <p>
@@ -214,7 +215,7 @@
             </div>
             {{/each}}
             <div  class="form-group">
-                <button type="submit" class="btn btn-primary"> 
+                <button type="submit" class="btn btn-primary">
                     Enviar Feedback
                 </button>
             </div>
@@ -224,5 +225,3 @@
 
 {{/with}}
 </template>
-
-
