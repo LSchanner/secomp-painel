@@ -1,6 +1,5 @@
 .achievement {
     background-color:#eee;
-    border:20px solid white;
 }
 .achievement h2{
     color:#333;
@@ -13,6 +12,7 @@
     color:#222;
 }
 .achievement-widget {
+    border:20px solid white;
     height:200px;
     padding:0px;
     overflow:hidden;
@@ -49,4 +49,9 @@
 .widget-content h2{
     margin:0px;
     display:inline !important;
+}
+
+.achievement-full{
+    padding:20px;
+    margin:20px;
 }
