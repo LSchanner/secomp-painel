@@ -16,6 +16,8 @@ Template.cadastro.events({
         var tel = event.target.telefone.value;
         var uni = event.target.instituicao.value;
         var curso = event.target.curso.value;
+        var ingresso = event.target.ingresso.value;
+        var formatura = event.target.formatura.value;
         var terms_accepted = event.target.accepted.checked;
         var ra;
 
@@ -36,7 +38,11 @@ Template.cadastro.events({
         }
 
         /* Verificar para não permitir campos nulos */
-        if(!(email && password && nome && cpf && rg && tel && uni != "Universidade" && curso != "Curso")){
+        if(!(email && password && nome && 
+                    cpf && rg && tel && 
+                    ingresso && formatura &&
+                    uni != "Universidade" && curso != "Curso")){
+
             Session.set('erro', erroVazio);
             return false;
         }
@@ -64,6 +70,8 @@ Template.cadastro.events({
                 uni: uni,
                 curso: curso,
                 ra: ra,
+                ingresso: ingresso,
+                formatura: formatura,
                 empresas: empresas
 
             }
