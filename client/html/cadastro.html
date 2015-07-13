@@ -6,7 +6,7 @@ body{
 </style>
 
 <div class="container">
-    <div style="margin-top:50px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+    <div style="margin-top:50px;" class="mainbox col-md-10 col-md-offset-1 ">
         <div class="panel panel-primary" >
             <div class="panel-heading">
                 <div class="panel-title">Cadastro no Painel</div>
@@ -34,8 +34,11 @@ body{
 
                 {{else}}
 
+
                 <form id="formcadastro" class="form-horizontal" role="form">
 
+                    <div class="row">
+                    <div class="col-md-4">
                     <h3 class="section-heading"> Informações Gerais </h3>
 
                     <div  class="input-group">
@@ -72,12 +75,14 @@ body{
                         <span class="input-group-addon"><i class="glyphicon glyphicon-phone"></i></span>
                         <input type="text" class="form-control" name="telefone"  placeholder="Número de Telefone">
                     </div>
+                    </div>
 
+                    <div class="col-md-4">
                     <h3 class="section-heading"> Dados Acadêmicos </h3>
                     <label for="instituicao">Em que universidade você estuda?</label>
                     <div  class="input-elem">
                         <select  class="form-control select-uni" name="instituicao">
-                            <option disabled selected> Universidade </option>
+                            <option disabled selected value=""> </option>
                             <option value="UNICAMP">Unicamp</option>
                             <option value="USP">USP</option>
                             <option value="UNESP">UNESP</option>
@@ -100,7 +105,7 @@ body{
                     <label for="curso">Qual é o seu curso?</label>
                     <div  class="input-elem">
                         <select class="form-control " name="curso" >
-                            <option disabled selected> Curso </option>
+                            <option disabled selected value="">  </option>
                             <option value="EC">Engenharia de Computação</option>
                             <option value="CC">Ciência da Computação</option>
                             <option value="EE">Engenharia Elétrica</option>
@@ -121,7 +126,7 @@ body{
                     <label for="ingresso">Em que ano você ingressou no seu curso?</label>
                     <div  class="input-elem">
                         <select  class="form-control" name="ingresso">
-                            <option disabled selected value=""> Ano de ingresso </option>
+                            <option disabled selected value=""> </option>
                             <option value="2015">2015</option>
                             <option value="2014">2014</option>
                             <option value="2013">2013</option>
@@ -135,7 +140,7 @@ body{
                     <label for="formatura">Em que ano você espera se formar?</label>
                     <div  class="input-elem">
                         <select  class="form-control" name="formatura">
-                            <option disabled selected value=""> Ano esperado de conclusão </option>
+                            <option disabled selected value=""></option>
                             <option value="formado">Já me graduei</option>
                             <option value="2015">2015</option>
                             <option value="2016">2016</option>
@@ -146,8 +151,10 @@ body{
                             <option value="posterior">Depois de 2020</option>
                         </select>
                     </div>
+                        </div>
                     
 
+                        <div class="col-md-4">
                     <h3 class="section-heading"> Pesquisa de interesse </h3>
                     Quais destas empresas lhe interessam?
                     <div class="row lista-patrocinadores">
@@ -159,7 +166,9 @@ body{
                         </div>
                         {{/each}}
                     </div>
+                        </div>
 
+                    </div>
                     <div style="margin-top:30px" class="checkbox">
                         <label>
                             <input type="checkbox" name="accepted" unchecked>
