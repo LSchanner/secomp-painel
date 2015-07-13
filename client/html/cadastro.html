@@ -74,6 +74,7 @@ body{
                     </div>
 
                     <h3 class="section-heading"> Dados Acadêmicos </h3>
+                    <label for="instituicao">Em que universidade você estuda?</label>
                     <div  class="input-elem">
                         <select  class="form-control select-uni" name="instituicao">
                             <option disabled selected> Universidade </option>
@@ -89,7 +90,14 @@ body{
                             <option value="Particular">Outra Particular</option>
                         </select>
                     </div>
+                    {{#if unicamper}}
+                    <div  class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                        <input type="text" class="form-control" name="ra" placeholder="RA">
+                    </div>
+                    {{/if}}
 
+                    <label for="curso">Qual é o seu curso?</label>
                     <div  class="input-elem">
                         <select class="form-control " name="curso" >
                             <option disabled selected> Curso </option>
@@ -109,6 +117,8 @@ body{
                             <option value="Outros">Outros</option>
                         </select>
                     </div>
+
+                    <label for="ingresso">Em que ano você ingressou no seu curso?</label>
                     <div  class="input-elem">
                         <select  class="form-control" name="ingresso">
                             <option disabled selected value=""> Ano de ingresso </option>
@@ -121,6 +131,8 @@ body{
                             <option value="anterior">anterior à 2010</option>
                         </select>
                     </div>
+
+                    <label for="formatura">Em que ano você espera se formar?</label>
                     <div  class="input-elem">
                         <select  class="form-control" name="formatura">
                             <option disabled selected value=""> Ano esperado de conclusão </option>
@@ -134,12 +146,7 @@ body{
                             <option value="posterior">Depois de 2020</option>
                         </select>
                     </div>
-                    {{#if unicamper}}
-                    <div  class="input-group">
-                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                        <input type="text" class="form-control" name="ra" placeholder="RA">
-                    </div>
-                    {{/if}}
+                    
 
                     <h3 class="section-heading"> Pesquisa de interesse </h3>
                     Quais destas empresas lhe interessam?
