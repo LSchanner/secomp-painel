@@ -37,6 +37,10 @@ Template.cadastro.events({
             return false;
         }
 
+        if(uni == 'outra'){
+            uni = event.target.outra.value;
+        }
+
         /* Verificar para não permitir campos nulos */
         if(!(email && password && nome && 
                     cpf && rg && tel && 
@@ -90,6 +94,7 @@ Template.cadastro.events({
     /*Abrir o campo de RA*/
     "change .select-uni": function(event){
         Session.set('unicamper', event.target.value == "UNICAMP");
+        Session.set('outra', event.target.value == "outra");
     },
     /*Para caso o usuario tenha digitado o mesmo email no cadastro*/
     "click #verificar": function(event){
@@ -115,11 +120,13 @@ Template.cadastro.helpers({
     unicamper:function(){
         return Session.get('unicamper');
     },
+    outra:function(){
+        return Session.get('outra');
+    },
     verificacaoEmail:function(){
         return Session.get('emailconfirmation')
     },
     patrocinadores:function(){
         return Patrocinadores.find();
     }
-
 });

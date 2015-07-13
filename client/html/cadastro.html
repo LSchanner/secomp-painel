@@ -88,11 +88,10 @@ body{
                             <option value="UNESP">UNESP</option>
                             <option value="UFSCar">UFSCar</option>
                             <option value="UNIFESP">UNIFESP</option>
-                            <option value="Pública">Outra Pública</option>
                             <option value="Mackenzie">Mackenzie</option>
                             <option value="PUC-Campinas">PUC-Campinas</option>
                             <option value="PUC-São Paulo">PUC-São Paulo</option>
-                            <option value="Particular">Outra Particular</option>
+                            <option value="outra">Outra</option>
                         </select>
                     </div>
                     {{#if unicamper}}
@@ -100,6 +99,12 @@ body{
                         <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
                         <input type="text" class="form-control" name="ra" placeholder="RA">
                     </div>
+                    {{/if}}
+                    {{#if outra}}
+                        <div  class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-university"></i></span>
+                            <input type="text" class="form-control" name="outra" placeholder="Qual Outra?">
+                        </div>
                     {{/if}}
 
                     <label for="curso">Qual é o seu curso?</label>
