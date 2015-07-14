@@ -1,11 +1,13 @@
 /* ----- Configuração email ---- */
 /*Configuração Servidor SMTP */
 Meteor.startup(function () {
+
+    // No momento usamos o Servidor de SMTP do IC. TODO Migrar para algo mais profissa.
     smtp = {
-      username: 'secomp12345@gmail.com',   // ex. server@gentlenode.com
-        password: 'secomp2015',
-        server:   'smtp.gmail.com',  // ex. mail.gandi.net
-        port: 465 // ex.25 ou 465
+      username: 'ra156412',   // 
+        password: process.env.SENHA_DO_CAPIVA,
+        server:   'smtp.students.ic.unicamp.br',  // ex. mail.gandi.net
+        port: 587 // ex.25 ou 465
     }
 
     process.env.MAIL_URL = 'smtp://' + encodeURIComponent(smtp.username) + ':' + encodeURIComponent(smtp.password) + '@' + encodeURIComponent(smtp.server) + ':' + smtp.port;
@@ -14,7 +16,7 @@ Meteor.startup(function () {
 /*Configuração envio de Modelos*/
 Meteor.startup(function() {
     //Colocar o nome que deve aparecer no email (ex. Secomper <do-not-reply@secomp.com.br>)
-    Accounts.emailTemplates.from = 'Secomp helper <secomp12345@gmail.com>';
+    Accounts.emailTemplates.from = 'Secomp Unicamp <no-reply@secomp.com.br>';
     //O site do envio
     Accounts.emailTemplates.siteName = 'secomp.com.br';
 

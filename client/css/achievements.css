@@ -43,8 +43,18 @@
     height:100%;
     margin:0px;
     display:flex;
+    flex-wrap:nowrap;
     justify-content:space-between;
     align-items:center;
+}
+@media only screen and (max-width : 768px) {
+    .widget-content{
+        flex-wrap:wrap;
+    }
+    .achievement-widget{
+        height:250px;
+    }
+     
 }
 .widget-content h2{
     margin:0px;
