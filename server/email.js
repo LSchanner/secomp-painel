@@ -2,10 +2,10 @@
 /*Configuração Servidor SMTP */
 Meteor.startup(function () {
     smtp = {
-        username: 'no-reply@secomp.com.br',   // ex. server@gentlenode.com
-        password: process.env.MAIL_PASSWORD,
-        server:   'smtp.secomp.com.br',  // ex. mail.gandi.net
-        port: 587 // ex.25 ou 465
+      username: 'secomp12345@gmail.com',   // ex. server@gentlenode.com
+        password: 'secomp2015',
+        server:   'smtp.gmail.com',  // ex. mail.gandi.net
+        port: 465 // ex.25 ou 465
     }
 
     process.env.MAIL_URL = 'smtp://' + encodeURIComponent(smtp.username) + ':' + encodeURIComponent(smtp.password) + '@' + encodeURIComponent(smtp.server) + ':' + smtp.port;
@@ -14,9 +14,9 @@ Meteor.startup(function () {
 /*Configuração envio de Modelos*/
 Meteor.startup(function() {
     //Colocar o nome que deve aparecer no email (ex. Secomper <do-not-reply@secomp.com.br>)
-    Accounts.emailTemplates.from = 'Secomp <no-reply@secomp.com.br>';
+    Accounts.emailTemplates.from = 'Secomp helper <secomp12345@gmail.com>';
     //O site do envio
-    Accounts.emailTemplates.siteName = 'painel.secomp.com.br';
+    Accounts.emailTemplates.siteName = 'secomp.com.br';
 
     /* -- Templates para verifyEmail -- */
     //Definir o Subject do Email
