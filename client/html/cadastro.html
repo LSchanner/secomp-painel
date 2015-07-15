@@ -25,10 +25,18 @@ body{
                         <input type="email" class="form-control" name="emailresendverification"  placeholder="Email">
                     </div>
 
-                    <div style="margin-top:30px" class="form-group">
+                    <div style="margin-top:30px">
+                    {{#if emailsent}}
+                    <div class="alert-success alert">
+                        O Email de confirmação foi reenviado.
+                    </div>
+                    {{else}}
+                    <div class="form-group">
                         <div class="col-sm-12 controls">
                             <button type="submit" class="btn btn-primary"> Reenviar email </button>
                         </div>
+                    </div>
+                    {{/if}}
                     </div>
                 </form>
 

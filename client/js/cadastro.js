@@ -102,13 +102,14 @@ Template.cadastro.events({
     },
     /*Para reenvio do código para o email do usuario*/
     "submit #resendEmail": function(event){
+        console.log('atéaqui');
         if(event.target.emailresendverification){
             var email = event.target.emailresendverification.value;
             if(Meteor.call('resendVerificationEmail', email)){
                 console.log("Pedindo um novo reevio de email");
             }
         }
-        Session.set('emailconfirmation', '1');
+        Session.set('emailsent', true);
         return false;
     }
 });
@@ -124,7 +125,10 @@ Template.cadastro.helpers({
         return Session.get('outra');
     },
     verificacaoEmail:function(){
-        return Session.get('emailconfirmation')
+        return Session.get('emailconfirmation');
+    },
+    emailsent:function(){
+        return Session.get('emailsent');
     },
     patrocinadores:function(){
         return Patrocinadores.find();
