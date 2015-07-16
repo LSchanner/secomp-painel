@@ -4,9 +4,9 @@ Meteor.startup(function () {
 
     // No momento usamos o Servidor de SMTP do IC. TODO Migrar para algo mais profissa.
     smtp = {
-      username: 'ra156412',   // 
-        password: process.env.SENHA_DO_CAPIVA,
-        server:   'smtp.students.ic.unicamp.br',  // ex. mail.gandi.net
+      username: 'postmaster@mg.secomp.com.br',   // 
+        password: process.env.MAIL_PASSWORD,
+        server:   'smtp.mailgun.org',  // ex. mail.gandi.net
         port: 587 // ex.25 ou 465
     }
 
