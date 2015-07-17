@@ -4,7 +4,7 @@ Meteor.startup(function () {
 
     // No momento usamos o Servidor de SMTP do IC. TODO Migrar para algo mais profissa.
     smtp = {
-      username: 'ra156412',   // 
+      username: 'ra156412',   //
         password: process.env.SENHA_DO_CAPIVA,
         server:   'smtp.students.ic.unicamp.br',  // ex. mail.gandi.net
         port: 587 // ex.25 ou 465
@@ -28,15 +28,15 @@ Meteor.startup(function() {
     // A Function that takes a user object and a url, and returns the body text for the email.
     // Note: if you need to return HTML instead, use Accounts.emailTemplates.verifyEmail.html
     Accounts.emailTemplates.verifyEmail.text = function(user, url) {
-        return 'Clique no link confirmar o email:\n' + url;
+        return 'Este email foi cadastrado no sistema da secomp\nClique no link abaixo para confirmar o email e começar a usa-lo:\n\n' + url;
     };
     /* -- Templates para resetPassword -- */
     //Definir o Subject do Email
     Accounts.emailTemplates.resetPassword.subject = function(user) {
-        return 'Recuperação de senha da SECOMP';
+        return 'Recuperação de Senha do sistema da SECOMP';
     };
     Accounts.emailTemplates.resetPassword.text = function(user, url) {
-        return 'Você pediu para resetar sua senha. Clique no link abaixo para redefinir sua senha:\n\n ' + url + '\n\n';
+        return 'Você pediu para recuperar sua senha.\n Clique no link abaixo para redefinir sua senha:\n\n ' + url + '\n\n';
     };
 
 });
