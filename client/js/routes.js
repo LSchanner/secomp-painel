@@ -34,7 +34,7 @@ Router.route('/reset-password', function(){
 
 // Dashboard
 Router.route('/', function () {
-    Router.go('/noticias/');
+    this.redirect('/noticias/');
 },{ name:'dashboard',
     onBeforeAction: loginHook });
 
