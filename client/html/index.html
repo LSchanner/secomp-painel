@@ -70,6 +70,12 @@
         <div id="page-wrapper">
 
             <div class="container-fluid">
+                {{#if nao_pago}}
+                <div class="alert alert-info">
+                    Para se credenciar, você precisará pagar a taxa de inscrição. Você pode pagar acessando <a href='{{url_pagamento}}'> este link. </a>
+                </div>
+                {{/if}}
+                    
 
                 {{> yield }}
 

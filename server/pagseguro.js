@@ -43,8 +43,6 @@ Router.route('/pagseguro/notify',function(){
             var status = xml.substring(xml.indexOf('<status>')+8,xml.indexOf('</status>'));
             var userId = xml.substring(xml.indexOf('<reference>')+11,xml.indexOf('</reference>'));
 
-            console.log(status);
-            console.log(userId);
             if(status == '3' || status == '4'){
                 Meteor.users.update(userId,{$set:{pago:true}});
             }

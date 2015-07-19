@@ -56,6 +56,8 @@ Credenciamentos.allow({
 Meteor.publish("allUserData", function () {
     if(authAdmin(this.userId, null)){
         return Meteor.users.find({});
+    }else{
+        return Meteor.users.find({_id:this.userId});
     }
 });
 

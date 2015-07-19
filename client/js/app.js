@@ -10,6 +10,12 @@ Template.painel.helpers({
     },
     pontuacao: function(){
         return Credenciamentos.findOne({user_id:Meteor.userId()}).pontos; 
+    },
+    nao_pago: function(){
+        return Meteor.user().pago === false;
+    },
+    url_pagamento:function(){
+        return 'https://pagseguro.uol.com.br/v2/checkout/payment.html?code=' + Meteor.user().codePagSeguro;
     }
 });
 
