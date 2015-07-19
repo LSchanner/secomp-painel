@@ -115,7 +115,7 @@ Accounts.onCreateUser(function(options, user) {
                     }
                     var xml = result.content;
                     var code = xml.substring(6 + xml.indexOf('<code>'),xml.indexOf('</code>'));
-                    Meteor.users.update(user._id,{$set:{codePagSeguro:code}});
+                    Meteor.users.update(user._id,{$set:{codePagSeguro:code,pago:false}});
                     Email.send({
                         from:'Secomp Unicamp <no-reply@secomp.com.br>',
                         to:options.email,

@@ -1,3 +1,4 @@
+
 // página que lista os usuários não credenciados
 Template.adminCredenciamento.helpers({
     users: function(){
@@ -30,11 +31,12 @@ Router.route('/moderador/credenciamento/:_id', function () {
 },{ name:'credenciaUser',
     onBeforeAction: adminHook });
 
+var getUser = function(){
+    return Meteor.users.findOne(Router.current().params._id);
+}
 
 Template.credenciaUser.helpers({
-    user: function(){
-        return Meteor.users.findOne(Router.current().params._id);
-    },
+    user: getUser ,
     credId: function(user_id){
         var cred = Credenciamentos.findOne({user_id:user_id});
         if(cred){
@@ -43,8 +45,19 @@ Template.credenciaUser.helpers({
         else{
             return false;
         }
+    },
+    pago:function(){
+        var usr = getUser();
+        if(usr.pago == null){
+            return true;
+        }
+        return usr.pago
     }
 
+});
+
+Template.credenciaUser.onRendered(function(){
+    Session.set('pago',undefined);
 });
 
 Template.credenciaUser.events({

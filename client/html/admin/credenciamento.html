@@ -78,6 +78,11 @@
     {{> UserProfile}}
 {{/with}}
 
+{{#if pago}}
+<div class="alert alert-success"> Pagamento confirmado </div>
+{{else}}
+<div class="alert alert-danger"> Pagamento não confirmado </div>
+{{/if}}
 
 {{#if credId user._id}}
 
