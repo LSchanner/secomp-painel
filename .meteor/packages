@@ -17,3 +17,9 @@ yogiben:admin
 aldeed:collection2
 dburles:collection-helpers
 tsega:bootstrap3-datetimepicker
+http
+
+
+npm-container
+vjau:xml2js
+email

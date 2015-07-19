@@ -41,7 +41,7 @@
 <a href="{{_id}}">
     {{#if completou this}}
         <article class="achievement completed-achievement-widget achievement-widget col-md-6" >
-            
+
             <div class="widget-content">
                 <h2>
                     {{title}}
@@ -54,7 +54,7 @@
         </article>
     {{else}} {{#if notificou this}}
         <article class="achievement asked-achievement-widget achievement-widget col-md-6" >
-            
+
             <div class="widget-content">
                 <h2 >
                     {{title}}
@@ -67,7 +67,7 @@
         </article>
     {{else}}
         <article class="achievement achievement-widget col-md-6" >
-            
+
             <div class="widget-content">
                 <h2 >
                     {{title}}
@@ -115,7 +115,7 @@
     <hr>
     {{#if completou achievement}}
         <div class="alert alert-success" role="alert">
-            Você já completou esse achievement!
+            Você já completou este achievement!
         </div>
     {{else}} {{#if notificou achievement}}
         <div class="alert alert-warning" role="alert">
@@ -123,7 +123,7 @@
         </div>
     {{else}} {{#if nao_credenciado}}
         <div class="alert alert-danger" role="alert">
-            Você não está credenciado. Para se inscrever nesta atividade você precisa se credenciar.
+            Você não está credenciado. Para informar a conclusão deste achievement você precisa se credenciar.
         </div>
     {{else}}
         <button id="inscrever" type="button" class="btn btn-primary">

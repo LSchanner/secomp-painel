@@ -58,6 +58,7 @@ natestrauser:font-awesome@4.3.0
 nemo64:bootstrap@3.3.4_2
 nemo64:bootstrap-data@3.3.4_1
 npm-bcrypt@0.7.8_2
+npm-container@1.0.0
 observe-sequence@1.0.6
 ordered-dict@1.0.3
 raix:handlebar-helpers@0.2.4
@@ -80,6 +81,7 @@ tsega:bootstrap3-datetimepicker@4.7.14_4
 ui@1.0.6
 underscore@1.0.3
 url@1.0.4
+vjau:xml2js@4.4.0
 webapp@1.2.0
 webapp-hashing@1.0.3
 yogiben:admin@1.1.1
