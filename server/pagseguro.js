@@ -26,28 +26,29 @@ Meteor.methods({
 
 Router.route('/pagseguro/notify',function(){
     var req = this.request;
-    if(req.Host == 'pagseguro.uol.com.br'){
-        var code = req.body.notificationCode;
-        console.log(code);
-        HTTP.get('https://ws.pagseguro.uol.com.br/v3/transactions/notifications/' + code,
-            {
-                params:{
-                        email:'contato@secomp.com.br',
-                        token: process.env.TOKEN_PAGSEGURO
-                }
-            },
-            function(error,result){
-                if(erro){
-                    console.log("ERRO PAGSEGURO NOTIFICAÇÔES");
-                }
-                var xml = result.content;
-                var status = xml.substr(xml.indexOf('<status>')+8,xml.indexOf('</status>'));
-                var userId = xml.substr(xml.indexOf('<reference>')+11,xml.indexOf('</reference>'));
-                if(status == 3){
-                    Meteor.users.update(userId,{$set:{pago:true}});
-                }
+    var code = req.body.notificationCode;
+    console.log(code);
+    HTTP.get('https://ws.pagseguro.uol.com.br/v3/transactions/notifications/' + code,
+        {
+            params:{
+                    email:'contato@secomp.com.br',
+                    token: process.env.TOKEN_PAGSEGURO
             }
-            );
-    }
+        },
+        function(error,result){
+            if(error){
+                console.log("ERRO PAGSEGURO NOTIFICAÇÔES");
+            }
+            var xml = result.content;
+            var status = xml.substring(xml.indexOf('<status>')+8,xml.indexOf('</status>'));
+            var userId = xml.substring(xml.indexOf('<reference>')+11,xml.indexOf('</reference>'));
+
+            console.log(status);
+            console.log(userId);
+            if(status == '3' || status == '4'){
+                Meteor.users.update(userId,{$set:{pago:true}});
+            }
+        }
+        );
     
 },{where:'server'});
