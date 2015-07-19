@@ -3,7 +3,7 @@
 /*Textos para erros*/
 var sucesso = 'Obrigado por completar seu cadastro! Agora voce já pode fazer login.';
 var quebrado = 'Link de verificacao expirado.';
-var naoVerificado = 'Usuário ainda não verificado';
+var naoVerificado = 'Usuário ainda não verificado. Reenviando email de verificação';
 var naoCadastrado = 'Usuário não encontrado ou senha incorreta';
 
 /*Eventos*/
@@ -16,6 +16,8 @@ Template.login.events({
             if(Error){
                 if(Error.message == 'Login forbidden [403]'){
                     Session.set('erroLogin',naoVerificado)
+                    Router.go('/cadastro');
+                    Session.set('emailconfirmation','1');
                 }else{
                     Session.set('erroLogin',naoCadastrado)
                 }

@@ -1,5 +1,7 @@
 Meteor.methods({
     credenciaUser: function(userId,credId){
+        if(!authAdmin(this.userId)) return;
+
         if(Credenciamentos.findOne({$or:[{user_id: userId},{_id:credId}]})){
             return false;
         }

@@ -51,6 +51,7 @@ Meteor.methods({
     /*Método para reenviar o email de verificação*/
     resendVerificationEmail:function(requestEmail){
         var user = Meteor.users.findOne( {'emails.address' : requestEmail} );
+        console.log("Mandando email de verificação ao usuario");
 
         if(user){
             if(!user.emails[0].verified){

@@ -65,3 +65,9 @@ Meteor.publish("Patrocinadores",function(){
 Meteor.publish("Perguntas",function(){
     return Perguntas.find();
 });
+
+Meteor.users.allow({
+    insert: authAdmin,
+    update: authAdmin,
+    remove: authAdmin
+});
