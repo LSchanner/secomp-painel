@@ -4,7 +4,7 @@
 adminHook = function() {
     setTimeout(function (){
         if(!Roles.userIsInRole(Meteor.userId(),"moderador")){
-            Router.go('/');
+            this.redirect('/');
         }
     },2000);
     this.next();
@@ -12,7 +12,7 @@ adminHook = function() {
 
 // Dashboard
 Router.route('/moderador', function () {
-    Router.go('/moderador/credenciamento');
+    this.redirect('/moderador/credenciamento');
 },{ name:'admin-dashboard',
     onBeforeAction: adminHook });
 
