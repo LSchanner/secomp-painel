@@ -56,10 +56,6 @@ Template.credenciaUser.helpers({
 
 });
 
-Template.credenciaUser.onRendered(function(){
-    Session.set('pago',undefined);
-});
-
 Template.credenciaUser.events({
     "submit #FormCredencia":function(event){
         var cred_id = event.target.idCredenciamento.value;
