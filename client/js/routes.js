@@ -17,14 +17,17 @@ Router.route('/login', function () {
 Router.route('/condicoes', function () {
     this.render('condicoes');
 },{name:'condicoes'});
+
 // Página de Cadastro
 Router.route('/cadastro', function () {
     this.render('cadastro');
 },{name:'cadastro'});
+
 // Recuperar Senha
 Router.route('/recover-password',function(){
     this.render('forgotPassword');
 },{name:'recover-password'});
+
 // Resetar a senha
 Router.route('/reset-password', function(){
     this.render('ResetPassword');
@@ -106,13 +109,6 @@ Router.route('/moderador/atividades/:_id', function () {
     onBeforeAction: adminHook });
 
 
-// calendario
-Router.route('/calendario', function () {
-    this.layout('painel');
-    this.render('calendario');
-},{ name:'calendario',
-    onBeforeAction: loginHook });
-
 
 // Achievements
 Router.route('/achievements', function () {
@@ -145,16 +141,3 @@ Router.route('/moderador/achievements/:_id', function () {
     onBeforeAction: adminHook });
 
 
-// loja
-Router.route('/loja', function () {
-    this.layout('painel');
-    this.render('loja');
-},{ name:'loja',
-    onBeforeAction: loginHook });
-
-// Mapa
-Router.route('/mapa', function () {
-    this.layout('painel');
-    this.render('mapa');
-},{ name:'mapa',
-    onBeforeAction: loginHook });
