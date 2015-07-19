@@ -3,7 +3,7 @@ Session.setDefault('pag',1);
 // Página de listagem de noticias
 Template.Noticias.helpers({
     noticias: function() {
-        return Noticias.find({},{sort:{created:-1},limit:Session.get('pag') * 10})
+        return Noticias.find({},{ sort:{created:-1} , limit:Session.get('pag') * 10 })
     },
     temMais: function() {
         return Noticias.find().count() > Session.get('pag') * 10;
@@ -36,7 +36,11 @@ Template.novaNoticia.events({
         var body = event.target.body.value;
 
         if(title && body){
-            Noticias.insert({title:title, body:body, created:new Date});
+            Noticias.insert({
+                title:title,
+                body:body,
+                created:new Date()
+            });
             Router.go('/moderador/noticias/');
         }
         else{
@@ -60,9 +64,12 @@ Template.editNoticia.events({
         var body = event.target.body.value;
 
         if(title && body){
-            Noticias.update(Router.current().params._id,
-                {$set:{title:title, body:body}}
-                );
+            Noticias.update(Router.current().params._id,{
+                $set:{
+                    title:title,
+                    body:body
+                }
+            });
             Router.go('/moderador/noticias/');
         }
         else{
@@ -86,4 +93,3 @@ Template.shownoticia.helpers({
         return moment(date).format('LLL');
     }
 });
-

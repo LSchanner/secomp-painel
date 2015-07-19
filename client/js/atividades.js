@@ -27,7 +27,7 @@ Template.ListaAtividades.helpers({
         if(filtro_feedback){
             var credId = Credenciamentos.findOne({user_id:Meteor.userId()})._id;
             query.presentes = credId;
-            query['feedback.credId'] = {$not:credId}; 
+            query['feedback.credId'] = {$not:credId};
         }
 
         return Atividades.find(query,{sort:{begin:1},limit:Session.get('pag') * 10});
@@ -75,7 +75,7 @@ Template.showatividade.helpers({
         return Atividades.findOne(Router.current().params._id);
     },
     format: function(date) {
-        return moment(date).format('LLL');
+        return moment(date).format('LLLL');
     },
     duracao: function(begin,end){
         var delta = moment(begin).diff(moment(end));
@@ -109,7 +109,7 @@ Template.showatividade.helpers({
 
         console.log(presenca);
         console.log(credId);
-        return( presenca && !feedback); 
+        return( presenca && !feedback);
     }
 
 });
@@ -124,7 +124,7 @@ Template.showatividade.events({
 /* ---- Atividade ---- */
 Template.Atividade.helpers({
     format: function(date) {
-        return moment(date).format('LLL');
+        return moment(date).format('LLLL');
     },
     encurta: function(body){
         return $(body).text().substring(0,200) + ' ...';
@@ -162,6 +162,3 @@ Template.feedback.events({
         return false;
     }
 });
-
-
-
