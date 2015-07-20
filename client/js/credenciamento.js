@@ -25,12 +25,6 @@ Template.userListItem.events({
 });
 
 
-Router.route('/moderador/credenciamento/:_id', function () {
-  this.layout('painelAdmin');
-  this.render('credenciaUser');
-},{ name:'credenciaUser',
-    onBeforeAction: adminHook });
-
 var getUser = function(){
     return Meteor.users.findOne(Router.current().params._id);
 }

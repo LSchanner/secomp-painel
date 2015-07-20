@@ -4,7 +4,7 @@
 adminHook = function() {
     setTimeout(function (){
         if(!Roles.userIsInRole(Meteor.userId(),"moderador")){
-            this.redirect('/');
+            Router.go('/');
         }
     },2000);
     this.next();
@@ -38,6 +38,13 @@ Router.route('/moderador/credenciamento', function () {
     this.render('adminCredenciamento');
 },{ name:'admin-credenciamento',
     onBeforeAction: adminHook });
+
+Router.route('/moderador/credenciamento/:_id', function () {
+  this.layout('painelAdmin');
+  this.render('credenciaUser');
+},{ name:'credenciaUser',
+    onBeforeAction: adminHook });
+
 
 // achievements
 Router.route('/moderador/achievements', function () {

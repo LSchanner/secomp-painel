@@ -1,12 +1,5 @@
 /* Routes e coisas relativas à navegação/interação com o aplicativo */
 
-// Hook de obrigar o login a ser feito na página '/'
-loginHook = function() {
-    if(Meteor.user() === null){
-        this.redirect('login');
-    }
-    this.next();
-};
 
 // Página de login
 Router.route('/login', function () {
@@ -37,64 +30,89 @@ Router.route('/reset-password', function(){
 
 // Dashboard
 Router.route('/', function () {
-    this.redirect('/noticias/');
-},{ name:'dashboard',
-    onBeforeAction: loginHook });
+    if(Meteor.user() === null){
+        this.redirect('login');
+    }else{
+        this.redirect('/noticias/');
+    }
+},{ name:'dashboard'});
 
 
 // Notícias
 Router.route('/noticias', function () {
-    this.layout('painel');
-    this.render('pagnoticias');
-},{ name:'noticias',
-    onBeforeAction: loginHook });
+    if(Meteor.user() === null){
+        this.redirect('login');
+    }else{
+        this.layout('painel');
+        this.render('pagnoticias');
+    }
+},{ name:'noticias'});
 
 // Notícia
 Router.route('/noticias/:_id', function () {
-  this.layout('painel');
-  this.render('shownoticia');
-},{ name:'showNoticia',
-    onBeforeAction: loginHook });
+    if(Meteor.user() === null){
+        this.redirect('login');
+    }else{
+        this.layout('painel');
+        this.render('shownoticia');
+    }
+},{ name:'showNoticia' });
 
 // Página de adicionar notícia
 Router.route('/moderador/noticias/nova/', function () {
-    this.layout('painelAdmin');
-    this.render('novaNoticia');
-},{ name:'novaNoticia',
-    onBeforeAction: adminHook });
+    if(Meteor.user() === null){
+        this.redirect('login');
+    }else{
+        this.layout('painelAdmin');
+        this.render('novaNoticia');
+    }
+},{ name:'novaNoticia'});
 
 // Página de editar noticia
 Router.route('/moderador/noticias/:_id', function () {
-  this.layout('painelAdmin');
-  this.render('editNoticia');
-},{ name:'editNoticia',
-    onBeforeAction: adminHook });
+    if(Meteor.user() === null){
+        this.redirect('login');
+    }else{
+        this.layout('painelAdmin');
+        this.render('editNoticia');
+    }
+},{ name:'editNoticia'});
 
 // Atividades
 Router.route('/atividades', function () {
-    Session.set("searchString","");
-    this.layout('painel');
-    this.render('atividades');
-},{ name:'atividades',
-    onBeforeAction: loginHook });
+    if(Meteor.user() === null){
+        this.redirect('login');
+    }else{
+        Session.set("searchString","");
+        this.layout('painel');
+        this.render('atividades');
+    }
+},{ name:'atividades' });
 
 // Atividade
 Router.route('/atividades/:_id', function () {
-    this.layout('painel');
-    this.render('showatividade');
-},{ name:'atividade',
-    onBeforeAction: loginHook });
+    if(Meteor.user() === null){
+        this.redirect('login');
+    }else{
+        this.layout('painel');
+        this.render('showatividade');
+    }
+},{ name:'atividade' });
 
 // Formulário de atividade
 Router.route('/atividades/:_id/feedback', function () {
-    this.layout('painel');
-    this.render('feedback');
-},{ name:'feedback',
-    onBeforeAction: loginHook });
+    if(Meteor.user() === null){
+        this.redirect('login');
+    }else{
+        this.layout('painel');
+        this.render('feedback');
+    }
+},{ name:'feedback' });
 
 
 // Página de adicionar atividade
 Router.route('/moderador/atividades/nova/', function () {
+
     this.layout('painelAdmin');
     this.render('novaAtividade');
 },{ name:'novaAtividade',
@@ -112,18 +130,24 @@ Router.route('/moderador/atividades/:_id', function () {
 
 // Achievements
 Router.route('/achievements', function () {
-    Session.set("searchString","");
-    this.layout('painel');
-    this.render('achievements');
-},{ name:'achievements',
-    onBeforeAction: loginHook });
+    if(Meteor.user() === null){
+        this.redirect('login');
+    }else{
+        Session.set("searchString","");
+        this.layout('painel');
+        this.render('achievements');
+    }
+},{ name:'achievements'});
 
 // Pagina de cada achievement
 Router.route('/achievements/:_id', function () {
-    this.layout('painel');
-    this.render('showAchievement');
-},{ name:'showAchievement',
-    onBeforeAction: loginHook });
+    if(Meteor.user() === null){
+        this.redirect('login');
+    }else{
+        this.layout('painel');
+        this.render('showAchievement');
+    }
+},{ name:'showAchievement'});
 
 // Página de adicionar achievements
 Router.route('/moderador/achievements/novo/', function () {
