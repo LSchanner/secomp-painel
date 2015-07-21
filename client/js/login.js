@@ -47,18 +47,17 @@ Template.login.helpers({
     }
 });
 
-
-/* Verificacao de tokens */
-Template.login.onCreated(function() {
-    if (Accounts._verifyEmailToken) {
-        Accounts.verifyEmail(Accounts._verifyEmailToken, function(err) {
-            if (err != null) {
-                if (err.message == 'Verify email link expired [403]') {
-                    Session.set('fails', quebrado);
-                }
-            } else {
-                Session.set('sucess', sucesso);
+Accounts.onEmailVerificationLink(function(token,done){
+    console.log(token);
+    Accounts.verifyEmail(token, function(err) {
+        done();
+        if (err != null) {
+            if (err.message == 'Verify email link expired [403]') {
+                Session.set('fails', quebrado);
             }
-        });
-    }
+        } else {
+            Session.set('sucess', sucesso);
+        }
+    });
+    Router.go('/login');
 });
