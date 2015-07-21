@@ -49,7 +49,7 @@ Template.login.helpers({
 
 
 /* Verificacao de tokens */
-Template.login.created = function() {
+Template.login.onCreated(function() {
     if (Accounts._verifyEmailToken) {
         Accounts.verifyEmail(Accounts._verifyEmailToken, function(err) {
             if (err != null) {
@@ -61,4 +61,4 @@ Template.login.created = function() {
             }
         });
     }
-};
+});
