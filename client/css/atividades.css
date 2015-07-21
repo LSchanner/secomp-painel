@@ -3,6 +3,7 @@
 }
 .atividade h2{
     color:#333;
+    height:99px;
 }
 .atividade-full{
     padding:20px;
@@ -17,14 +18,23 @@
     color:#222;
 }
 .atividade-widget {
-    height:360px;
     border:20px solid  white;
     padding:0px;
     overflow:hidden;
 }
+.post-list a:hover{
+    text-decoration:none;
+}
+
+@media only screen and (min-width : 768px) {
+    .atividade-widget{
+        height:390px;
+    }
+     
+}
 .content-widget{
     clear:both;
-    padding-top:10%;
+    padding-top:20px;
 }
 .pontuacao{
     font-size:18px;
