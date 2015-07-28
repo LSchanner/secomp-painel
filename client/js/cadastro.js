@@ -132,5 +132,8 @@ Template.cadastro.helpers({
     },
     patrocinadores:function(){
         return Patrocinadores.find();
+    },
+    inscricoes_abertas:function(){
+        return Settings.inscricoes_abertas;
     }
 });

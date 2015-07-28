@@ -1,221 +1,224 @@
 <template name="cadastro">
-<style>
+    <style>
 body{
     background-color:#F8F7F6;
 }
-</style>
+    </style>
 
-<div class="container">
-    <div style="margin-top:50px;" class="mainbox col-md-10 col-md-offset-1 ">
-        <div class="panel panel-primary" >
-            <div class="panel-heading">
-                <div class="panel-title">Cadastro no Painel</div>
-            </div>
+    <div class="container">
+        <div style="margin-top:50px;" class="mainbox col-md-10 col-md-offset-1 ">
+            <div class="panel panel-primary" >
+                <div class="panel-heading">
+                    <div class="panel-title">Cadastro no Painel</div>
+                </div>
 
+                <div style="" class="panel-body" >
+                {{#if inscricoes_abertas}}
 
-            <div style="" class="panel-body" >
+                    {{#if verificacaoEmail}}
 
-                {{#if verificacaoEmail}}
+                    <p>Um email foi enviado ao seu endereço de email cadastrado. Você precisa confirmar antes de fazer login</p>
+                    <p>Se o email demorar mais que 1 minuto, digite seu email abaixo que enviaremos outro</p>
+                    <form id='resendEmail' class='form-horizontal' role='form'>
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+                            <input type="email" class="form-control" name="emailresendverification"  placeholder="Email">
+                        </div>
 
-                <p>Um email foi enviado ao seu endereço de email cadastrado. Você precisa confirmar antes de fazer login</p>
-                <p>Se o email demorar mais que 1 minuto, digite seu email abaixo que enviaremos outro</p>
-                <form id='resendEmail' class='form-horizontal' role='form'>
-                    <div class="input-group">
-                        <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-                        <input type="email" class="form-control" name="emailresendverification"  placeholder="Email">
-                    </div>
+                        <div style="margin-top:30px">
+                            {{#if emailsent}}
+                            <div class="alert-success alert">
+                                O Email de confirmação foi reenviado.
+                            </div>
+                            {{else}}
+                            <div class="form-group">
+                                <div class="col-sm-12 controls">
+                                    <button type="submit" class="btn btn-primary"> Reenviar email </button>
+                                </div>
+                            </div>
+                            {{/if}}
+                        </div>
+                    </form>
 
-                    <div style="margin-top:30px">
-                    {{#if emailsent}}
-                    <div class="alert-success alert">
-                        O Email de confirmação foi reenviado.
-                    </div>
                     {{else}}
-                    <div class="form-group">
-                        <div class="col-sm-12 controls">
-                            <button type="submit" class="btn btn-primary"> Reenviar email </button>
+
+
+                    <form id="formcadastro" class="form-horizontal" role="form">
+
+                        <div class="row">
+                            <div class="col-md-4">
+                                <h3 class="section-heading"> Informações Gerais </h3>
+
+                                <div  class="input-group">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                    <input type="text" class="form-control" name="nome" value="" placeholder="Nome Completo">
+                                </div>
+
+                                <div   class="input-group">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+                                    <input type="email" class="form-control" name="email"  placeholder="Email">
+                                </div>
+
+                                <div  class="input-group">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                                    <input type="password" class="form-control" name="password" placeholder="Senha">
+                                </div>
+
+                                <div  class="input-group">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                                    <input type="password" class="form-control" name="password2" placeholder="Confirme sua Senha">
+                                </div>
+
+                                <div  class="input-group">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                    <input type="text" class="form-control" name="cpf"  placeholder="CPF">
+                                </div>
+
+                                <div  class="input-group">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                    <input type="text" class="form-control" name="rg"  placeholder="RG">
+                                </div>
+
+                                <div  class="input-group">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-phone"></i></span>
+                                    <input type="text" class="form-control" name="telefone"  placeholder="Número de Telefone">
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <h3 class="section-heading"> Dados Acadêmicos </h3>
+                                <label for="instituicao">Em que universidade você estuda?</label>
+                                <div  class="input-elem">
+                                    <select  class="form-control select-uni" name="instituicao">
+                                        <option disabled selected value=""> </option>
+                                        <option value="UNICAMP">Unicamp</option>
+                                        <option value="USP">USP</option>
+                                        <option value="UNESP">UNESP</option>
+                                        <option value="UFSCar">UFSCar</option>
+                                        <option value="UNIFESP">UNIFESP</option>
+                                        <option value="Mackenzie">Mackenzie</option>
+                                        <option value="PUC-Campinas">PUC-Campinas</option>
+                                        <option value="PUC-São Paulo">PUC-São Paulo</option>
+                                        <option value="outra">Outra</option>
+                                    </select>
+                                </div>
+                                {{#if unicamper}}
+                                <div  class="input-group">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                    <input type="text" class="form-control" name="ra" placeholder="RA">
+                                </div>
+                                {{/if}}
+                                {{#if outra}}
+                                <div  class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-university"></i></span>
+                                    <input type="text" class="form-control" name="outra" placeholder="Qual Outra?">
+                                </div>
+                                {{/if}}
+
+                                <label for="curso">Qual é o seu curso?</label>
+                                <div  class="input-elem">
+                                    <select class="form-control " name="curso" >
+                                        <option disabled selected value="">  </option>
+                                        <option value="EC">Engenharia de Computação</option>
+                                        <option value="CC">Ciência da Computação</option>
+                                        <option value="EE">Engenharia Elétrica</option>
+                                        <option value="AS">Análise de Sistemas</option>
+                                        <option value="SI">Sistemas de Informação</option>
+                                        <option value="ECA">Engenharia de Controle e Automação</option>
+                                        <option value="MEC">Engenharia Mecânica</option>
+                                        <option value="TELECOM">Engenharia de Telecomunicações</option>
+                                        <option value="Civil">Engenharia Civíl</option>
+                                        <option value="EQ">Engenharia Química</option>
+                                        <option value="Mat">Matemática</option>
+                                        <option value="Estat">Estatística</option>
+                                        <option value="Física">Física</option>
+                                        <option value="Outros">Outros</option>
+                                    </select>
+                                </div>
+
+                                <label for="ingresso">Em que ano você ingressou no seu curso?</label>
+                                <div  class="input-elem">
+                                    <select  class="form-control" name="ingresso">
+                                        <option disabled selected value=""> </option>
+                                        <option value="2015">2015</option>
+                                        <option value="2014">2014</option>
+                                        <option value="2013">2013</option>
+                                        <option value="2012">2012</option>
+                                        <option value="2011">2011</option>
+                                        <option value="2010">2010</option>
+                                        <option value="anterior">anterior à 2010</option>
+                                    </select>
+                                </div>
+
+                                <label for="formatura">Em que ano você espera se formar?</label>
+                                <div  class="input-elem">
+                                    <select  class="form-control" name="formatura">
+                                        <option disabled selected value=""></option>
+                                        <option value="formado">Já me graduei</option>
+                                        <option value="2015">2015</option>
+                                        <option value="2016">2016</option>
+                                        <option value="2017">2017</option>
+                                        <option value="2018">2018</option>
+                                        <option value="2019">2019</option>
+                                        <option value="2020">2020</option>
+                                        <option value="posterior">Depois de 2020</option>
+                                    </select>
+                                </div>
+                            </div>
+
+
+                            <div class="col-md-4">
+                                <h3 class="section-heading"> Pesquisa de interesse </h3>
+                                Quais destas empresas lhe interessam?
+                                <div class="row lista-patrocinadores">
+                                    {{#each patrocinadores}}
+                                    <div id="{{nome}}" class="checkbox col-md-6">
+                                        <label>
+                                            <input type="checkbox" name="{{nome}}"> {{nome}}
+                                        </label>
+                                    </div>
+                                    {{/each}}
+                                </div>
+                            </div>
+
                         </div>
-                    </div>
-                    {{/if}}
-                    </div>
-                </form>
-
-                {{else}}
-
-
-                <form id="formcadastro" class="form-horizontal" role="form">
-
-                    <div class="row">
-                    <div class="col-md-4">
-                    <h3 class="section-heading"> Informações Gerais </h3>
-
-                    <div  class="input-group">
-                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                        <input type="text" class="form-control" name="nome" value="" placeholder="Nome Completo">
-                    </div>
-
-                    <div   class="input-group">
-                        <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-                        <input type="email" class="form-control" name="email"  placeholder="Email">
-                    </div>
-
-                    <div  class="input-group">
-                        <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                        <input type="password" class="form-control" name="password" placeholder="Senha">
-                    </div>
-
-                    <div  class="input-group">
-                        <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                        <input type="password" class="form-control" name="password2" placeholder="Confirme sua Senha">
-                    </div>
-
-                    <div  class="input-group">
-                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                        <input type="text" class="form-control" name="cpf"  placeholder="CPF">
-                    </div>
-
-                    <div  class="input-group">
-                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                        <input type="text" class="form-control" name="rg"  placeholder="RG">
-                    </div>
-
-                    <div  class="input-group">
-                        <span class="input-group-addon"><i class="glyphicon glyphicon-phone"></i></span>
-                        <input type="text" class="form-control" name="telefone"  placeholder="Número de Telefone">
-                    </div>
-                    </div>
-
-                    <div class="col-md-4">
-                    <h3 class="section-heading"> Dados Acadêmicos </h3>
-                    <label for="instituicao">Em que universidade você estuda?</label>
-                    <div  class="input-elem">
-                        <select  class="form-control select-uni" name="instituicao">
-                            <option disabled selected value=""> </option>
-                            <option value="UNICAMP">Unicamp</option>
-                            <option value="USP">USP</option>
-                            <option value="UNESP">UNESP</option>
-                            <option value="UFSCar">UFSCar</option>
-                            <option value="UNIFESP">UNIFESP</option>
-                            <option value="Mackenzie">Mackenzie</option>
-                            <option value="PUC-Campinas">PUC-Campinas</option>
-                            <option value="PUC-São Paulo">PUC-São Paulo</option>
-                            <option value="outra">Outra</option>
-                        </select>
-                    </div>
-                    {{#if unicamper}}
-                    <div  class="input-group">
-                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                        <input type="text" class="form-control" name="ra" placeholder="RA">
-                    </div>
-                    {{/if}}
-                    {{#if outra}}
-                        <div  class="input-group">
-                            <span class="input-group-addon"><i class="fa fa-university"></i></span>
-                            <input type="text" class="form-control" name="outra" placeholder="Qual Outra?">
-                        </div>
-                    {{/if}}
-
-                    <label for="curso">Qual é o seu curso?</label>
-                    <div  class="input-elem">
-                        <select class="form-control " name="curso" >
-                            <option disabled selected value="">  </option>
-                            <option value="EC">Engenharia de Computação</option>
-                            <option value="CC">Ciência da Computação</option>
-                            <option value="EE">Engenharia Elétrica</option>
-                            <option value="AS">Análise de Sistemas</option>
-                            <option value="SI">Sistemas de Informação</option>
-                            <option value="ECA">Engenharia de Controle e Automação</option>
-                            <option value="MEC">Engenharia Mecânica</option>
-                            <option value="TELECOM">Engenharia de Telecomunicações</option>
-                            <option value="Civil">Engenharia Civíl</option>
-                            <option value="EQ">Engenharia Química</option>
-                            <option value="Mat">Matemática</option>
-                            <option value="Estat">Estatística</option>
-                            <option value="Física">Física</option>
-                            <option value="Outros">Outros</option>
-                        </select>
-                    </div>
-
-                    <label for="ingresso">Em que ano você ingressou no seu curso?</label>
-                    <div  class="input-elem">
-                        <select  class="form-control" name="ingresso">
-                            <option disabled selected value=""> </option>
-                            <option value="2015">2015</option>
-                            <option value="2014">2014</option>
-                            <option value="2013">2013</option>
-                            <option value="2012">2012</option>
-                            <option value="2011">2011</option>
-                            <option value="2010">2010</option>
-                            <option value="anterior">anterior à 2010</option>
-                        </select>
-                    </div>
-
-                    <label for="formatura">Em que ano você espera se formar?</label>
-                    <div  class="input-elem">
-                        <select  class="form-control" name="formatura">
-                            <option disabled selected value=""></option>
-                            <option value="formado">Já me graduei</option>
-                            <option value="2015">2015</option>
-                            <option value="2016">2016</option>
-                            <option value="2017">2017</option>
-                            <option value="2018">2018</option>
-                            <option value="2019">2019</option>
-                            <option value="2020">2020</option>
-                            <option value="posterior">Depois de 2020</option>
-                        </select>
-                    </div>
-                        </div>
-                    
-
-                        <div class="col-md-4">
-                    <h3 class="section-heading"> Pesquisa de interesse </h3>
-                    Quais destas empresas lhe interessam?
-                    <div class="row lista-patrocinadores">
-                        {{#each patrocinadores}}
-                        <div id="{{nome}}" class="checkbox col-md-6">
+                        <div style="margin-top:30px" class="checkbox">
                             <label>
-                                <input type="checkbox" name="{{nome}}"> {{nome}}
+                                <input type="checkbox" name="accepted" unchecked>
+                                <p>Eu concordo com os termos descritos <a target="_blank" href="/condicoes"> no contrato </a>, e desejo me increver na SECOMP 2015</p>
                             </label>
                         </div>
-                        {{/each}}
-                    </div>
+
+                        <div  class="form-group">
+                            <div class="col-sm-12 controls">
+                                <button type="submit" class="btn btn-primary"> Fazer Cadastro </button>
+                            </div>
                         </div>
 
-                    </div>
-                    <div style="margin-top:30px" class="checkbox">
-                        <label>
-                            <input type="checkbox" name="accepted" unchecked>
-                            <p>Eu concordo com os termos descritos <a target="_blank" href="/condicoes"> no contrato </a>, e desejo me increver na SECOMP 2015</p>
-                        </label>
-                    </div>
+                    </form>
 
-                    <div  class="form-group">
-                        <div class="col-sm-12 controls">
-                            <button type="submit" class="btn btn-primary"> Fazer Cadastro </button>
+                    {{#if erroDeCadastro}}
+                    <div class="alert-danger alert">
+                        {{{erroDeCadastro}}}
+                    </div>
+                    {{/if}}
+                    <div class="col-md-12 control">
+                        <div style="border-top: 1px solid#888; padding-top:15px; font-size:85%" >
+                            Já é cadastrado?
+                            <a href="/login">
+                                Faça login.
+                            </a>
                         </div>
                     </div>
 
-            </form>
+                    {{/if}}
+                    {{else}}
+                    <h3> Inscrições Fechadas. </h3>
+                    {{/if}}
 
-            {{#if erroDeCadastro}}
-            <div class="alert-danger alert">
-                {{{erroDeCadastro}}}
-            </div>
-            {{/if}}
-            <div class="col-md-12 control">
-                <div style="border-top: 1px solid#888; padding-top:15px; font-size:85%" >
-                    Já é cadastrado?
-                    <a href="/login">
-                        Faça login.
-                    </a>
                 </div>
             </div>
-
-            {{/if}}
-
         </div>
-    </div>
-</div>
 
-</div>
+    </div>
 </template>

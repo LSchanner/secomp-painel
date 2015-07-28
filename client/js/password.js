@@ -21,9 +21,10 @@ var doneCallback;
 Accounts.onResetPasswordLink(function (token, done) {
     Router.go('/reset-password');
     Session.set('resetPassword', token);
-    Session.set('alert', null);
+    Session.set('alert',null);
     doneCallback = done;
 });
+
 
 Template.ResetPassword.events({
     //Funcao para mudanca de senha
@@ -37,6 +38,7 @@ Template.ResetPassword.events({
                 return false;
             }
 
+            Session.set('alert', "Redefinindo senha, aguarde...");
             Accounts.resetPassword(Session.get('resetPassword'), new_password, function(Error) {
                 if (Error) {
                     if (Error.message === 'Token expired [403]') {
@@ -51,7 +53,6 @@ Template.ResetPassword.events({
                     if (doneCallback) {
                         doneCallback();
                     }
-                    Router.go('/');
                 }
             });
         }

@@ -78,6 +78,9 @@ Meteor.methods({
 
 /* Para enviar a verificação de email */
 Accounts.onCreateUser(function(options, user) {
+    if(!(Settings.inscricoes_abertas)){
+        return null;
+    }
     user.profile = options.profile;
 
     // we wait for Meteor to create the user before sending an email

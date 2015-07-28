@@ -93,10 +93,10 @@ Template.showatividade.helpers({
     },
     semInscrições: function(){
         var cred = Credenciamentos.findOne({user_id:Meteor.userId()});
-        return Atividades.find({inscritos:cred._id}).count() >= num_max_inscricoes;
+        return Atividades.find({inscritos:cred._id}).count() >= Settings.num_max_inscricoes;
     },
     num_max_inscricoes: function(){
-        return num_max_inscricoes;
+        return Settings.num_max_inscricoes;
     },
     compareceu: function(){
         var atividade = Atividades.findOne(Router.current().params._id);
