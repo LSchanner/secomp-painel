@@ -20,6 +20,11 @@ Meteor.methods({
     inscricaoAtividade: function(atividadeId){
         var atividade = Atividades.findOne(atividadeId);
         var cred = Credenciamentos.findOne({user_id:this.userId});
+
+        if(atividade.inscritos == null){
+            Atividades.update(atividadeId,{$set:{inscritos:[]}});
+            atividade.inscritos = [];
+        }
         if(atividade.requires_inscricao &&
             atividade.inscritos.length < atividade.num_max_inscritos
             && Atividades.find({inscritos:cred._id}).count() < num_max_inscricoes){

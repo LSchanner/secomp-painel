@@ -1,1 +1,1 @@
-num_max_inscricoes = 1;
+num_max_inscricoes = 2;

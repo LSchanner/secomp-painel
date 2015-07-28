@@ -3,7 +3,6 @@
 }
 .atividade h2{
     color:#333;
-    height:99px;
 }
 .atividade-full{
     padding:20px;
@@ -30,7 +29,9 @@
     .atividade-widget{
         height:390px;
     }
-     
+    .atividade h2{
+        height:99px;
+    }
 }
 .content-widget{
     clear:both;
