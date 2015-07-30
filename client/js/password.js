@@ -19,10 +19,10 @@ Template.forgotPassword.helpers({
 var doneCallback;
 //Funcao chamada quando acessam o link de verificacao
 Accounts.onResetPasswordLink(function (token, done) {
-    Router.go('/reset-password');
     Session.set('resetPassword', token);
     Session.set('alert',null);
     doneCallback = done;
+    Router.go('/reset-password');
 });
 
 
