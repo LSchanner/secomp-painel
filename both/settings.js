@@ -1,4 +1,4 @@
 Settings = {
     num_max_inscricoes: 2 ,
-    inscricoes_abertas: false 
+    inscricoes_abertas: true 
 }
