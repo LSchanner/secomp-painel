@@ -46,6 +46,9 @@ Template.credenciaUser.helpers({
             return true;
         }
         return usr.pago
+    },
+    jaCredenciado:function(){
+        return Session.get('jaCredenciado');
     }
 
 });
@@ -54,7 +57,11 @@ Template.credenciaUser.events({
     "submit #FormCredencia":function(event){
         var cred_id = event.target.idCredenciamento.value;
         if(cred_id){
-            Meteor.call("credenciaUser",Router.current().params._id,cred_id);
+            Meteor.call("credenciaUser",Router.current().params._id,cred_id,function(error, result){
+                if(result){
+                    Session.set('jaCredenciado', result);
+                }
+            });
         }
         return false;
     }

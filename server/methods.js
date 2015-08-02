@@ -1,9 +1,11 @@
 Meteor.methods({
     credenciaUser: function(userId,credId){
-        if(!authAdmin(this.userId)) return;
+        if(!authAdmin(this.userId)) return "Não usuario";
 
-        if(Credenciamentos.findOne({$or:[{user_id: userId},{_id:credId}]})){
-            return false;
+        var cred = Credenciamentos.findOne({$or:[{user_id: userId},{_id:credId}]})
+        if(cred){
+            var user = Meteor.users.findOne(cred.user_id);
+            return ("Número já credenciado com " + user.profile.nome + "; Faça uma verificação.");
         }
         else{
             var credenciamento = {
@@ -16,6 +18,8 @@ Meteor.methods({
                 };
             Credenciamentos.insert(credenciamento);
         }
+
+        return;
     },
     inscricaoAtividade: function(atividadeId){
         var atividade = Atividades.findOne(atividadeId);
@@ -64,7 +68,7 @@ Meteor.methods({
             return {pergunta:key,resposta: Number(surveyItems[key])}
         });
 
-        var questionario = { 
+        var questionario = {
             credId: Credenciamentos.findOne({user_id:this.userId})._id,
             items: surveyItems
         }
@@ -74,7 +78,7 @@ Meteor.methods({
         }
 
         if(Atividades.find({'feedback.credId':this.userId}).count() == 0){
-            Atividades.update(atividadeId, 
+            Atividades.update(atividadeId,
                     {$addToSet:{feedback:questionario}});
         }
         Meteor.call('updatePontuacao',questionario.credId);

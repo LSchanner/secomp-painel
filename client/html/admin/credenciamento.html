@@ -51,7 +51,7 @@
             {{profile.cpf}}
         </td>
     </tr>
-</template> 
+</template>
 
 <template name="credenciaUser">
 
@@ -74,19 +74,23 @@
 <!-- /.row -->
 <h3> Informações do usuário </h3>
 
+{{#if jaCredenciado}}
+    <div class="alert alert-danger"> {{ jaCredenciado }} </div>
+{{/if}}
+
 {{#with user}}
     {{> UserProfile}}
 {{/with}}
 
 {{#if pago}}
-<div class="alert alert-success"> Pagamento confirmado </div>
+    <div class="alert alert-success"> Pagamento confirmado </div>
 {{else}}
-<div class="alert alert-danger"> Pagamento não confirmado </div>
+    <div class="alert alert-warning"> Pagamento não confirmado </div>
 {{/if}}
 
 {{#if credId user._id}}
 
-<p class="profileItem"> <strong> Id de Credenciamento:</strong> {{credId user._id}} </p> 
+<p class="profileItem"> <strong> Id de Credenciamento:</strong> {{credId user._id}} </p>
 
 {{else}}
 
@@ -109,11 +113,7 @@
 <template name="UserProfile">
 
 {{#each arrayfi profile}}
-<p class="profileItem"> <strong> {{name}}:</strong> {{value}} </p> 
+<p class="profileItem"> <strong> {{name}}:</strong> {{value}} </p>
 {{/each}}
 
 </template>
-
-
-
-
