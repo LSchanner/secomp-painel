@@ -66,7 +66,8 @@ Router.route('/moderador/noticias/nova/', function () {
         this.layout('painelAdmin');
         this.render('novaNoticia');
     }
-},{ name:'novaNoticia'});
+},{ name:'novaNoticia',
+    onBeforeAction: adminHook});
 
 // Página de editar noticia
 Router.route('/moderador/noticias/:_id', function () {
@@ -76,7 +77,8 @@ Router.route('/moderador/noticias/:_id', function () {
         this.layout('painelAdmin');
         this.render('editNoticia');
     }
-},{ name:'editNoticia'});
+},{ name:'editNoticia',
+    onBeforeAction: adminHook});
 
 // Atividades
 Router.route('/atividades', function () {
@@ -163,5 +165,3 @@ Router.route('/moderador/achievements/:_id', function () {
     this.render('editAchievement');
 },{ name:'editAchievement',
     onBeforeAction: adminHook });
-
-
