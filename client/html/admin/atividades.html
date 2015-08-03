@@ -243,6 +243,11 @@
     <hr>
 </div>
 
+<div>
+    <p>
+        Número de Presentes : {{numero_presentes}}
+    </P>
+</div>
 
 {{#if requires_inscricao}}
 <div>
@@ -277,7 +282,7 @@
             <th> Compareceu </th>
         </thead>
         <tbody>
-            {{#each presentes}}
+            {{#each presentes }}
                 {{> userOnActivities}}
             {{/each}}
         </tbody>

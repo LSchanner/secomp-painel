@@ -4,9 +4,9 @@ Template.adminCredenciamento.helpers({
     users: function(){
         search = Session.get('searchString') ;
         return Meteor.users.find({
-            $or:[{'profile.nome':{$regex:search}},
-               {'emails.address':{$regex:search}},
-               {'profile.cpf':{$regex:search}},
+            $or:[{'profile.nome':{$regex:search, $options:'i'}},
+               {'emails.address':{$regex:search, $options:'i'}},
+               {'profile.cpf':{$regex:search, $options:'i'}},
             ]
         });
     }

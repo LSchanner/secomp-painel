@@ -139,6 +139,7 @@ var get_atividade = function(){
     return Atividades.findOne(Router.current().params._id);
 }
 
+
 Template.feedback.helpers({
     atividade: get_atividade,
     format: function(date) {
@@ -150,6 +151,7 @@ Template.feedback.helpers({
     },
     perguntas: get_perguntas
 });
+
 Template.feedback.events({
     'submit #feedback':function(event) {
         surveyItems = {};

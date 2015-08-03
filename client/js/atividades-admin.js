@@ -51,6 +51,10 @@ Template.editAtividade.helpers({
     },
     editar: function(){
         return Session.get('editar');
+    },
+    numero_presentes: function(){
+        var atividade = Atividades.findOne(Router.current().params._id);
+        return atividade.presentes.length;
     }
 });
 
@@ -123,6 +127,7 @@ Template.editAtividade.events({
                 $addToSet:{presentes:numero}
             });
         }
+        event.target.credenciado.value = "";
         return false;
     }
 });
