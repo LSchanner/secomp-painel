@@ -51,6 +51,10 @@ Template.editAtividade.helpers({
     },
     editar: function(){
         return Session.get('editar');
+    },
+    backward: function(list){
+        list.reverse();
+        return list;
     }
 });
 
@@ -117,7 +121,7 @@ Template.editAtividade.events({
         Session.set('editar', true);
     },
     "submit #inserir_credenciado": function(event){
-        var numero = event.target.credenciado.value;
+        var numero = String(Number(event.target.credenciado.value));
         if(Credenciamentos.findOne(numero)){
             Atividades.update(Router.current().params._id,{
                 $addToSet:{presentes:numero}
