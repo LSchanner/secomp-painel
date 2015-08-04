@@ -107,11 +107,8 @@ Template.showatividade.helpers({
         var presenca =  (atividade.presentes.indexOf(credId) != -1);
         var feedback =  (feedbacks.indexOf(credId) != -1);
 
-        console.log(presenca);
-        console.log(credId);
         return( presenca && !feedback);
     }
-
 });
 
 Template.showatividade.events({
@@ -132,8 +129,8 @@ Template.Atividade.helpers({
 });
 
 var get_perguntas = function(){
-        var modelo = get_atividade().modelo;
-        return Perguntas.find({modelos:modelo});
+    var modelo = get_atividade().modelo;
+    return Perguntas.find({modelos:modelo});
 }
 var get_atividade = function(){
     return Atividades.findOne(Router.current().params._id);

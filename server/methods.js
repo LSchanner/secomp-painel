@@ -77,7 +77,7 @@ Meteor.methods({
             return;
         }
 
-        if(Atividades.find({'feedback.credId':this.userId}).count() == 0){
+        if(Atividades.find({'feedback.credId':questionario.credId}).count() == 0){
             Atividades.update(atividadeId,
                     {$addToSet:{feedback:questionario}});
         }
