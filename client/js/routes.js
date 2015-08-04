@@ -24,7 +24,6 @@ Router.route('/recover-password',function(){
 // Resetar a senha
 Router.route('/reset-password', function(){
     this.render('ResetPassword');
-    //Session.set('alert', 'Pagina não disponivel');
 },{name:'reset-password'});
 
 

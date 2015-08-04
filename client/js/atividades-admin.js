@@ -55,6 +55,10 @@ Template.editAtividade.helpers({
     numero_presentes: function(){
         var atividade = Atividades.findOne(Router.current().params._id);
         return atividade.presentes.length;
+    },
+    backward: function(list){
+        list.reverse();
+        return list;
     }
 });
 
