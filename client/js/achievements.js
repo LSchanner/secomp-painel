@@ -52,6 +52,16 @@ Template.editAchievement.events({
     },
     'click #edit-button': function(event){
         Session.set('editar', true);
+    },
+    "submit #inserir_credenciado": function(event){
+        var numero = event.target.credenciado.value;
+        if(Credenciamentos.findOne(numero)){
+            Achievements.update(Router.current().params._id,{
+                $addToSet:{credenciados:numero}
+            });
+        }
+        event.target.credenciado.value = "";
+        return false;
     }
 });
 
