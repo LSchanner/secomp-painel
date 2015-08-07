@@ -29,6 +29,7 @@
         <th> Nome </th>
         <th> Email </th>
         <th> CPF </th>
+        <th> Pontos </th>
     </thead>
     <tbody>
     {{#each users}}
@@ -49,6 +50,9 @@
         </td>
         <td>
             {{profile.cpf}}
+        </td>
+        <td>
+            {{pontuacao _id}}
         </td>
     </tr>
 </template>

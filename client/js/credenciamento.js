@@ -24,6 +24,19 @@ Template.userListItem.events({
     }
 });
 
+Template.userListItem.helpers({
+    pontuacao : function(user_id){
+        var cred = Credenciamentos.findOne({user_id:user_id});
+        if(cred){
+            return cred.pontos;
+        }
+        else{
+            return "Não Credenciado";
+        }
+
+    },
+})
+
 
 var getUser = function(){
     return Meteor.users.findOne(Router.current().params._id);
