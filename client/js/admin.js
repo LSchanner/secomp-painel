@@ -55,10 +55,10 @@ Router.route('/moderador/achievements', function () {
     onBeforeAction: adminHook });
 
 // loja
-Router.route('/moderador/loja', function () {
+Router.route('/moderador/relatoriopresenca', function () {
     this.layout('painelAdmin');
-    this.render('adminLoja');
-},{ name:'admin-loja',
+    this.render('relatorio-presenca');
+},{ name:'relatorio-presenca',
     onBeforeAction: adminHook });
 
 

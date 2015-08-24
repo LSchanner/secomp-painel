@@ -164,3 +164,4 @@ Router.route('/moderador/achievements/:_id', function () {
     this.render('editAchievement');
 },{ name:'editAchievement',
     onBeforeAction: adminHook });
+
