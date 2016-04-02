@@ -26,24 +26,19 @@ e coloque o código a abaixo nela, substituindo as letras maiusculas do jeito qu
         /* Criação de um usuário x não admin */
         Accounts.createUser({
             username: 'USERNAME',
-            email: 'EMAIL',
-            password: 'PASSWORD',
+            email: 'henrique.facioli@gmail.com',
+            password: 'admin',
             profile:{
-                nome: 'NOME'
+                nome: 'nome',
+                cpf: 'cpf',
+                rg: 'rg',
+                tel: 'tel',
+                uni: 'UNICAMP',
+                curso: 'EC',
+                ra: '111111',
+                formatura: '2020'
             }
-            });
-
-            /* Criação do admin */
-            var id = Accounts.createUser({
-                username: 'admin',
-                email: 'admin@secomp.com',
-                password: 'admin',
-                profile:{
-                    nome: 'admin'
-                }
-
-            });
-        Meteor.users.update({_id:id},{$set:{admin:true}});
+        });
     }
 
 
