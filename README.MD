@@ -18,7 +18,7 @@ já deve ser possível acessar ao painel atravez de [http://localhost:3000](http
 ## Criando sua conta a partir de um arquivo
 (Este método não é o mais seguro e deve ser evitado, já que mantem a senha em plain text, use somente para teste)
 
-crie um arquivo chamado `fixture.js` em `server/fixture.js`
+crie um arquivo chamado `fixtures.js` em `server/fixtures.js`
 e coloque o código a abaixo nela, substituindo as letras maiusculas do jeito que desejar.
 
 
