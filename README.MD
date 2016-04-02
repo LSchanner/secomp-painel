@@ -2,14 +2,15 @@
 este é o sistema de gerenciamento da semana de computação da unicamp
 
 ## Instalando
-Mude o arquivo server/email para um email válido com sua senha e servidor
+Mude o arquivo server/email-configuration.js para um email válido com sua senha e servidor
 
     smtp = {
-        username: 'yy@xx',
-        password: 'xyz',
-        server:   'lal.lal.com',
-        port:     '25'
+        username: '@gmail.com',   // email
+        password: '',
+        server:   'smtp.gmail.com',  // mail.server.com
+        port: 465 // ex.25 ou 465
     }
+
 
 Rode o comando `meteor run`
 já deve ser possível acessar ao painel atravez de [http://localhost:3000](http://localhost:3000)
