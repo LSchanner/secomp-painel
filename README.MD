@@ -1,23 +1,24 @@
 #Secomp Painel
 este é o sistema de gerenciamento da semana de computação da unicamp
 
-# Instalando
-
+## Instalando
 Mude o arquivo server/email para um email válido com sua senha e servidor
 
+    smtp = {
+        username: 'yy@xx',
+        password: 'xyz',
+        server:   'lal.lal.com',
+        port:     '25'
+    }
 
-    username: 'yy@xx',
-    password: 'xyz',
-    server:   'lal.lal.com',
-    port:     '25'
-
-
-Rode o comando meteor run
-cadastre seu usuário e confirme seu email
+Rode o comando `meteor run`
+já deve ser possível acessar ao painel atravez de [http://localhost:3000](http://localhost:3000)
 
 ## Criando sua conta a partir de um arquivo
-crie um arquivo chamado fixture em server/fixture.js
-e coloque o código a abaixo nela
+(Este método não é o mais seguro e deve ser evitado, já que mantem a senha em plain text, use somente para teste)
+
+crie um arquivo chamado `fixture.js` em `server/fixture.js`
+e coloque o código a abaixo nela, substituindo as letras maiusculas do jeito que desejar.
 
 
     if ( Meteor.users.find().count() === 0 ) {
@@ -43,6 +44,10 @@ e coloque o código a abaixo nela
             });
         Meteor.users.update({_id:id},{$set:{admin:true}});
     }
+
+
+## Criando conta a partir do sistema
+Para criar sua conta é só seguir pelo sistema, usando o cadastramento de contas como normal, para se tornar admin, leita Como entrar como admin
 
 ## Como entrar como admin
 Para tornar seu usuário admin, assegure- de que ele será o primeiro a entrar no servidor:3000/admin
