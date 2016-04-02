@@ -4,10 +4,13 @@ este é o sistema de gerenciamento da semana de computação da unicamp
 # Instalando
 
 Mude o arquivo server/email para um email válido com sua senha e servidor
+
+
     username: 'yy@xx',
     password: 'xyz',
     server:   'lal.lal.com',
     port:     '25'
+
 
 Rode o comando meteor run
 cadastre seu usuário e confirme seu email
