@@ -1,4 +1,6 @@
-/* ---- novoAchievement ---- */
+/* novoAchievement
+ * Cria um novo Achievement
+ */
 Template.novoAchievement.events({
     'submit #add-achievement': function(event) {
         var title = event.target.title.value;
@@ -22,7 +24,9 @@ Template.novoAchievement.events({
     }
 });
 
-/* ---- editAchievement ----*/
+/* editAchievement
+ * edita um achievement
+ */
 Template.editAchievement.events({
     'submit #edit-achievement':function(event){
         var title = event.target.title.value;
@@ -38,21 +42,22 @@ Template.editAchievement.events({
                 }
             });
             Router.go('/moderador/achievements/');
-        }
-
-        else{
+        }else{
             alert('Por favor preencha todos os campos');
         }
 
         return false;
     },
+
     'click #delete-button': function(event){
         Achievements.remove(Router.current().params._id);
         Router.go('/moderador/noticias/');
     },
+
     'click #edit-button': function(event){
         Session.set('editar', true);
     },
+
     "submit #inserir_credenciado": function(event){
         var numero = event.target.credenciado.value;
         if(Credenciamentos.findOne(numero)){
@@ -74,7 +79,9 @@ Template.editAchievement.helpers({
     },
 });
 
-/* ---- showAchievement ---- */
+/* showAchievement
+ * Helpers e events para mostrar os achievements na página
+ */
 Template.showAchievement.helpers({
     achievement: function(){
         return Achievements.findOne(Router.current().params._id);
@@ -101,7 +108,8 @@ Template.showAchievement.events({
 });
 
 
-/* ---- ---- */
+/* Para notificar se há achievements pendentes e completos
+ */
 Template.Achievement.helpers({
     completou: function(achievement){
         var cred = Credenciamentos.findOne( {user_id:Meteor.userId()} );
@@ -113,7 +121,9 @@ Template.Achievement.helpers({
     }
 });
 
-/* ---- ListaAchievements ---- */
+/* ListaAchievements
+ * gera a lista de achievements para ser mostrada
+ */
 Template.ListaAchievements.helpers({
     searched_achievements: function(){
         var search = Session.get('searchString') ;
@@ -131,9 +141,9 @@ Template.ListaAchievements.events({
     }
 });
 
-
-
-/* ---- userOnAchievements ---- */
+/* userOnAchievements
+ * Atualiza que o usuário completou o achievements
+ */
 Template.userOnAchievements.events({
     "click .toggle-checked": function (event) {
         var achievement = Achievements.findOne(Router.current().params._id);
@@ -144,8 +154,7 @@ Template.userOnAchievements.events({
                 $addToSet:{credenciados:credId},
                 $pull:{pedidos:credId}
             });
-        }
-        else{
+        }else{
             Achievements.update(Router.current().params._id,{
                     $pull:{credenciados:credId}
             });
@@ -153,7 +162,6 @@ Template.userOnAchievements.events({
         Meteor.call('updatePontuacao',credId);
     }
 });
-
 Template.userOnAchievements.helpers({
     checked: function() {
         var listaFizeram = (Achievements.findOne(Router.current().params._id)).credenciados;

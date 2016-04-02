@@ -39,11 +39,13 @@
                 <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> {{username}} <b class="caret"></b></a>
                     <ul class="dropdown-menu">
+
                         {{#if isMod}}
                         <li>
                             <a href="/moderador"><i class="fa fa-fw fa-gear"></i> Página de Moderação</a>
                         </li>
                         {{/if}}
+
                         <li class="divider"></li>
                         <li id="logout-button">
                             <a href="#"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
@@ -76,7 +78,7 @@
                     Para se credenciar, você precisará pagar a taxa de inscrição. Você pode pagar acessando <a href='{{url_pagamento}}'> este link. </a>
                 </div>
                 {{/if}}
-                    
+
 
                 {{> yield }}
 

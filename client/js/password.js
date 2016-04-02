@@ -1,3 +1,5 @@
+/* Para gerenciamento de forget password e reset password */
+
 Template.forgotPassword.events({
     "submit #forgotPasswordForm": function(event){
         if(event.target.email){

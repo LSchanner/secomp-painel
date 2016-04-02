@@ -1,3 +1,5 @@
+/* Página principal */
+
 Template.painel.helpers({
     atRoute: function(path){
         return path === Router.current().route.getName();
@@ -9,7 +11,7 @@ Template.painel.helpers({
         return Roles.userIsInRole(Meteor.userId(),"moderador");
     },
     pontuacao: function(){
-        return Credenciamentos.findOne({user_id:Meteor.userId()}).pontos; 
+        return Credenciamentos.findOne({user_id:Meteor.userId()}).pontos;
     },
     nao_pago: function(){
         return Meteor.user().pago === false;

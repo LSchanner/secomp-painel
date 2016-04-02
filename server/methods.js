@@ -1,3 +1,7 @@
+/* Metodos do aplicativo
+ * Usamos métodos quando fazemos algo no banco de dados que necessita um pouco mais de cuidado
+ */
+
 Meteor.methods({
     credenciaUser: function(userId,credId){
         if(!authAdmin(this.userId)) return "Não usuario";
@@ -39,6 +43,7 @@ Meteor.methods({
             }
         return false;
     },
+
     pedidoAchievement: function(achievementId){
         var achievement = Achievements.findOne(achievementId);
         var credId = (Credenciamentos.findOne({user_id:this.userId}))._id;
@@ -47,6 +52,7 @@ Meteor.methods({
             $addToSet:{pedidos:credId}
         });
     },
+
     updatePontuacao: function(credId){
         var pontos = 0;
         Atividades.find({'feedback.credId':credId}).forEach(function(obj){
@@ -58,8 +64,13 @@ Meteor.methods({
         console.log(pontos);
         Credenciamentos.update(credId,{$set:{pontos:pontos}});
     },
+    /* Subimissão de um feedback
+     * Recebe como parametro o identificador da atividade e as respostas
+     */
     submitFeedback: function(atividadeId,surveyItems){
         var atividade = Atividades.findOne(atividadeId);
+
+        /* Verifica se todas as perguntas foram respondidas */
         if(Object.keys(surveyItems).length != Perguntas.find({modelos:atividade.modelo}).count()){
             return;
         }

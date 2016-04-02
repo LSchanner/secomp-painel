@@ -1,4 +1,8 @@
-// collections
+// Collection
+// Aqui estão as estruturas de dados do banco de dados
+// O cadastro de usuario não está aqui, ele esta implementado em Accounts (veja Accounts meteor)
+// Ver mais mongo schema
+
 Noticias = new Mongo.Collection("Noticias");
 Atividades = new Mongo.Collection("Atividades");
 Achievements = new Mongo.Collection("Achievements");
@@ -6,7 +10,7 @@ Credenciamentos = new Mongo.Collection("Credenciamentos");
 Patrocinadores = new Mongo.Collection("Patrocinadores");
 Perguntas = new Mongo.Collection("Perguntas");
 
-// Schemas
+// Schemas de Noticia
 Schemas = {};
 Schemas.Noticias = new SimpleSchema({
     title:{
@@ -26,39 +30,7 @@ Schemas.Noticias = new SimpleSchema({
 });
 Noticias.attachSchema(Schemas.Noticias);
 
-// Nesse esquema, Cada pergunta é associada a um conjunto de modelos 
-Schemas.perguntas = new SimpleSchema({
-    title:{
-        type: String
-    },
-    modelos:{
-        type:[String]
-    }
-});
-Perguntas.attachSchema(Schemas.perguntas);
-
-Schemas.surveyItems = new SimpleSchema({
-    pergunta:{ 
-        type: String // ID da pergunta associada à essa resposta
-    },
-    // Assumo que toda resposta seja um número de 0 a 5
-    resposta:{
-        type: Number,
-        min: 0,
-        max: 5
-    }
-});
-
-Schemas.Questionario = new SimpleSchema({
-    //Id do usuário associado à essa resposta
-    credId:{
-        type: String
-    },
-    items:{
-        type: [Schemas.surveyItems]
-    }
-});
-
+// Schema de Atividades
 Schemas.Atividades = new SimpleSchema({
     title:{
         type: String
@@ -104,6 +76,7 @@ Schemas.Atividades = new SimpleSchema({
 });
 Atividades.attachSchema(Schemas.Atividades);
 
+// Schema de Achievements
 Schemas.Achievements = new SimpleSchema({
     title:{
         type: String
@@ -125,6 +98,7 @@ Schemas.Achievements = new SimpleSchema({
 });
 Achievements.attachSchema(Schemas.Achievements);
 
+// Schema de Credenciamento
 Schemas.Credenciamentos = new SimpleSchema({
     user_id:{
         type: String
@@ -138,6 +112,7 @@ Schemas.Credenciamentos = new SimpleSchema({
 });
 Credenciamentos.attachSchema(Schemas.Credenciamentos);
 
+// Schema de Patrocinadoress
 Schemas.Patrocinadores = new SimpleSchema({
     nome:{
         type: String
@@ -148,7 +123,37 @@ Schemas.Patrocinadores = new SimpleSchema({
 });
 Patrocinadores.attachSchema(Schemas.Patrocinadores);
 
-
+// Schema da feedback
+// Nesse esquema, Cada pergunta é associada a um conjunto de modelos
+Schemas.perguntas = new SimpleSchema({
+    title:{
+        type: String
+    },
+    modelos:{
+        type:[String]
+    }
+});
+Perguntas.attachSchema(Schemas.perguntas);
+Schemas.surveyItems = new SimpleSchema({
+    pergunta:{
+        type: String // ID da pergunta associada à essa resposta
+    },
+    // Assumo que toda resposta seja um número de 0 a 5
+    resposta:{
+        type: Number,
+        min: 0,
+        max: 5
+    }
+});
+Schemas.Questionario = new SimpleSchema({
+    //Id do usuário associado à essa resposta
+    credId:{
+        type: String
+    },
+    items:{
+        type: [Schemas.surveyItems]
+    }
+});
 
 // Admin
 AdminConfig = {
@@ -179,7 +184,6 @@ AdminConfig = {
                 {label: 'Título', name: 'title'},
             ]
         }
-
     },
     autoForm:{
         omitFields:['created']
