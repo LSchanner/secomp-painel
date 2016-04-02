@@ -127,7 +127,15 @@ Router.route('/moderador/atividades/:_id', function () {
 },{ name:'editAtividade',
     onBeforeAction: adminHook });
 
-
+// Loja
+Router.route('/loja', function () {
+    if(Meteor.user() === null){
+        this.redirect('login');
+    }else{
+        this.layout('painel');
+        this.render('loja');
+    }
+},{ name:'loja' });
 
 // Achievements
 Router.route('/achievements', function () {
@@ -164,4 +172,3 @@ Router.route('/moderador/achievements/:_id', function () {
     this.render('editAchievement');
 },{ name:'editAchievement',
     onBeforeAction: adminHook });
-

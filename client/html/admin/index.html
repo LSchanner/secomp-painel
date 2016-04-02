@@ -29,11 +29,11 @@
             <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav">
+                    <li class="{{#if atRoute 'admin-credenciamento'}}active{{/if}}">
+                        <a href="/moderador/credenciamento/"><i class="fa fa-fw fa-user"></i> Credenciamento </a>
+                    </li>
                     <li class="{{#if atRoute 'admin-noticias'}}active{{/if}}">
                     <a href="/moderador/noticias/"><i class="fa fa-fw fa-newspaper-o"></i> Noticias</a>
-                    </li>
-                    <li class="{{#if atRoute 'admin-credenciamento'}}active{{/if}}">
-                        <a href="/moderador/credenciamento/"><i class="fa fa-fw fa-user-plus"></i> Credenciamento </a>
                     </li>
                     <li class="{{#if atRoute 'admin-atividades'}}active{{/if}}">
                         <a href="/moderador/atividades/"><i class="fa fa-fw fa-table"></i> Atividades </a>
