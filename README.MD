@@ -26,8 +26,8 @@ e coloque o código a abaixo nela, substituindo as letras maiusculas do jeito qu
         /* Criação de um usuário x não admin */
         Accounts.createUser({
             username: 'USERNAME',
-            email: 'henrique.facioli@gmail.com',
-            password: 'admin',
+            email: 'EMAIL',
+            password: 'PASSWORD',
             profile:{
                 nome: 'nome',
                 cpf: 'cpf',
@@ -39,6 +39,10 @@ e coloque o código a abaixo nela, substituindo as letras maiusculas do jeito qu
                 formatura: '2020'
             }
         });
+
+        Meteor.users.update({'username':'USERNAME'},{
+            $set:{roles:['admin','moderador'],},
+        })
     }
 
 
