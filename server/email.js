@@ -1,17 +1,15 @@
 var texto_email_pagamento = function(code){
-    return "Obrigador por se inscrever para a Secomp! <br> Para confirmar sua inscrição e poder se credenciar e participar das atividades durante a semana, realize o pagamento <a href='https://pagseguro.uol.com.br/v2/checkout/payment.html?code=" + code + "'>clicando aqui.</a>" 
+    return "Obrigador por se inscrever para a Secomp! <br> Para confirmar sua inscrição e poder se credenciar e participar das atividades durante a semana, realize o pagamento <a href='https://pagseguro.uol.com.br/v2/checkout/payment.html?code=" + code + "'>clicando aqui.</a>"
 
 }
 /* ----- Configuração email ---- */
 /*Configuração Servidor SMTP */
 Meteor.startup(function () {
-
-    // No momento usamos o Servidor de SMTP do IC. TODO Migrar para algo mais profissa.
     smtp = {
-      username: 'postmaster@mg.secomp.com.br',   // 
-        password: process.env.MAIL_PASSWORD,
-        server:   'smtp.mailgun.org',  // ex. mail.gandi.net
-        port: 587 // ex.25 ou 465
+        username: 'a@gaamail.com',   // email
+        password: 'aa',
+        server:   'aa',  // mail.server.com
+        port: 465 // ex.25 ou 465
     }
 
     process.env.MAIL_URL = 'smtp://' + encodeURIComponent(smtp.username) + ':' + encodeURIComponent(smtp.password) + '@' + encodeURIComponent(smtp.server) + ':' + smtp.port;
@@ -51,7 +49,7 @@ Meteor.methods({
     /*Método para reenviar o email de verificação*/
     resendVerificationEmail:function(requestEmail){
         var user = Meteor.users.findOne( {'emails.address' : requestEmail} );
-        console.log("Mandando email de verificação ao usuario");
+        console.log("Mandando email de verificação ao usuario " + user.profile.nome);
 
         if(user){
             if(!user.emails[0].verified){
@@ -65,6 +63,8 @@ Meteor.methods({
     /*Método para enviar o token de resetar email*/
     sendResetPassword:function(requestEmail){
         var user = Meteor.users.findOne( {'emails.address' : requestEmail} );
+
+        console.log("Novo usuário " + user.profile.nome + " cadatrado vficação ");
 
         if(user){
             if(user.emails[0].verified){
