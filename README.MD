@@ -19,7 +19,7 @@ já deve ser possível acessar ao painel atravez de [http://localhost:3000](http
 (Este método não é o mais seguro e deve ser evitado, já que mantem a senha em plain text, use somente para teste)
 
 crie um arquivo chamado `fixtures.js` em `server/fixtures.js`
-e coloque o código a abaixo nela, substituindo as letras maiusculas do jeito que desejar.
+e coloque o código a abaixo nela, substituindo USERNAME, EMAIL, PASSWORD do jeito que desejar.
 
 
     if ( Meteor.users.find().count() === 0 ) {
@@ -52,3 +52,21 @@ Para criar sua conta é só seguir pelo sistema, usando o cadastramento de conta
 ## Como entrar como admin
 Para tornar seu usuário admin, assegure- de que ele será o primeiro a entrar no servidor:3000/admin
 agora você poderá editar o banco de dados a partir de uma interface web
+
+## Rapidamente sem ler nada de meteor/mongo:
+### Resetando o banco de dados
+
+    `meteor reset`
+
+### Acessando o banco de dados
+entre na pasta do projeto a partir de um outro terminal enquanto a aplicação está rodando e executo o seguinte comando:
+
+    `meteor mongo`
+
+#### Fazendo uma busca no bd
+
+    `db.$NOME_DO_SCHEMA.find({opcoes:opcoes})`
+
+exemplo, digamos que queremos saber informamções de um usuario cadastrado (banco users) que tem o nome 'joao'.
+
+    `db.users.findOne({'profile.nome':'joao'})`
