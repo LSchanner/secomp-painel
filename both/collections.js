@@ -1,7 +1,7 @@
 // Collection
 // Aqui estão as estruturas de dados do banco de dados
 // O cadastro de usuario não está aqui, ele esta implementado em Accounts (veja Accounts meteor)
-// Ver mais mongo schema
+// Ver mais mongo schema (https://github.com/aldeed/meteor-simple-schema)
 
 Noticias = new Mongo.Collection("Noticias");
 Atividades = new Mongo.Collection("Atividades");
