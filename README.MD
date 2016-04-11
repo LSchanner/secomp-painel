@@ -30,9 +30,9 @@ e coloque o código a abaixo nela, substituindo USERNAME, EMAIL, PASSWORD do jei
             password: 'PASSWORD',
             profile:{
                 nome: 'nome',
-                cpf: 'cpf',
-                rg: 'rg',
-                tel: 'tel',
+                cpf: '111111111',
+                rg: '1111111111',
+                tel: '55555555',
                 uni: 'UNICAMP',
                 curso: 'EC',
                 ra: '111111',
@@ -56,17 +56,26 @@ agora você poderá editar o banco de dados a partir de uma interface web
 ## Rapidamente sem ler nada de meteor/mongo:
 ### Resetando o banco de dados
 
-    `meteor reset`
+    meteor reset
 
 ### Acessando o banco de dados
 entre na pasta do projeto a partir de um outro terminal enquanto a aplicação está rodando e executo o seguinte comando:
 
-    `meteor mongo`
+    meteor mongo
 
 #### Fazendo uma busca no bd
 
-    `db.$NOME_DO_SCHEMA.find({opcoes:opcoes})`
+    db.$NOME_DO_SCHEMA.find({opcoes:opcoes})
 
 exemplo, digamos que queremos saber informamções de um usuario cadastrado (banco users) que tem o nome 'joao'.
 
-    `db.users.findOne({'profile.nome':'joao'})`
+    db.users.findOne({'profile.nome':'joao'})
+
+## Atualizando os packages
+    meteor update
+
+### nemo64:bootstrap
+Tem um 'problema' nesse package (problema está no sistema), em que se ele atualiza perdemos o nosso padrao de cores.
+Para usar o padrao de boa, abra o arquivo 'custon.bootstrap.import.less' e atualize as seguintes variáveis
+    @brand-primary:         #920100;
+    @navbar-inverse-bg:                         #920100;
