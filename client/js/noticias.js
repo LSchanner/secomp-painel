@@ -1,6 +1,10 @@
+//Administração da página de noticias
+
 Session.setDefault('pag',1);
 
-// Página de listagem de noticias
+/* Noticias
+ * Página de listagem de noticias
+ */
 Template.Noticias.helpers({
     noticias: function() {
         return Noticias.find({},{ sort:{created:-1} , limit:Session.get('pag') * 10 })
@@ -15,7 +19,9 @@ Template.Noticias.events({
     }
 });
 
-// Template de uma Noticia encurtada
+/* Noticia
+ *Template de uma Noticia encurtada
+ */
 Template.Noticia.helpers({
     encurta: function(body){
         var text = $(body).text()
@@ -29,7 +35,9 @@ Template.Noticia.helpers({
     }
 });
 
-
+/* novaNoticia
+ * criação de noticia
+ */
 Template.novaNoticia.events({
     'submit #add-noticia': function(event) {
         var title = event.target.title.value;
@@ -51,7 +59,9 @@ Template.novaNoticia.events({
     }
 });
 
-
+/* editNoticia
+ * Usada na edição de uma noticia
+ */
 Template.editNoticia.helpers({
     noticia: function(){
         return Noticias.findOne(Router.current().params._id);
@@ -84,7 +94,9 @@ Template.editNoticia.events({
 
 });
 
-// página de visualizar notícia
+/* shownoticia
+ * Usada para mostrar a noticia ná pagina
+ */
 Template.shownoticia.helpers({
     noticia: function(){
         return Noticias.findOne(Router.current().params._id);

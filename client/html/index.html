@@ -37,14 +37,21 @@
                 {{/if}}
 
                 <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> {{username}} <b class="caret"></b></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <i class="fa fa-user"></i>
+                        {{username}}
+                        <b class="caret"></b>
+                    </a>
                     <ul class="dropdown-menu">
+
                         {{#if isMod}}
                         <li>
                             <a href="/moderador"><i class="fa fa-fw fa-gear"></i> Página de Moderação</a>
                         </li>
                         {{/if}}
+
                         <li class="divider"></li>
+
                         <li id="logout-button">
                             <a href="#"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
                         </li>
@@ -63,6 +70,15 @@
                     <li class="{{#if atRoute 'achievements'}}active{{/if}}">
                         <a href="/achievements/"><i class="fa fa-fw fa-star"></i> Achievements </a>
                     </li>
+                    <li class="{{#if atRoute 'loja'}}active{{/if}}">
+                        <a href="/loja/"><i class="fa fa-fw fa-money"></i> Loja </a>
+                    </li>
+
+                    {{#if isMod}}
+                    <li>
+                        <a href="/moderador"><i class="fa fa-fw fa-gear"></i> Página de Moderação</a>
+                    </li>
+                    {{/if}}
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
@@ -76,7 +92,7 @@
                     Para se credenciar, você precisará pagar a taxa de inscrição. Você pode pagar acessando <a href='{{url_pagamento}}'> este link. </a>
                 </div>
                 {{/if}}
-                    
+
 
                 {{> yield }}
 

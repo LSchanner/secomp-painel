@@ -42,8 +42,8 @@ Template.cadastro.events({
         }
 
         /* Verificar para não permitir campos nulos */
-        if(!(email && password && nome && 
-                    cpf && rg && tel && 
+        if(!(email && password && nome &&
+                    cpf && rg && tel &&
                     ingresso && formatura &&
                     uni != "Universidade" && curso != "Curso")){
 
@@ -77,10 +77,10 @@ Template.cadastro.events({
                 ingresso: ingresso,
                 formatura: formatura,
                 empresas: empresas
-
             }
         };
 
+        /* Cria o usuario com as informações do user */
         Accounts.createUser(user, function(Error){
             if(Error.message === 'Email already exists. [403]'){
                 Session.set('erro', erroEmail);

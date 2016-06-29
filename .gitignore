@@ -1,3 +1,4 @@
+server/email-configuration.js
 server/fixtures.js
 localsettings.js
 both/settings.js

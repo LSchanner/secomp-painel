@@ -1,3 +1,12 @@
+/* Administração dos usuários credenciados */
+
+/* getUser
+ * Função que recupara o usuaário do banco de dados
+ */
+var getUser = function(){
+    return Meteor.users.findOne(Router.current().params._id);
+}
+
 
 // página que lista os usuários não credenciados
 Template.adminCredenciamento.helpers({
@@ -36,11 +45,6 @@ Template.userListItem.helpers({
 
     },
 })
-
-
-var getUser = function(){
-    return Meteor.users.findOne(Router.current().params._id);
-}
 
 Template.credenciaUser.helpers({
     user: getUser ,

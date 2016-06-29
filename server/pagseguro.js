@@ -1,8 +1,11 @@
+/* Metodo do pagseduro
+ * Faz a requisição http seguindo a documentação do pagseguro
+ */
 Meteor.methods({
     confirmaPagamento: function(code){
         this.unblock();
         try{
-            var result = HTTP.get('https://ws.pagseguro.uol.com.br/v2/transactions/' + code,   
+            var result = HTTP.get('https://ws.pagseguro.uol.com.br/v2/transactions/' + code,
                 {
                     params:{
                         email:'contato@secomp.com.br',
@@ -48,5 +51,5 @@ Router.route('/pagseguro/notify',function(){
             }
         }
         );
-    
+
 },{where:'server'});

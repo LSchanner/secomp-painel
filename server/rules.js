@@ -1,3 +1,6 @@
+/* Página de controller
+ * Aqui voce pode editar quem tem acesso a cada página
+ */
 // função que valida submissão
 authAdmin = function(userId, instance){
     return Roles.userIsInRole(userId,['moderador']);

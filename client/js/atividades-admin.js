@@ -1,3 +1,4 @@
+/* Funcoes de atividades de acesso do admin */
 /* ---- novaAtividade ---- */
 Template.novaAtividade.events({
     'submit #add-atividade': function(event) {
